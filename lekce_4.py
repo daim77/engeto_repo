@@ -45,10 +45,12 @@ zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
 # else:
 # 	print('Ještě si to jednou projdi, někde se vloudila chybka :(\nPokud si nejsi jistý, mrkni ještě jednou na tabulku s metodami')
 
-#smycka WHILE
-muj_string = 'while smyčky můžou býT neKonečné'
-while muj_string:
-    if muj_string[0].isupper():
-        print('Našel jsem velké písmeno:',muj_string[0])
-    muj_string = muj_string[1:]
-print('muj_string po while:_' + muj_string + '_')
+# # #smycka WHILE
+# muj_string = 'while smyčky můžou býT neKonečné'
+# while muj_string:
+#     if muj_string[0].isupper():
+#         print('Našel jsem velké písmeno:',muj_string[0])
+# #        break
+#     muj_string = muj_string[1:]
+# print('muj_string po while:_' + muj_string + '_')
+
