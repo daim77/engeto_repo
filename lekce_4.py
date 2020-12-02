@@ -15,11 +15,11 @@ print(muj_list)
 paty_prvek = muj_list[5]
 print('paty prvek:', paty_prvek)
 # Ocisti paty prvek
-cisty_paty_prvek = paty_prvek.split('!')
+cisty_paty_prvek = paty_prvek.strip("',!")
 print(cisty_paty_prvek)
-#print(cisty_paty_prvek)
 
 # Over kapitalky promenne 'cisty_paty_prvek' - napis podminku za if a ukonci radek dvojteckou
-#if
-
-#else:
+if cisty_paty_prvek.isupper():
+    print('jsou vsechna VELKA pismena')
+else:
+    print('alespon jedno je male pismena')
