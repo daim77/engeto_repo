@@ -20,18 +20,27 @@ b = int(input('Zadej druhe cislo: '))
 
 
 # Zapiš nekonečnou smyčku
+while a == a:
+    # Vypiš jaké operace může uživatel provádět a možnost zapsat input()
+    print('=' * 70)
+    print('Zvol jednu z nasledujicich operaci:')
+    print('1    |   soucet')
+    print('2    |   rozdil')
+    print('3    |   nasobeni')
+    print('4    |   deleni')
+    print('any    |   KONEC')
 
-
-
-# Vypiš jaké operace může uživatel provádět a možnost zapsat input()
-print('=' * 70)
-print('Zvol jednu z nasledujicich operaci:')
-print('1    |   soucet')
-print('2    |   rozdil')
-print('3    |   nasobeni')
-print('4    |   deleni')
-print('5    |   KONEC')
-
-
-
-# Sem zapiš podmínky, které spojí tebou nabízené operace a následný print() výsledku
+    # Sem zapiš podmínky, které spojí tebou nabízené operace a následný print() výsledku
+    print('=' * 70)
+    math_operace = int(input('Zadej pozadovanou operaci: '))
+    if math_operace == 1:
+        print('Soucet cisel ', a, 'a', b, 'je', a+b)
+    elif math_operace == 2:
+        print('Rozdil cisel ', a, 'a', b, 'je', a - b)
+    elif math_operace == 3:
+        print('Nasobeni cisel ', a, 'a', b, 'je', a * b)
+    elif math_operace == 4:
+        print('Deleni cisel ', a, 'a', b, 'je', a / b)
+    else:
+        print('KONEC')
+        break
