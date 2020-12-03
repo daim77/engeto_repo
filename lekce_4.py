@@ -72,11 +72,13 @@ zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
 #     characters[character] = characters.get(character,0) + 1
 # print(characters)
 
-# odpocet po jedne sekunde
-from time import sleep
-my_sec = int(input('Zadej pocet sekund: '))
-while my_sec:
-    sleep(1)
-    print('Pocet sekund:', my_sec)
-    my_sec = my_sec - 1
+# # odpocet po jedne sekunde
+# from time import sleep
+# my_sec = int(input('Zadej pocet sekund: '))
+# while my_sec:
+#     sleep(1)
+#     print('Pocet sekund:', my_sec)
+#     my_sec = my_sec - 1
+
+
 
