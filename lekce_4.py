@@ -54,3 +54,9 @@ zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
 #     muj_string = muj_string[1:]
 # print('muj_string po while:_' + muj_string + '_')
 
+barvy = ['zelena', 'modra', 'cerna', 'cervena', 'cervena', 'zluta', 'modra', 'seda', 'cerna' , 'cervena', 'zelena']
+pocet_barev = {}
+while barvy:
+    barva = barvy.pop()
+    pocet_barev[barva] = pocet_barev.get(barva,0) + 1 # NULA je defaultni hodnota if key is missing
+print(pocet_barev)
