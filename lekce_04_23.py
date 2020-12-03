@@ -10,7 +10,6 @@ cisla = [
     742, 717, 958, 743, 527
 ]
 soucet_cisla = [0, 0]  # index 0 je licha a index 1 je suda
-my_pop = 0
 while cisla:
     my_pop = cisla.pop()
     if my_pop % 2 == 0:
