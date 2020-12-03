@@ -61,3 +61,13 @@ zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
 #     pocet_barev[barva] = pocet_barev.get(barva,0) + 1 # NULA je defaultni hodnota if key is missing
 # print(pocet_barev)
 
+# my example with .get, while nad counting the characters in one full sentence
+sentence = input('Zedej vetu nebo slovo. Spocitam vyskyt znaku!: ')
+characters = {}
+# convert string to list
+sentence = list(sentence)
+
+while sentence:
+    character = sentence.pop()
+    characters[character] = characters.get(character,0) + 1
+print(characters)
