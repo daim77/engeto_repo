@@ -130,5 +130,13 @@
 #         print(cislo)
 # ==================================================
 
+# fce continue
+cislo = 0
+while cislo < 100:
+    cislo += 3
+    if cislo % 15 == 0:
+        continue # vyhodi z vypisu vsechny nasobky 15
+    else:
+        print(cislo)
 
 
