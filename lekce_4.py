@@ -130,13 +130,26 @@
 #         print(cislo)
 # ==================================================
 
-# fce continue
-cislo = 0
-while cislo < 100:
-    cislo += 3
-    if cislo % 15 == 0:
-        continue # vyhodi z vypisu vsechny nasobky 15
-    else:
-        print(cislo)
+# # fce continue
+# cislo = 0
+# while cislo < 100:
+#     cislo += 3
+#     if cislo % 15 == 0:
+#         continue # vyhodi z vypisu vsechny nasobky 15
+#     else:
+#         print(cislo)
+# ==================================================
 
+# kdy se vracim z dovolene
+dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
+# jedeme na 12 dní
+doba = 12
+odjezd = 3  # den odjezdu
+count = 0  #pomocná proměná
 
+while count < doba:
+    index = odjezd % len(dny)  # odecist od indexu 1
+    print(index)
+    odjezd +=1
+    print (dny[index - 1])
+    count += 1
