@@ -18,3 +18,12 @@ while pocet_slov > 0:
     pocet_slov -= 1
 final_tuple = (nejdelsi_slovo, len(nejdelsi_slovo))
 print(final_tuple)
+
+
+# vzorove reseni
+# nejdelsi_slovo = ('', 0)
+# while slova:
+#     slovo = slova.pop(0)
+#     if len(slovo) > nejdelsi_slovo[1]:
+#         nejdelsi_slovo = slovo, len(slovo)
+# print(nejdelsi_slovo)
