@@ -30,4 +30,4 @@ while i < 2:
 if i == 2:
     print("Prohrál jsi")
 else:
-    print('Správně! Počet pokusů:', )
+    print('Správně! Počet pokusů:', i+1)
