@@ -2,18 +2,18 @@
 muj_string = 'Abc@abc.cz a Matous@1234.cz jsou naše emailové adresy'
 
 # # Rozdel string
-# rozdeleny_string =
+rozdeleny_string = muj_string.split(' ')
 #
 # # Tisk promenne 'rozdeleny_string'
-# print(rozdeleny_string)
+print(rozdeleny_string)
 #
 # # Ziskej emaily
-# emaily = list()
-#
-#
+emaily = list()
+emaily.append(rozdeleny_string[0])
+emaily.append(rozdeleny_string[2])
 #
 # # Tisk promenne 'emaily'
-# print(emaily)
+print(emaily)
 #
 # # Ziskani domen
 # domena01 =
