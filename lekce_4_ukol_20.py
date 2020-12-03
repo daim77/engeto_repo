@@ -1,6 +1,6 @@
 # Zadany string
 muj_string = 'Abc@abc.cz a Matous@1234.cz jsou naše emailové adresy'
-
+print('Puvodni str', muj_string)
 # # Rozdel string
 rozdeleny_string = muj_string.split(' ')
 #
@@ -13,7 +13,7 @@ emaily.append(rozdeleny_string[0])
 emaily.append(rozdeleny_string[2])
 #
 # # Tisk promenne 'emaily'
-print(emaily)
+print('Promenna emaily', emaily)
 #
 # # Ziskani domen
 domena01 = emaily[0].split('@')[-1]
@@ -28,19 +28,18 @@ bez_cisel = ''
 
 # # Dopln podminkovy vyraz pro 'domena01'
 if domena01.isalpha():
-    bez_cisel = domena01.join(bez_cisel)
+    bez_cisel = bez_cisel.join(domena01)
     print('Domena', domena01, 'byla pridana')
 else:
     print('Domena', domena01, 'nebyla pridana, protoze obsahuje cisla!')
-print(bez_cisel)
 
 # # Dopln podminkovy vyraz pro 'domena02'
 if domena02.isalpha():
-    bez_cisel = domena02.join(bez_cisel)
+    bez_cisel = bez_cisel.join(domena02)
     print('Domena', domena02, 'byla pridana')
 else:
     print('Domena', domena02, 'nebyla pridana, protoze obsahuje cisla!')
-print(bez_cisel)
+
 
 # ZDE NIC NEDOPLNUJ, jde o nasi kontrolu :)
 if (len(bez_cisel) + 1) % 4 == 0:
