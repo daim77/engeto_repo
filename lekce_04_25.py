@@ -9,3 +9,7 @@ film = {'name': 'Forrest Gump',
         The house used in Forrest Gump is the same house used in The Patriot (2000).
         Some paneling was changed for interior shots  in the latter film.'''
         }
+
+my_pairs = film.popitem()
+print(my_char)
+print(film)

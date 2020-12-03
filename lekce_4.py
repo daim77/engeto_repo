@@ -25,8 +25,8 @@
 #     print('alespon jedno je male pismena')
 
 # List zeleniny
-zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
-                'okurka', 'salat', 'cervena_repa', 'paprika', 'petrzel']
+#zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
+               # 'okurka', 'salat', 'cervena_repa', 'paprika', 'petrzel']
 
 # # Zjisti pocet pro 'petrzel'
 # pocet_Petr = zelenina.count('petrzel')
@@ -80,5 +80,17 @@ zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
 #     print('Pocet sekund:', my_sec)
 #     my_sec = my_sec - 1
 
+# live from webinar
+# Jmena_simpsonovych = ["Homer", "Bart", "Marge", "Lisa", "Maggy", "Homer", "Homer", "Homer", "Homer", "Homer"]
+# Jmena_simpsonovych = set(Jmena_simpsonovych)
+# Jmena_simpsonovych = list(Jmena_simpsonovych)
+# print(Jmena_simpsonovych[0])
 
+# #subset podmnozina
+# simpsonovi = {"Homer", "Bart", "Marge", "Lisa", "Maggy"}
+# deti = ["Bart", "Lisa", "Maggy"]
+# rodice = {"Marge", "Homer"}
+#
+# print(set(deti).issubset(simpsonovi))
+# print(simpsonovi - set(deti) == rodice)
 
