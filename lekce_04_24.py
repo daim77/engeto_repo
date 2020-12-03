@@ -10,3 +10,28 @@
 # Pomocí cyklu bychom chtěli zopakovat, aby se uživateli nabízely operace tak dlouho,
 # dokud je nebude chtít příkazem ukončit.
 
+# Pozdrav uživatele a umožni mu zapsat dvě vstupní proměnné
+print('=' * 70)
+print('Ahoj. Toto je velmi primitivni kalkulacka. Budes vyzvan k zadani dvou libovolnych cisel a k volbe vypoctu!')
+print('=' * 70)
+print('=' * 70)
+a = int(input('Zadej prvni cislo: '))
+b = int(input('Zadej druhe cislo: '))
+
+
+# Zapiš nekonečnou smyčku
+
+
+
+# Vypiš jaké operace může uživatel provádět a možnost zapsat input()
+print('=' * 70)
+print('Zvol jednu z nasledujicich operaci:')
+print('1    |   soucet')
+print('2    |   rozdil')
+print('3    |   nasobeni')
+print('4    |   deleni')
+print('5    |   KONEC')
+
+
+
+# Sem zapiš podmínky, které spojí tebou nabízené operace a následný print() výsledku
