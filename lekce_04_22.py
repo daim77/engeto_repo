@@ -7,3 +7,14 @@ slova = [
     'created', 'by', 'Guido', 'van', 'Rossum',
     'and', 'first', 'released', 'in', '1991.'
 ]
+pocet_slov = (len(slova))
+my_char = None  # zkusit none
+nejdelsi_slovo = ''  # musi mit '' protoze none nema delku!
+final_tuple = None
+while pocet_slov > 0:
+    my_char = slova.pop()
+    if len(my_char) > len(nejdelsi_slovo):
+        nejdelsi_slovo = my_char
+    pocet_slov -= 1
+final_tuple = (nejdelsi_slovo, len(nejdelsi_slovo))
+print(final_tuple)
