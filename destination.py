@@ -5,6 +5,7 @@
 
 SEZNAM_MEST = ("Praha", "Viden", "Olomouc", "Svitavy", "Zlin", "Ostrava")
 SEZNAM_CEN = (150, 200, 120, 120, 100, 180)
+seznam_dict = dict(zip(SEZNAM_MEST, SEZNAM_CEN))
 
 ODDELOVAC = "=" * 35
 print(ODDELOVAC)
