@@ -110,13 +110,25 @@
 # print(tuple(list_jmen), set(list_jmen), list_jmen, slovnik_jmen)
 # ====================================================================
 
-x = 0
-y = 100
-while x < 10 and y == 100:
-    print(x)
-    x += 1
-else:
-    print('konec, y neni 100')
+# x = 0
+# y = 100
+# while x < 10 and y == 100:
+#     print(x)
+#     x += 1
+# else:
+#     print('konec, y neni 100')
+# ==================================================
+
+# cislo = 2
+# prepinac = True
+# while prepinac:
+#     cislo = cislo * cislo
+#     kontrola = input("Pro ukonceni napis 'q': ")
+#     if kontrola == ("q" or "Q"):
+#         prepinac = False
+#     else:
+#         print(cislo)
+# ==================================================
 
 
 
