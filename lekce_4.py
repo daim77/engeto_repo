@@ -94,3 +94,18 @@
 # print(set(deti).issubset(simpsonovi))
 # print(simpsonovi - set(deti) == rodice)
 
+# reseni destination.py pomoci dict
+# ukladani do ruznych datovych typu
+list_jmen = []
+slovnik_jmen = {}
+count = 0
+
+while count < 4:
+    jmeno = input('zadej jmeno: ')
+    list_jmen.append(jmeno)
+    slovnik_jmen[f"jmeno.{count}"] = jmeno
+    count += 1
+
+print(tuple(list_jmen), set(list_jmen), list_jmen, slovnik_jmen)
+
+
