@@ -5,6 +5,7 @@
 
 SEZNAM_MEST = ("Praha", "Viden", "Olomouc", "Svitavy", "Zlin", "Ostrava")
 SEZNAM_CEN = (150, 200, 120, 120, 100, 180)
+
 seznam_dict = dict(zip(SEZNAM_MEST, SEZNAM_CEN))
 
 ODDELOVAC = "=" * 35
@@ -27,13 +28,13 @@ print(ODDELOVAC)
 SLEVY = ("Olomouc", "Ostrava")
 # II. KROK:
 # Spravne cislo lokality! 1 < x < 6
-por_cislo = int(input("Vyberte cislo lokality: "))
-if por_cislo < 1 or por_cislo > 6:
-    print("Vami vybrane cislo neni v nabidce, ukoncuji")
+por_cislo = input("Vyberte cislo lokality: ").title()
+if not por_cislo in seznam_dict:
+    print("Vami vybrana cislo neni v nabidce, ukoncuji")
     exit()
 else:
-    destinace = SEZNAM_MEST[por_cislo - 1]
-    cena = SEZNAM_CEN[por_cislo - 1]
+    destinace = por_cislo
+    cena = seznam_dict.get(por_cislo)
     print(f"DESTINACE: {destinace}")
     print(ODDELOVAC)
 # III. KROK:
