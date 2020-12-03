@@ -9,3 +9,12 @@ cisla = [
     24, 892, 894, 767, 553, 81, 379, 843, 831, 445,
     742, 717, 958, 743, 527
 ]
+soucet_cisla = [0, 0]  # index 0 je licha a index 1 je suda
+my_pop = 0
+while cisla:
+    my_pop = cisla.pop()
+    if my_pop % 2 == 0:
+        soucet_cisla[1] = soucet_cisla[1] + my_pop
+    else:
+        soucet_cisla[0] = soucet_cisla[0] + my_pop
+print(abs(soucet_cisla[0] - soucet_cisla[1]))
