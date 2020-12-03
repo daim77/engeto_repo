@@ -79,6 +79,6 @@
 
 # print(len([1,2,[3,4,5]]))
 
-# max a min s typem string
-muj_list_mm = ['ma', 'ma', 'ma']
-print(min(muj_list_mm))
+# # max a min s typem string
+# muj_list_mm = ['ma', 'ma', 'ma']
+# print(min(muj_list_mm))
