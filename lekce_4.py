@@ -144,12 +144,11 @@
 dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
 # jedeme na 12 dní
 doba = 12
-odjezd = 3  # den odjezdu
+odjezd = dny.index('středa')  # den odjezdu
 count = 0  #pomocná proměná
 
 while count < doba:
     index = odjezd % len(dny)  # odecist od indexu 1
-    print(index)
     odjezd +=1
-    print (dny[index - 1])
+    print (dny[index])
     count += 1
