@@ -2,7 +2,8 @@
 # rozdelen_do_listu = muj_string.split(',')
 # print('muj string: ', muj_string)
 # print(rozdelen_do_listu)
-# muj_string = muj_string.strip('a,') # v promenne odstrani z leva do prvniho znaku, ktery neni argumentem. U stringu odstrani vse
+# muj_string = muj_string.strip('a,') # v promenne odstrani z leva do prvniho znaku, ktery neni argumentem.
+# U stringu odstrani vse
 # print(muj_string)
 
 # # Zadany string
@@ -25,8 +26,10 @@
 #     print('alespon jedno je male pismena')
 
 # List zeleniny
-#zelenina = ['brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel',
-               # 'okurka', 'salat', 'cervena_repa', 'paprika', 'petrzel']
+zelenina = ['''
+            brokolice', 'petrzel', 'celer', 'redkev', 'rajce', 'petrzel', 'okurka', 'salat', 'cervena_repa',
+            'paprika', 'petrzel'''
+            ]
 
 # # Zjisti pocet pro 'petrzel'
 # pocet_Petr = zelenina.count('petrzel')
@@ -43,7 +46,8 @@
 # if pocet_Petr == 3 and rajce_Index == 4 and 'okurka' not in zelenina:
 # 	print('Skvělá práce, v metodách listů jsi přeborník!')
 # else:
-# 	print('Ještě si to jednou projdi, někde se vloudila chybka :(\nPokud si nejsi jistý, mrkni ještě jednou na tabulku s metodami')
+# 	print('Ještě si to jednou projdi, někde se vloudila chybka :(\nPokud si nejsi jistý, mrkni ještě jednou na
+# 	tabulku s metodami')
 
 # # #smycka WHILE
 # muj_string = 'while smyčky můžou býT neKonečné'
@@ -141,18 +145,14 @@
 # ==================================================
 
 # kdy se vracim z dovolene
-# dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
-# # jedeme na 12 dní
-# doba = 12
-# odjezd = dny.index('středa')  # den odjezdu
-# count = 0  #pomocná proměná
-#
-# while count < doba:
-#     index = odjezd % len(dny)  # odecist od indexu 1
-#     odjezd +=1
-#     print (dny[index])
-#     count += 1
+dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
+# jedeme na 12 dní
+doba = 12
+odjezd = dny.index('středa')  # den odjezdu
+count = 0  # pomocná proměná
 
-# test test
-my_dict = dict('name' = 'John')
-print(my_dict)
+while count < doba:
+    index = odjezd % len(dny)
+    odjezd += 1
+    print(dny[index])
+    count += 1
