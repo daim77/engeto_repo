@@ -5,11 +5,10 @@ film = {'name': 'Forrest Gump',
         'director': 'Robert Zemeckis',
         'soundtrack': 'Multiple',
         'starring': 'Tom Hanks',
-        'fun_fact': '''
-        The house used in Forrest Gump is the same house used in The Patriot (2000).
-        Some paneling was changed for interior shots  in the latter film.'''
-        }
+        'fun_fact': 'The house used in Forrest Gump is the same house used in The Patriot (2000). Some paneling was changed for interior shots  in the latter film.'}
+count = 0
+my_pairs = tuple(film.items())
+while count < len(film):
+        print(f"key:    {my_pairs[count][0]}        |  value:    {my_pairs[count][1]}")
+        count += 1
 
-my_pairs = film.popitem()
-print(my_char)
-print(film)
