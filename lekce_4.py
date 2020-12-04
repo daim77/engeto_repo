@@ -141,14 +141,18 @@
 # ==================================================
 
 # kdy se vracim z dovolene
-dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
-# jedeme na 12 dní
-doba = 12
-odjezd = dny.index('středa')  # den odjezdu
-count = 0  #pomocná proměná
+# dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
+# # jedeme na 12 dní
+# doba = 12
+# odjezd = dny.index('středa')  # den odjezdu
+# count = 0  #pomocná proměná
+#
+# while count < doba:
+#     index = odjezd % len(dny)  # odecist od indexu 1
+#     odjezd +=1
+#     print (dny[index])
+#     count += 1
 
-while count < doba:
-    index = odjezd % len(dny)  # odecist od indexu 1
-    odjezd +=1
-    print (dny[index])
-    count += 1
+# test test
+my_dict = dict('name' = 'John')
+print(my_dict)
