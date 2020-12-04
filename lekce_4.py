@@ -147,12 +147,11 @@ zelenina = ['''
 # kdy se vracim z dovolene
 dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
 # jedeme na 12 dní
-doba = 12
-odjezd = dny.index('středa')  # den odjezdu
-count = 0  # pomocná proměná
+doba = int(input('Zadej delku dovolene: '))
+odjezd = dny.index(input('Zadej den v tydnu, kdy odjizdis na dovolenou: '))
 
-while count < doba:
-    index = odjezd % len(dny)
+while doba > 0:
+    navrat = dny[odjezd % len(dny)]
     odjezd += 1
-    print(dny[index])
-    count += 1
+    doba -= 1
+print(f'Vracim se: {navrat}')
