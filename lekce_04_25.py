@@ -12,3 +12,7 @@ while count < len(film):
         print(f"key:    {my_pairs[count][0]}        |  value:    {my_pairs[count][1]}")
         count += 1
 
+# vzorove reseni
+# while film:
+#     info = film.popitem()
+#     print('Key: ' + str(info[0]) + ' | Value: ' + str(info[1]))
