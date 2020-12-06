@@ -6,7 +6,7 @@
 # U stringu odstrani vse
 # print(muj_string)
 
-# # Zadany string
+# Zadany string
 # muj_string = "Kdyby si Bruno nevšiml značky 'POZOR!', narazil by do zdi"
 # print(muj_string)
 # # Rozdel string do sekvence
@@ -18,7 +18,7 @@
 # # Ocisti paty prvek
 # cisty_paty_prvek = paty_prvek.strip("',!")
 # print(cisty_paty_prvek)
-#
+
 # # Over kapitalky promenne 'cisty_paty_prvek' - napis podminku za if a ukonci radek dvojteckou
 # if cisty_paty_prvek.isupper():
 #     print('jsou vsechna VELKA pismena')
