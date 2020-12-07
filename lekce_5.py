@@ -34,15 +34,45 @@
 # for category, value, indicator in data:
 #     print(f"{category} : {value} : {indicator}")
 
-# DICT
-zamestnanci = {'Jméno': 'John', 'Příjmení': 'Smith', 'Věk': 43}
-# For loop
-for klic in zamestnanci:
-    print(klic)
-# To znamená, že procházení klíčů je nastavené u slovníku jako defaultní možnost.
+# # DICT
+# zamestnanci = {'Jméno': 'John', 'Příjmení': 'Smith', 'Věk': 43}
+# # For loop
+# for klic in zamestnanci:
+#     print(klic)
+# # To znamená, že procházení klíčů je nastavené u slovníku jako defaultní možnost.
+#
+# for hodnota in zamestnanci.values():
+#     print(hodnota)
+#
+# for klic, hodnota in zamestnanci.items():
+#     print(klic,hodnota)
 
-for hodnota in zamestnanci.values():
-    print(hodnota)
+# Promenna
+# muj_str = 'Python'
 
-for klic, hodnota in zamestnanci.items():
-    print(klic,hodnota)
+# # For loop
+# for index in range(len(muj_str)-1,-1,-1):
+#     znak = muj_str[index]
+#     print(znak, end='')
+
+# Tabulka
+tabulka = [['ID','NAME','PRICE','AMOUNT'],
+         ['X131', 'Pipe', 2.05, 1000],
+         ['XT12', 'Screw', 0.35, 1000],
+         ['Z43', 'Nail', 0.95, 1000],
+         ['P843', 'Tape', 1.39, 1000]
+]
+
+# # For loop
+# for radek in tabulka:
+#     for prvek in radek:
+#         print(str(prvek) + "    ", end='')
+#     print('')
+
+# # enumerate()
+# nejaky_string = 'For loops podporují iterační protokol'
+# print(list(enumerate(nejaky_string)))
+# for i, char in enumerate(nejaky_string):
+#     if i % 2 == 0:
+#         char = char.upper()
+#     print(char, end='')
