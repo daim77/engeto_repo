@@ -4,11 +4,45 @@
 # základy funkcí,
 # formátování string,
 
-print('0-19:    ', list(range(20)))
-print('15-19:   ', tuple(range(15,20)))
-print('10-19:   ', tuple(range(10,20,3)))
+# print('0-19:    ', list(range(20)))
+# print('15-19:   ', tuple(range(15,20)))
+# print('10-19:   ', tuple(range(10,20,3)))
+#
+# # Do proměnné nums vytvoř list pomocí range, který bude obsahovat každé číslo,
+# # které je dělitelné 5 v rozmezí od 1-100.
+# nums = list(range(5,101,5))
+# print(nums)
+#
+# print(list(range(10)[2:6]))
 
-# Do proměnné nums vytvoř list pomocí range, který bude obsahovat každé číslo,
-# které je dělitelné 5 v rozmezí od 1-100.
-nums = list(range(5,101,5))
-print(nums)
+# # For loop
+# for num in range(10):
+#     print(num)
+
+# muj_str = 'Hello World'
+# for i in range(len(muj_str)):
+#     print(muj_str[i])
+#
+# for i in muj_str:
+#     print(i)
+
+
+# # Zadani tuplu
+# data = (('Věk',43,True),('Jméno','John',True),('Příjmení','Smith',False))
+#
+# # For loop
+# for category, value, indicator in data:
+#     print(f"{category} : {value} : {indicator}")
+
+# DICT
+zamestnanci = {'Jméno': 'John', 'Příjmení': 'Smith', 'Věk': 43}
+# For loop
+for klic in zamestnanci:
+    print(klic)
+# To znamená, že procházení klíčů je nastavené u slovníku jako defaultní možnost.
+
+for hodnota in zamestnanci.values():
+    print(hodnota)
+
+for klic, hodnota in zamestnanci.items():
+    print(klic,hodnota)
