@@ -3,8 +3,9 @@
 # Program musí používat proměnné:
 # size - délka hrany šachovnice
 # symbols - znaky potřebné pro černá a bílá pole
-# desk - reprezentace šachovnice
+# desk - reprezentace šachovnice, tuple, list, dict
 
+desk = list()
 # Zadej rozměry šachovnice
 size = int(input('Zadej rozmer sachovnice: '))
 
@@ -15,8 +16,9 @@ symbols = input('Zadej dva symboly sachovnice repre B&W: ')
 
 # Doplň smyčky for, které by měly postupně nahrát celou
 # šachovnici do proměnné 'desk'
-for a in range(size):
+for a in range(size): # enumerate
     for b in range(size):
-    desk[a][b] =
-
+        desk_row[b] = symbols
+    desk[a].append(desk_row)
 # Vytiskni šachovnici.
+print(symbols)
