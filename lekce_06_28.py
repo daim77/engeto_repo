@@ -18,11 +18,18 @@ time = input('Insert time for conversion in format hh:mm :  ')
 
 # Rozděl do listu vstup od uživatele do proměnné `hours` a `mins`.
 time = time.partition(':')
-print(time)
+hours = time[0]
+mins = time[2]
+
 
 # Uprav proměnou `hours` tak, aby se do proměnné `adjusted_hours` místo
 # 24 hodinového formátu (např.: 17) uložil formát anglický (např.: 5).
+if int(hours) > 12:
+    adjusted_hours = [str(int(hours) - 12), ':', mins, ' PM']
+else:
+    adjusted_hours = [hours, ':', mins, ' AM']
 
 # Do proměnné `daytime` vyber odpovídající string z dvojčlenného listu ['AM', 'PM']
 
 # Vytiskni převedený čas.
+print(''.join(adjusted_hours))
