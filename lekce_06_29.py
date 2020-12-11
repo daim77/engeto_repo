@@ -11,16 +11,18 @@ names = [
     'Honza', 'Vasek', 'Milan',
     'Michal'
 ]
-sorted_names = list(names.pop())
-print(names)
+sorted_names = list()
+sorted_names.append(names.pop())
 for name in names:
     i = 0
     for sorted_name in sorted_names:
         if name <= sorted_name:
             sorted_names.insert(i, name)
-            sorted_names.insert(i + 1, sorted_name)
-            i +=1
+            name = ''
             break
         else:
-            sorted_names.append(name)
+            i += 1
+    sorted_names.append(name)
+while '' in sorted_names:
+    sorted_names.remove('')
 print(sorted_names)
