@@ -32,4 +32,4 @@ else:
 # Do proměnné `daytime` vyber odpovídající string z dvojčlenného listu ['AM', 'PM']
 
 # Vytiskni převedený čas.
-print(''.join(adjusted_hours))
+print('converted to eng format: ' + ''.join(adjusted_hours))
