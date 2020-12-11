@@ -63,11 +63,11 @@ tabulka = [['ID','NAME','PRICE','AMOUNT'],
          ['P843', 'Tape', 1.39, 1000]
 ]
 
-# # For loop
-# for radek in tabulka:
-#     for prvek in radek:
-#         print(str(prvek) + "    ", end='')
-#     print('')
+# For loop
+for radek in tabulka:
+    for prvek in radek:
+        print(str(prvek) + "    ", end='')
+    print('')
 
 # # enumerate()
 # nejaky_string = 'For loops podporují iterační protokol'
