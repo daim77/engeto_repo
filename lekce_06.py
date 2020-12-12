@@ -84,36 +84,51 @@
 # for cislo, jmeno in enumerate(JMENA, 1):  # default je nula
 #     print(f'{cislo}.: {jmeno}')
 
-# analyza textu
+# analyza textu pro zahradniky
 TEXT = """
-Affronting imprudence do he he everything. Sex lasted dinner wanted indeed
-wished out law. Far advanced settling say finished raillery. Offered
-chiefly farther of my no colonel shyness. Such on help ye some door if in.
-Laughter proposal laughing any son law consider. Needed except up piqued
-an. Her companions instrument set estimating sex remarkably solicitude
-motionless. Property men the why smallest graceful day insisted required.
-Inquiry justice country old placing sitting any ten age. Looking venture
-justice in evident in totally he do ability. Be is lose girl long of up give.
-Trifling wondered unpacked ye at he. In household certainty an on tolerably
-smallness difficult. Many no each like up be is next neat. Put not enjoyment
-behaviour her supposing. At he pulled object others. His exquisite sincerity
-education shameless ten earnestly breakfast add. So we me unknown as improve
-hastily sitting forming. Especially favourable compliment but thoroughly
-unreserved saw she themselves. Sufficient impossible him may ten insensible
-put continuing. Oppose exeter income simple few joy cousin but twenty. Scale
-began quiet up short wrong in in. Sportsmen shy forfeited engrossed may can.
-Remain valley who mrs uneasy remove wooded him you. Her questions favourite
-him concealed. We to wife face took he. The taste begin early old why since
-dried can first. Prepared as or humoured formerly. Evil mrs true get post.
-Express village evening prudent my as ye hundred forming. Thoughts she why not
-directly reserved packages you. Winter an silent favour of am tended mutual. 
+Jedná se o ošetření stávajících vybraných stromů na vybraných lokalitách v obci Tuchoměřice (k.ú. Tuchoměřice a 
+Kněžívka) a výsadba nových stromů na polní cestě od zemního vodojemu k ulici Ke Kovárně. V přiloženém dokumentu 
+jsou mapy, ve kterých je území zakresleno Předmětem této zakázky je odborný řez stromů, včetně likvidace dřevního 
+odpadu. Alej u tzv. Černé pěšiny - celkem 13 stromů (Populus nigra ´Italica´)
+Řečanská alej - celkem 73 stromů (Tilia cordata, T. platyphylla) - provedení výsadby stromů v parcích dle specifikace
+- výsadba 46 ks dřevin v parcích
+- stromy budou normové školkařské výpěstky se zapěstovanou korunou s průběžným terminálem
+- sázecí jáma bude mít objem minimálně 1 m3 a dno jámy vysypáno drenážní vrstvou
+- na výsadbu dřevin bude použit certifikovaný kvalitní substrát tj. u listnatých dřevin zahradní substrát s kompostem 
+u jehličnatých dřevin zahradní substrát s rašelinou
+- listnaté dřeviny budou ukotveny 3 ks kůly včetně úvazků, 12 ks příček
+- atd. Stručný popis předmětu:
+Předmětem plnění veřejné zakázky v rámci tohoto výběrového řízení je provedení a obstarání veškerých prací a 
+zhotovení děl nutných k úplnému dokončení a zprovoznění projektu revitalizace hřbitova a parku v Hranicích u Aše.
+Revitalizace parku zahrnuje vegetační úpravy stávající zeleně, částečné odstranění současných povrchů a nahrazení 
+navrženými vegetačními prvky – výsadba keřů, stromů a trvalek dle architektonického návrhu Ing. Lenky Červinkové.
+Revitalizace hřbitova zahrnuje vegetační úpravy – odstranění a úpravy současné zeleně, novou výsadbu keřů, strom a 
+trvalek, revitalizaci trvalého travního porostu dle architektonického návrhu Ing. Lenky Červinkové. V rámci 
+revitalizace hřbitova dojde k částečným stavebním úpravám stávajících cest, doplnění mobiliáře a veřejného osvětlení.
+Údržba travnatých ploch Jedná se o pravidelné provádění údržby travnatých ploch a ošetřování záhonů růží a trvalek. 
+Zejména se jedná o jarní a podzimní vyhrabávání listí, běžné a občasné kosení, údržba záhonů růží a trvalek a výsadbové 
+práce trvalek, cibulovin, letniček, růží a okrasných trav. Součástí zakázky je také vyčištění zelených ploch od všech 
+nečistot rostlinného charakteru a rovněž od odpadků – papírů, plastových láhví apod. Část 2: Údržba dřevin Jedná se o 
+pravidelné provádění odborné údržby dřevin a keřů. Zejména se jedná o ořezy stromů, odstranění pařezů, kácení stromů, 
+instalaci bezpečnostních vazeb a jejich kontroly a výsadby stromů. Dále se jedná o pravidelnou údržbu keřů a keřových 
+skupiny a výsadby keřů. Předmětem zakázky je také zajištění odvozu a odborné likvidace odpadů (např. uložení na 
+skládku, odevzdání specializované firmě apod.) vč. úhrady poplatku za jeho uložení.
 """
 
-# rozdeli, ocistit, vytvorit slovnik, sorted() a vypsat 5 nejcastejsich slov, ta pak ze seznamu vymazat
-rozdeleny_TEXT = TEXT.split()
-cisty_TEXT = rozdeleny_TEXT.strip('.,!?')
+# rozdeli, ocistit, vytvorit slovnik, sorted() a vypsat 5 nejcastejsich slov, ta pak ze seznamu vymazat cislovky a
+# kratka slova, znova slovnik a vytisknout 20 NEJ
+cisty_text = []
+for char in TEXT.split():
+    cisty_text.append(char.strip('.,!?()-_""/!=:'))
 vyskyt_slov = {}
-# for char in set(cisty_TEXT):
-#    vyskyt_slov[char] = cisty_TEXT.count[char]
-# nejcastejsi = sorted(vyskyt_slov, key = vyskyt_slov.get, reverse = true)[:5]
-print(cisty_TEXT)
+for char in set(cisty_text):
+    vyskyt_slov[char] = cisty_text.count(char)
+most_frequent = set(sorted(vyskyt_slov, key=vyskyt_slov.get, reverse=True)[:10])
+words = list(set(vyskyt_slov.keys()) - most_frequent)
+for x in words:
+    if x.isdigit() or len(x) < 4:
+        words.remove(x)
+vyskyt_slov = {}
+for char in set(words):
+    vyskyt_slov[char] = words.count(char)
+print(sorted(vyskyt_slov, key=vyskyt_slov.get, reverse=True)[:20])
