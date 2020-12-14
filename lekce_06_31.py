@@ -12,4 +12,7 @@ for word in sentence_list_raw:
             final_dict['vowels'] += 1
         else:
             final_dict['consonants'] += 1
-print(final_dict)
+print(
+    'consonants ammount is: ', final_dict['consonants'], '\n'
+    'vowels ammount is:     ', final_dict['vowels']
+)
