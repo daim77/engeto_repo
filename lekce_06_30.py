@@ -4,11 +4,13 @@
 # Hello, please write your numbers and press enter to confirm: '23, 54,  645, 76'
 # List: [23, 54, 645, 76]
 
-# def
-inpt = input('Insert numeric strings seperated by comma to be converted: ')
-nums = list()  # vlož čísla do listu s mezerama
 result = list()  # vlož čísla do listu bez mezer
+# vstup
+inpt = input('Insert numeric strings seperated by comma to be converted: ')
 
+# vlož čísla do listu s mezerama
 nums = inpt.split(',')
+for number in nums:
+    result.append(int(number.strip()))
 print('nums', nums)
 print(result)
