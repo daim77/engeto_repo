@@ -6,8 +6,10 @@ sentence = 'A speech sound! that is produced, by comparatively open configuratio
 sentence_list_raw = sentence.split()
 final_dict = {'consonants': 0, 'vowels': 0}
 for word in sentence_list_raw:
-    word = word.strip(' ,.!?;:')
+#    word = word.strip(' ,.!?;:')
     for string in word:
+        if not string.isalpha():  # lepsi reseni
+            continue
         if string.lower() in 'aeiouy':
             final_dict['vowels'] += 1
         else:
