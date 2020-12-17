@@ -170,12 +170,21 @@ for i in range(10):
 print(list1)
 
 
-def fce_min(__iter):
-    x = __iter.pop()
-    for i in __iter:
-        if i < x:
-            x = i
-    return x
+def my_min(__iter):
+    x_min = __iter[0]
+    for item in __iter[1:]:
+        if item < x_min:
+            x_min = item
+    return x_min
 
 
-print(fce_min(list1))
+def my_max(__iter):
+    x_max = __iter[0]
+    for item in __iter[1:]:
+        if item > x_max:
+            x_max = item
+    return x_max
+
+
+print(my_min(list1))
+print(my_max(list1))
