@@ -163,28 +163,44 @@
 # print(TEXT.rjust(len(TEXT) + 10, '_'))  # jede od prava
 
 # ========== ukol 34 ============
-import random
-list1 = []
-for i in range(10):
-    list1.append(random.randrange(0, 1000))
-print(list1)
+# import random
+# list1 = []
+# for i in range(10):
+#     list1.append(random.randrange(0, 1000))
+# print(list1)
+#
+#
+# def my_min(__iter):
+#     x_min = __iter[0]
+#     for item in __iter[1:]:
+#         if item < x_min:
+#             x_min = item
+#     return x_min
+#
+#
+# def my_max(__iter):
+#     x_max = __iter[0]
+#     for item in __iter[1:]:
+#         if item > x_max:
+#             x_max = item
+#     return x_max
+#
+#
+# print(my_min(list1))
+# print(my_max(list1))
 
+# ========== ukol 37 ============
+# funkce reversed
 
-def my_min(__iter):
-    x_min = __iter[0]
-    for item in __iter[1:]:
-        if item < x_min:
-            x_min = item
-    return x_min
-
-
-def my_max(__iter):
-    x_max = __iter[0]
-    for item in __iter[1:]:
-        if item > x_max:
-            x_max = item
-    return x_max
-
-
-print(my_min(list1))
-print(my_max(list1))
+# def my_reversed(arg1):
+#     seq = list()
+#     index = len(arg1) - 1
+#
+#     for char in arg1[len(arg1)::-1]:
+#         seq.append(char)
+#         index -= 1
+#     return seq
+#
+#
+# list1 = 'Python'
+# print(my_reversed(list1))
