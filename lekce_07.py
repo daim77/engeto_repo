@@ -204,3 +204,34 @@
 #
 # list1 = 'Python'
 # print(my_reversed(list1))
+
+# ========== ukol 35 ============
+# Funkce find
+
+
+# def my_find(sequence, subchar):
+#     result = []
+#     for index, char in enumerate(sequence):
+#         if char == subchar:
+#             result.append(index)
+#         continue
+#     if result:
+#         return result
+#     else:
+#         return -1
+
+
+# def my_find(sequence, subchar):
+#     return [i for i, x in enumerate(sequence) if x == subchar] or -1
+
+# def my_find(seq, item):
+#     for i, obj in enumerate(seq):
+#         if obj == item:
+#             return i
+#     return -1
+
+
+# print(my_find([3, 4, 5, 4], 4))
+# print('ahojda'.find('a'))
+
+# print([i for i, x in enumerate([1, 4, 'a', 3, 'a']) if x == 'a'] or -1)
