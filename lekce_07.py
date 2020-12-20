@@ -301,28 +301,34 @@ names = [
 # funkce gcd()
 
 
+# def my_gcd(num1, num2):
+#     set1 = set()
+#     set2 = set()
+#     if not isinstance(num1, int) or not isinstance(num2, int):
+#         print('TypeError')
+#         exit()
+#     devisor = 1
+#     while devisor <= num1:
+#         if num1 % devisor == 0:
+#             set1.add(devisor)
+#             devisor += 1
+#             continue
+#         devisor += 1
+#
+#     devisor = 1
+#     while devisor <= num2:
+#         if num2 % devisor == 0:
+#             set2.add(devisor)
+#             devisor += 1
+#             continue
+#         devisor += 1
+#     return max(set1 & set2)
+
 def my_gcd(num1, num2):
-    set1 = set()
-    set2 = set()
-    if not isinstance(num1, int) or not isinstance(num2, int):
-        print('TypeError')
-        exit()
-    devisor = 1
-    while devisor <= num1:
-        if num1 % devisor == 0:
-            set1.add(devisor)
-            devisor += 1
-            continue
-        devisor += 1
-
-    devisor = 1
-    while devisor <= num2:
-        if num2 % devisor == 0:
-            set2.add(devisor)
-            devisor += 1
-            continue
-        devisor += 1
-    return max(set1 & set2)
+    while num1 % num2 != 0:
+        rest = num1 % num2
+        num1, num2 = num2, rest
+    return num2
 
 
-print(my_gcd(414, 78))
+print(my_gcd(78, 414))
