@@ -235,3 +235,94 @@
 # print('ahojda'.find('a'))
 
 # print([i for i, x in enumerate([1, 4, 'a', 3, 'a']) if x == 'a'] or -1)
+
+# ========== ukol 36 ============
+# Funkce all() a any()
+# def my_all(seq):
+#     for item in seq:
+#         if not item:
+#             return False
+#     return True
+#
+# def my_any(seq):
+#     for item in seq:
+#         if item:
+#             return True
+#     return False
+#
+# print(my_all([43, 5, 87, 21, 23]))
+# print(my_all([]))
+# print(my_all([0, 12, 431, 3]))
+# print('=' * 30)
+# print(my_any([43, 45, 87, 21, 23]))
+# print(my_any([]))
+# print(my_any([0, 12, 431, 3]))
+# print(my_any(['', [], (), 0]))
+
+# ========== ukol 38 ============
+# funkce sum()
+
+# def my_sum(seq):
+#     result = 0
+#     for num in seq:
+#         result += num
+#     return result
+#
+#
+# print(my_sum([32, 43, 54, 54, 76, 21, 62, 83, 52, 58]))
+
+# ========== ukol 39 ============
+# # funkce count()
+# def my_count(sub, seq):
+#     return len([i for i, x in enumerate(seq) if x == sub]) or None
+
+
+names = [
+    'Rob', 'Jim', 'Mark', 'Mark', 'Mark', 'Bob', 'Mark', 'Bob', 'Bob', 'Rob', 'Jim', 'Mark', 'Mark', 'Bob', 'Mark'
+]
+# print(my_count('Rob', names))
+# print(my_count('Frank', names))
+
+# ========== ukol 40 ============
+# funkce mean()
+# def my_mean(seq):
+#     result = 0
+#     for num in seq:
+#         result += num
+#     return float(result / len(seq))
+#
+#
+# sequence = [32, 43, 54, 54, 76, 21, 62, 83, 52, 58]
+# print(my_mean(sequence))
+# data = [35, 14, 26, 48, 49, 26, 18, 25, 16, 16, 39, 17, 10, 29, 30]
+# print(my_mean(data))
+
+# ========== ukol 41 ============
+# funkce gcd()
+
+
+def my_gcd(num1, num2):
+    set1 = set()
+    set2 = set()
+    if not isinstance(num1, int) or not isinstance(num2, int):
+        print('TypeError')
+        exit()
+    devisor = 1
+    while devisor <= num1:
+        if num1 % devisor == 0:
+            set1.add(devisor)
+            devisor += 1
+            continue
+        devisor += 1
+
+    devisor = 1
+    while devisor <= num2:
+        if num2 % devisor == 0:
+            set2.add(devisor)
+            devisor += 1
+            continue
+        devisor += 1
+    return max(set1 & set2)
+
+
+print(my_gcd(414, 78))
