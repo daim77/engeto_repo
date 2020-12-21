@@ -336,139 +336,141 @@ names = [
 # ========== ukol zmena prirazeni v databazi ==========
 # I. KROK
 # Vlozime zadani
-UDAJE = """
-byt 0001,55 m2,Olomouc,ul.Heyrovského,
-byt 0003,65 m2,Olomouc,ul.Novosadský dvůr,
-byt 0004,75 m2,Olomouc,ul.Wolkerova,
-byt 0004,68 m2,Olomouc,ul.Zikova,
-byt 0001,36 m2,Olomouc,ul.Nová Ulice,
-byt 0003,46 m2,Olomouc,ul.Nové sady,
-byt 0004,75 m2,Olomouc,ul.Nová Ulice,
-byt 0003,42 m2,Olomouc,ul.Nová Ulice,
-byt 0005,107 m2,Olomouc,ul.Nová Ulice,
-byt 0003,74 m2,Olomouc,ul.Uničovská,
-byt 0003,42 m2,Olomouc,ul.Nešverova,
-byt 0002,55 m2,Olomouc,ul.Dělnická,
-byt 0004,59 m2,Olomouc,ul.Zirmova,
-byt 0007,92 m2,Olomouc,ul.Nová Ulice,
-byt 0002,52 m2,Olomouc,ul.Nová Ulice,
-byt 0004,76 m2,Olomouc,ul.Nová Ulice,
-byt 0002,81 m2,Olomouc,ul.Nová Ulice,
-byt 0003,64 m2,Olomouc,ul.Za vodojemem,
-byt 0007,113 m2,Olomouc,ul.Jihoslovanská,
-byt 0005,94 m2,Olomouc,ul.Uničovská,
-byt 0003,42 m2,Olomouc,ul.Rošického,
-byt 0003,75 m2,Olomouc,ul.Rošického,
-byt 0004,48 m2,Olomouc,ul.Handského,
-byt 0004,68 m2,Olomouc,ul.Komenského,
-byt 0003,61 m2,Olomouc,ul.Jarmily Glazarové,
-byt 0004,39 m2,Olomouc,ul.Přichystalova,
-byt 0003,70 m2,Olomouc,ul.Foerstova,
-byt 0005,61 m2,Olomouc,ul.Nová Ulice,
-byt 0007,88 m2,Olomouc,ul.Nová Ulice,
-byt 0003,92 m2,Olomouc,ul.U cukrovaru,
-byt 0003,56 m2,Olomouc,ul.U cukrovaru,
-byt 0004,56 m2,Olomouc,ul.Paseka,
-byt 0002,74 m2,Olomouc,ul.Rokycanova,
-byt 0007,116 m2,Olomouc,ul.U cukrovaru,
-byt 0004,59 m2,Olomouc,ul.Řezáčova,
-byt 0004,100 m2,Olomouc,ul.Libušina,
-byt 0003,64 m2,Olomouc,ul.Řezáčova,
-byt 0001,33 m2,Olomouc,ul.Libušina,
-byt 0006,87 m2,Olomouc,ul.Černá cesta,
-byt 0007,95 m2,Olomouc,ul.Kaštanová,
-byt 0003,74 m2,Olomouc,ul.Nová Ulice,
-byt 0003,75 m2,Olomouc,ul.Nová Ulice,
-byt 0004,86 m2,Olomouc,ul.Hněvotínská,
-byt 0002,67 m2,Olomouc,ul.Polská,
-byt 0007,120 m2,Olomouc,ul.Dvořákova,
-byt 0004,90 m2,Olomouc,ul.Dvořákova,
-byt 0004,86 m2,Olomouc,ul.Nová Ulice,
-byt 0003,75 m2,Olomouc,ul.Nešverova,
-byt 0001,45 m2,Olomouc,ul.Zirmova,
-byt 0010,114 m2,Olomouc,ul.Přichystalová,
-"""
+# UDAJE = """
+# byt 0001,55 m2,Olomouc,ul.Heyrovského,
+# byt 0003,65 m2,Olomouc,ul.Novosadský dvůr,
+# byt 0004,75 m2,Olomouc,ul.Wolkerova,
+# byt 0004,68 m2,Olomouc,ul.Zikova,
+# byt 0001,36 m2,Olomouc,ul.Nová Ulice,
+# byt 0003,46 m2,Olomouc,ul.Nové sady,
+# byt 0004,75 m2,Olomouc,ul.Nová Ulice,
+# byt 0003,42 m2,Olomouc,ul.Nová Ulice,
+# byt 0005,107 m2,Olomouc,ul.Nová Ulice,
+# byt 0003,74 m2,Olomouc,ul.Uničovská,
+# byt 0003,42 m2,Olomouc,ul.Nešverova,
+# byt 0002,55 m2,Olomouc,ul.Dělnická,
+# byt 0004,59 m2,Olomouc,ul.Zirmova,
+# byt 0007,92 m2,Olomouc,ul.Nová Ulice,
+# byt 0002,52 m2,Olomouc,ul.Nová Ulice,
+# byt 0004,76 m2,Olomouc,ul.Nová Ulice,
+# byt 0002,81 m2,Olomouc,ul.Nová Ulice,
+# byt 0003,64 m2,Olomouc,ul.Za vodojemem,
+# byt 0007,113 m2,Olomouc,ul.Jihoslovanská,
+# byt 0005,94 m2,Olomouc,ul.Uničovská,
+# byt 0003,42 m2,Olomouc,ul.Rošického,
+# byt 0003,75 m2,Olomouc,ul.Rošického,
+# byt 0004,48 m2,Olomouc,ul.Handského,
+# byt 0004,68 m2,Olomouc,ul.Komenského,
+# byt 0003,61 m2,Olomouc,ul.Jarmily Glazarové,
+# byt 0004,39 m2,Olomouc,ul.Přichystalova,
+# byt 0003,70 m2,Olomouc,ul.Foerstova,
+# byt 0005,61 m2,Olomouc,ul.Nová Ulice,
+# byt 0007,88 m2,Olomouc,ul.Nová Ulice,
+# byt 0003,92 m2,Olomouc,ul.U cukrovaru,
+# byt 0003,56 m2,Olomouc,ul.U cukrovaru,
+# byt 0004,56 m2,Olomouc,ul.Paseka,
+# byt 0002,74 m2,Olomouc,ul.Rokycanova,
+# byt 0007,116 m2,Olomouc,ul.U cukrovaru,
+# byt 0004,59 m2,Olomouc,ul.Řezáčova,
+# byt 0004,100 m2,Olomouc,ul.Libušina,
+# byt 0003,64 m2,Olomouc,ul.Řezáčova,
+# byt 0001,33 m2,Olomouc,ul.Libušina,
+# byt 0006,87 m2,Olomouc,ul.Černá cesta,
+# byt 0007,95 m2,Olomouc,ul.Kaštanová,
+# byt 0003,74 m2,Olomouc,ul.Nová Ulice,
+# byt 0003,75 m2,Olomouc,ul.Nová Ulice,
+# byt 0004,86 m2,Olomouc,ul.Hněvotínská,
+# byt 0002,67 m2,Olomouc,ul.Polská,
+# byt 0007,120 m2,Olomouc,ul.Dvořákova,
+# byt 0004,90 m2,Olomouc,ul.Dvořákova,
+# byt 0004,86 m2,Olomouc,ul.Nová Ulice,
+# byt 0003,75 m2,Olomouc,ul.Nešverova,
+# byt 0001,45 m2,Olomouc,ul.Zirmova,
+# byt 0010,114 m2,Olomouc,ul.Přichystalová,
+# """
+#
+# PREVOD_UDAJU = {
+#     "byt 0001": "1+1",
+#     "byt 0002": "2+1",
+#     "byt 0003": "2+kk",
+#     "byt 0004": "3+1",
+#     "byt 0005": "3+kk",
+#     "byt 0006": "4+1",
+#     "byt 0007": "4+kk",
+# }
+# result = []
+# count = 0
+# result_sublist = []
+#
+# udaje_list = UDAJE.split(',')
+#
+# for item in udaje_list:
+#     item = item.strip('\n')
+#     result_sublist.append(item)
+#     count += 1
+#     if count == 4:
+#         result.append(result_sublist)
+#         result_sublist = []
+#         count = 0
+#
+# for item in result:
+#     if item[0] in PREVOD_UDAJU:
+#         item[0] = PREVOD_UDAJU.get(item[0])
+#     else:
+#         item[0] = 'None'
+#     print(item)
+#
+#
+# # vysledek
+# #  ['2+kk', '65 m2', 'Olomouc', 'ul.Novosadský dvůr'],
+# #  ['3+1', '75 m2', 'Olomouc', 'ul.Wolkerova'],
+# #  ['3+1', '68 m2', 'Olomouc', 'ul.Zikova'],
+# #  ['1+1', '36 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+kk', '46 m2', 'Olomouc', 'ul.Nové sady'],
+# # [['1+1', '55 m2', 'Olomouc', 'ul.Heyrovského'],
+# #  ['3+1', '75 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+kk', '42 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['3+kk', '107 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+kk', '74 m2', 'Olomouc', 'ul.Uničovská'],
+# #  ['2+kk', '42 m2', 'Olomouc', 'ul.Nešverova'],
+# #  ['2+1', '55 m2', 'Olomouc', 'ul.Dělnická'],
+# #  ['3+1', '59 m2', 'Olomouc', 'ul.Zirmova'],
+# #  ['4+kk', '92 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+1', '52 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['3+1', '76 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+1', '81 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+kk', '64 m2', 'Olomouc', 'ul.Za vodojemem'],
+# #  ['4+kk', '113 m2', 'Olomouc', 'ul.Jihoslovanská'],
+# #  ['3+kk', '94 m2', 'Olomouc', 'ul.Uničovská'],
+# #  ['2+kk', '42 m2', 'Olomouc', 'ul.Rošického'],
+# #  ['2+kk', '75 m2', 'Olomouc', 'ul.Rošického'],
+# #  ['3+1', '48 m2', 'Olomouc', 'ul.Handského'],
+# #  ['3+1', '68 m2', 'Olomouc', 'ul.Komenského'],
+# #  ['2+kk', '61 m2', 'Olomouc', 'ul.Jarmily Glazarové'],
+# #  ['3+1', '39 m2', 'Olomouc', 'ul.Přichystalova'],
+# #  ['2+kk', '70 m2', 'Olomouc', 'ul.Foerstova'],
+# #  ['3+kk', '61 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['4+kk', '88 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+kk', '92 m2', 'Olomouc', 'ul.U cukrovaru'],
+# #  ['2+kk', '56 m2', 'Olomouc', 'ul.U cukrovaru'],
+# #  ['3+1', '56 m2', 'Olomouc', 'ul.Paseka'],
+# #  ['2+1', '74 m2', 'Olomouc', 'ul.Rokycanova'],
+# #  ['4+kk', '116 m2', 'Olomouc', 'ul.U cukrovaru'],
+# #  ['3+1', '59 m2', 'Olomouc', 'ul.Řezáčova'],
+# #  ['3+1', '100 m2', 'Olomouc', 'ul.Libušina'],
+# #  ['2+kk', '64 m2', 'Olomouc', 'ul.Řezáčova'],
+# #  ['1+1', '33 m2', 'Olomouc', 'ul.Libušina'],
+# #  ['4+1', '87 m2', 'Olomouc', 'ul.Černá cesta'],
+# #  ['4+kk', '95 m2', 'Olomouc', 'ul.Kaštanová'],
+# #  ['2+kk', '74 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+kk', '75 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['3+1', '86 m2', 'Olomouc', 'ul.Hněvotínská'],
+# #  ['2+1', '67 m2', 'Olomouc', 'ul.Polská'],
+# #  ['4+kk', '120 m2', 'Olomouc', 'ul.Dvořákova'],
+# #  ['3+1', '90 m2', 'Olomouc', 'ul.Dvořákova'],
+# #  ['3+1', '86 m2', 'Olomouc', 'ul.Nová Ulice'],
+# #  ['2+kk', '75 m2', 'Olomouc', 'ul.Nešverova'],
+# #  ['1+1', '45 m2', 'Olomouc', 'ul.Zirmova'],
+# #  [None, '114 m2', 'Olomouc', 'ul.Přichystalová']]
 
-PREVOD_UDAJU = {
-    "byt 0001": "1+1",
-    "byt 0002": "2+1",
-    "byt 0003": "2+kk",
-    "byt 0004": "3+1",
-    "byt 0005": "3+kk",
-    "byt 0006": "4+1",
-    "byt 0007": "4+kk",
-}
-result = []
-count = 0
-result_sublist = []
 
-udaje_list = UDAJE.split(',')
-
-for item in udaje_list:
-    item = item.strip('\n')
-    result_sublist.append(item)
-    count += 1
-    if count == 4:
-        result.append(result_sublist)
-        result_sublist = []
-        count = 0
-
-for item in result:
-    if item[0] in PREVOD_UDAJU:
-        item[0] = PREVOD_UDAJU.get(item[0])
-    else:
-        item[0] = 'None'
-    print(item)
-
-
-# vysledek
-#  ['2+kk', '65 m2', 'Olomouc', 'ul.Novosadský dvůr'],
-#  ['3+1', '75 m2', 'Olomouc', 'ul.Wolkerova'],
-#  ['3+1', '68 m2', 'Olomouc', 'ul.Zikova'],
-#  ['1+1', '36 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+kk', '46 m2', 'Olomouc', 'ul.Nové sady'],
-# [['1+1', '55 m2', 'Olomouc', 'ul.Heyrovského'],
-#  ['3+1', '75 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+kk', '42 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['3+kk', '107 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+kk', '74 m2', 'Olomouc', 'ul.Uničovská'],
-#  ['2+kk', '42 m2', 'Olomouc', 'ul.Nešverova'],
-#  ['2+1', '55 m2', 'Olomouc', 'ul.Dělnická'],
-#  ['3+1', '59 m2', 'Olomouc', 'ul.Zirmova'],
-#  ['4+kk', '92 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+1', '52 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['3+1', '76 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+1', '81 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+kk', '64 m2', 'Olomouc', 'ul.Za vodojemem'],
-#  ['4+kk', '113 m2', 'Olomouc', 'ul.Jihoslovanská'],
-#  ['3+kk', '94 m2', 'Olomouc', 'ul.Uničovská'],
-#  ['2+kk', '42 m2', 'Olomouc', 'ul.Rošického'],
-#  ['2+kk', '75 m2', 'Olomouc', 'ul.Rošického'],
-#  ['3+1', '48 m2', 'Olomouc', 'ul.Handského'],
-#  ['3+1', '68 m2', 'Olomouc', 'ul.Komenského'],
-#  ['2+kk', '61 m2', 'Olomouc', 'ul.Jarmily Glazarové'],
-#  ['3+1', '39 m2', 'Olomouc', 'ul.Přichystalova'],
-#  ['2+kk', '70 m2', 'Olomouc', 'ul.Foerstova'],
-#  ['3+kk', '61 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['4+kk', '88 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+kk', '92 m2', 'Olomouc', 'ul.U cukrovaru'],
-#  ['2+kk', '56 m2', 'Olomouc', 'ul.U cukrovaru'],
-#  ['3+1', '56 m2', 'Olomouc', 'ul.Paseka'],
-#  ['2+1', '74 m2', 'Olomouc', 'ul.Rokycanova'],
-#  ['4+kk', '116 m2', 'Olomouc', 'ul.U cukrovaru'],
-#  ['3+1', '59 m2', 'Olomouc', 'ul.Řezáčova'],
-#  ['3+1', '100 m2', 'Olomouc', 'ul.Libušina'],
-#  ['2+kk', '64 m2', 'Olomouc', 'ul.Řezáčova'],
-#  ['1+1', '33 m2', 'Olomouc', 'ul.Libušina'],
-#  ['4+1', '87 m2', 'Olomouc', 'ul.Černá cesta'],
-#  ['4+kk', '95 m2', 'Olomouc', 'ul.Kaštanová'],
-#  ['2+kk', '74 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+kk', '75 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['3+1', '86 m2', 'Olomouc', 'ul.Hněvotínská'],
-#  ['2+1', '67 m2', 'Olomouc', 'ul.Polská'],
-#  ['4+kk', '120 m2', 'Olomouc', 'ul.Dvořákova'],
-#  ['3+1', '90 m2', 'Olomouc', 'ul.Dvořákova'],
-#  ['3+1', '86 m2', 'Olomouc', 'ul.Nová Ulice'],
-#  ['2+kk', '75 m2', 'Olomouc', 'ul.Nešverova'],
-#  ['1+1', '45 m2', 'Olomouc', 'ul.Zirmova'],
-#  [None, '114 m2', 'Olomouc', 'ul.Přichystalová']]
