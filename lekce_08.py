@@ -84,20 +84,18 @@
 def luhn(number):
     sum_even = 0
     sum_odd = 0
-    number = str(number)[::-1]
-    for order, num in enumerate(str(number)):
-        if order % 2 == 0 and (2 * int(num)) < 10:
-            sum_even += (2 * int(num))
-        elif order % 2 == 0 and (2 * int(num)) > 10:
-            sum_even += (((2 * int(num)) - 10) + 1)
+    for order, num in enumerate(str(number)[::-1]):
+        if (order + 1) % 2 == 0 and (2 * int(num)) < 10:
+            sum_even += 2 * int(num)
+        elif (order + 1) % 2 == 0 and (2 * int(num)) >= 10:
+            sum_even += (2 * int(num) - 9)
         else:
             sum_odd += int(num)
-    sum_total = sum_even + sum_odd
-    if sum_total % 10 == 0:
+    if (sum_even + sum_odd) % 10 == 0:
         return True
     else:
         return False
 
 
-my_x = luhn(5315336909269265)
-print(my_x)
+my_card = luhn(5315336909269265)
+print(my_card)
