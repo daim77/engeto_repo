@@ -104,24 +104,71 @@
 # ANAGRAM
 
 
-def all_anagrams(list_of_anagrams: list):
-    list_of_anagrams_decomposed = []
-    count = 0
-    if not list_of_anagrams:
-        return False
-    if len(list_of_anagrams) == 1:
-        return True
-    for item in list_of_anagrams:
-        list_of_anagrams_decomposed.append(sorted(list(item)))
-    last_word = list_of_anagrams_decomposed.pop()
-    for item in list_of_anagrams_decomposed:
-        if last_word == item:
-            count += 1
-    if count == len(list_of_anagrams) - 1:
-        return True
-    else:
-        return False
+# def all_anagrams(list_of_anagrams: list):
+#     list_of_anagrams_decomposed = []
+#     count = 0
+#     if not list_of_anagrams:
+#         return False
+#     if len(list_of_anagrams) == 1:
+#         return True
+#     for item in list_of_anagrams:
+#         list_of_anagrams_decomposed.append(sorted(list(item)))
+#     last_word = list_of_anagrams_decomposed.pop()
+#     for item in list_of_anagrams_decomposed:
+#         if last_word == item:
+#             count += 1
+#     if count == len(list_of_anagrams) - 1:
+#         return True
+#     else:
+#         return False
+#
+#
+# words = ['ship', 'hips', 'name']
+# print(all_anagrams(words))
+
+# ========== UKOL 44 ==========
+# email collection from txt
+
+# Funkce pro posbirani emailu ze stringu
+def collect_emails(text):
+    list_of_all_emails = []
+    collect_all = text.split(' ')
+    for item in collect_all:
+        char = item.strip('.!?\n')
+        if '@' and '.' in char:
+            list_of_all_emails.append(char)
+            continue
+    return list_of_all_emails
 
 
-words = ['ship', 'hips', 'name']
-print(all_anagrams(words))
+# Funkce pro extrahovani emailu obsahujici cisla
+def select_num_emails(list_of_all_emails):
+    list_of_num_emails = []
+    for list_char in list_of_all_emails:
+        for number in range(10):
+            if number in list_char:
+                continue
+        list_of_all_emails.remove(list_char)
+    return list_of_num_emails
+
+
+# Funkce pro extrahovani domen vsech emailu
+# def extract_domains(emails):
+
+# main fun to generate
+
+my_dict = {'emails_with_nums': [], 'domains': []}
+my_str = '''
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Mauris vulputate lacus id eros consequat tempus. Nam viverra velit sit amet lorem lobortis, 
+    at tincidunt nunc ultricies. Duis facilisis ultrices lacus, id tiger123@email.cz auctor massa molestie at. 
+    Nunc tristique fringilla congue. Donec ante diam cnn@info.com, dapibus lacinia vulputate vitae, 
+    ullamcorper in justo. Maecenas massa purus, ultricies a dictum ut, dapibus vitae massa. 
+    Cras abc@gmail.com vel libero felis. In augue elit, porttitor nec molestie quis, auctor a quam. 
+    Quisque b2b@money.fr pretium dolor et tempor feugiat. Morbi libero lectus, porttitor eu mi sed, 
+    luctus lacinia risus. Maecenas posuere leo sit amet spam@info.cz. elit tincidunt maximus. 
+    Aliquam erat volutpat. Donec eleifend felis at leo ullamcorper cursus. Pellentesque id dui viverra, 
+    auctor enim ut, fringilla est. Maecenas gravida turpis nec ultrices aliquet.
+'''
+
+print(my_dict)
