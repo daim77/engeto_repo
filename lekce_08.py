@@ -81,21 +81,47 @@
 # luhn test
 
 
-def luhn(number):
-    sum_even = 0
-    sum_odd = 0
-    for order, num in enumerate(str(number)[::-1]):
-        if (order + 1) % 2 == 0 and (2 * int(num)) < 10:
-            sum_even += 2 * int(num)
-        elif (order + 1) % 2 == 0 and (2 * int(num)) >= 10:
-            sum_even += (2 * int(num) - 9)
-        else:
-            sum_odd += int(num)
-    if (sum_even + sum_odd) % 10 == 0:
+# def luhn(number):
+#     sum_even = 0
+#     sum_odd = 0
+#     for order, num in enumerate(str(number)[::-1]):
+#         if (order + 1) % 2 == 0 and (2 * int(num)) < 10:
+#             sum_even += 2 * int(num)
+#         elif (order + 1) % 2 == 0 and (2 * int(num)) >= 10:
+#             sum_even += (2 * int(num) - 9)
+#         else:
+#             sum_odd += int(num)
+#     if (sum_even + sum_odd) % 10 == 0:
+#         return True
+#     else:
+#         return False
+#
+#
+# my_card = luhn(5315336909269265)
+# print(my_card)
+
+# ========== UKOL 43 ==========
+# ANAGRAM
+
+
+def all_anagrams(list_of_anagrams: list):
+    list_of_anagrams_decomposed = []
+    count = 0
+    if not list_of_anagrams:
+        return False
+    if len(list_of_anagrams) == 1:
+        return True
+    for item in list_of_anagrams:
+        list_of_anagrams_decomposed.append(sorted(list(item)))
+    last_word = list_of_anagrams_decomposed.pop()
+    for item in list_of_anagrams_decomposed:
+        if last_word == item:
+            count += 1
+    if count == len(list_of_anagrams) - 1:
         return True
     else:
         return False
 
 
-my_card = luhn(5315336909269265)
-print(my_card)
+words = ['ship', 'hips', 'name']
+print(all_anagrams(words))
