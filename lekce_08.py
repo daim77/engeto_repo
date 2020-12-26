@@ -130,7 +130,7 @@
 # email collection from txt
 
 # Funkce pro posbirani emailu ze stringu
-def collect_emails(text):
+def collect_emails(text: str):
     list_of_all_emails = []
     collect_all = text.split(' ')
     for item in collect_all:
@@ -142,22 +142,34 @@ def collect_emails(text):
 
 
 # Funkce pro extrahovani emailu obsahujici cisla
-def select_num_emails(list_of_all_emails):
+def select_num_emails(list_of_all_emails: list):
     list_of_num_emails = []
-    for list_char in list_of_all_emails:
+    for email_item in list_of_all_emails:
         for number in range(10):
-            if number in list_char:
-                continue
-        list_of_all_emails.remove(list_char)
+            if str(number) in email_item:
+                list_of_num_emails.append(email_item)
+                break
     return list_of_num_emails
 
 
 # Funkce pro extrahovani domen vsech emailu
-# def extract_domains(emails):
+def select_domains(list_of_all_emails):
+    list_of_domains = []
+    for email_item in list_of_all_emails:
+        list_of_domains.append(email_item.split('@')[1])
+    return list_of_domains
 
-# main fun to generate
+
+# def extract_domains(emails):
+# main func to generate dict
+def specemail(arg1: str):
+    my_dict['emails_with_nums'] = select_num_emails(collect_emails(arg1))
+    my_dict['domains'] = select_domains(collect_emails(arg1))
+    return my_dict
+
 
 my_dict = {'emails_with_nums': [], 'domains': []}
+
 my_str = '''
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
     Mauris vulputate lacus id eros consequat tempus. Nam viverra velit sit amet lorem lobortis, 
@@ -171,4 +183,4 @@ my_str = '''
     auctor enim ut, fringilla est. Maecenas gravida turpis nec ultrices aliquet.
 '''
 
-print(my_dict)
+print(specemail(my_str))
