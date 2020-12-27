@@ -185,25 +185,50 @@
 # print(specemail(my_str))
 
 # ========== UKOL 45 ==========
-# Eratosthenovo síto - prvocislo
+# # Eratosthenovo síto - prvocislo
+#
+# def list_primes(arg: int):
+#     list_of_primes = []
+#     list_numbers = [number for number in range(arg, 1, -1) if arg >= 2]
+#     while list_numbers[0] ** (1/2) >= list_numbers[- 1]:
+#         number = list_numbers.pop()
+#         list_of_primes.append(number)
+#         list_numbers = [x for x in list_numbers if x % number != 0]
+#     list_numbers.reverse()
+#     list_of_primes.extend(list_numbers)
+#     return list_of_primes
+#
+#
+# def is_prime(arg: int):
+#     if arg in list_primes(arg):
+#         return True
+#     else:
+#         return False
+#
+#
+# print(is_prime(25))
 
-def list_primes(arg: int):
-    list_of_primes = []
-    list_numbers = [number for number in range(arg, 1, -1) if arg >= 2]
-    while list_numbers[0] ** (1/2) >= list_numbers[- 1]:
-        number = list_numbers.pop()
-        list_of_primes.append(number)
-        list_numbers = [x for x in list_numbers if x % number != 0]
-    list_numbers.reverse()
-    list_of_primes.extend(list_numbers)
-    return list_of_primes
+# ========== UKOL 46 ==========
+# Caesarova šifra
 
 
-def is_prime(arg: int):
-    if arg in list_primes(arg):
-        return True
-    else:
-        return False
+def caesar_cypher(text: str, shift: int):
+    abc_key = 'abcdefghijklmnopqrstuvwxyz'
+    text_modified = str()
+    for char in text:
+        if char in abc_key:
+            index = abc_key.find(char)
+            index = (index + shift) % 26
+            text_modified += abc_key[index]
+            continue
+        if char in abc_key.upper():
+            index = (abc_key.upper()).find(char)
+            index = (index + shift) % 26
+            text_modified += abc_key.upper()[index]
+            continue
+        else:
+            text_modified += char
+    return text_modified
 
 
-print(is_prime(25))
+print(caesar_cypher('abcTd', 1))
