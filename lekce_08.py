@@ -129,58 +129,81 @@
 # ========== UKOL 44 ==========
 # email collection from txt
 
-# Funkce pro posbirani emailu ze stringu
-def collect_emails(text: str):
-    list_of_all_emails = []
-    collect_all = text.split(' ')
-    for item in collect_all:
-        char = item.strip('.!?\n')
-        if '@' and '.' in char:
-            list_of_all_emails.append(char)
-            continue
-    return list_of_all_emails
+# # Funkce pro posbirani emailu ze stringu
+# def collect_emails(text: str):
+#     list_of_all_emails = []
+#     collect_all = text.split(' ')
+#     for item in collect_all:
+#         char = item.strip('.!?\n')
+#         if '@' and '.' in char:
+#             list_of_all_emails.append(char)
+#             continue
+#     return list_of_all_emails
+#
+#
+# # Funkce pro extrahovani emailu obsahujici cisla
+# def select_num_emails(list_of_all_emails: list):
+#     list_of_num_emails = []
+#     for email_item in list_of_all_emails:
+#         for number in range(10):
+#             if str(number) in email_item:
+#                 list_of_num_emails.append(email_item)
+#                 break
+#     return list_of_num_emails
+#
+#
+# # Funkce pro extrahovani domen vsech emailu
+# def select_domains(list_of_all_emails):
+#     list_of_domains = []
+#     for email_item in list_of_all_emails:
+#         list_of_domains.append(email_item.split('@')[1])
+#     return list_of_domains
+#
+#
+# # def extract_domains(emails):
+# # main func to generate dict
+# def specemail(arg1: str):
+#     my_dict = {'emails_with_nums': [], 'domains': []}
+#     my_dict['emails_with_nums'] = select_num_emails(collect_emails(arg1))
+#     my_dict['domains'] = select_domains(collect_emails(arg1))
+#     return my_dict
+#
+#
+# my_str = '''
+#     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#     Mauris vulputate lacus id eros consequat tempus. Nam viverra velit sit amet lorem lobortis,
+#     at tincidunt nunc ultricies. Duis facilisis ultrices lacus, id tiger123@email.cz auctor massa molestie at.
+#     Nunc tristique fringilla congue. Donec ante diam cnn@info.com, dapibus lacinia vulputate vitae,
+#     ullamcorper in justo. Maecenas massa purus, ultricies a dictum ut, dapibus vitae massa.
+#     Cras abc@gmail.com vel libero felis. In augue elit, porttitor nec molestie quis, auctor a quam.
+#     Quisque b2b@money.fr pretium dolor et tempor feugiat. Morbi libero lectus, porttitor eu mi sed,
+#     luctus lacinia risus. Maecenas posuere leo sit amet spam@info.cz. elit tincidunt maximus.
+#     Aliquam erat volutpat. Donec eleifend felis at leo ullamcorper cursus. Pellentesque id dui viverra,
+#     auctor enim ut, fringilla est. Maecenas gravida turpis nec ultrices aliquet.
+# '''
+#
+# print(specemail(my_str))
+
+# ========== UKOL 45 ==========
+# Eratosthenovo síto - prvocislo
+
+def list_primes(arg: int):
+    list_of_primes = []
+    list_numbers = [number for number in range(arg, 1, -1) if arg >= 2]
+    while list_numbers[0] ** (1/2) >= list_numbers[- 1]:
+        number = list_numbers.pop()
+        list_of_primes.append(number)
+        list_numbers = [x for x in list_numbers if x % number != 0]
+    list_numbers.reverse()
+    list_of_primes.extend(list_numbers)
+    return list_of_primes
 
 
-# Funkce pro extrahovani emailu obsahujici cisla
-def select_num_emails(list_of_all_emails: list):
-    list_of_num_emails = []
-    for email_item in list_of_all_emails:
-        for number in range(10):
-            if str(number) in email_item:
-                list_of_num_emails.append(email_item)
-                break
-    return list_of_num_emails
+def is_prime(arg: int):
+    if arg in list_primes(arg):
+        return True
+    else:
+        return False
 
 
-# Funkce pro extrahovani domen vsech emailu
-def select_domains(list_of_all_emails):
-    list_of_domains = []
-    for email_item in list_of_all_emails:
-        list_of_domains.append(email_item.split('@')[1])
-    return list_of_domains
-
-
-# def extract_domains(emails):
-# main func to generate dict
-def specemail(arg1: str):
-    my_dict['emails_with_nums'] = select_num_emails(collect_emails(arg1))
-    my_dict['domains'] = select_domains(collect_emails(arg1))
-    return my_dict
-
-
-my_dict = {'emails_with_nums': [], 'domains': []}
-
-my_str = '''
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Mauris vulputate lacus id eros consequat tempus. Nam viverra velit sit amet lorem lobortis, 
-    at tincidunt nunc ultricies. Duis facilisis ultrices lacus, id tiger123@email.cz auctor massa molestie at. 
-    Nunc tristique fringilla congue. Donec ante diam cnn@info.com, dapibus lacinia vulputate vitae, 
-    ullamcorper in justo. Maecenas massa purus, ultricies a dictum ut, dapibus vitae massa. 
-    Cras abc@gmail.com vel libero felis. In augue elit, porttitor nec molestie quis, auctor a quam. 
-    Quisque b2b@money.fr pretium dolor et tempor feugiat. Morbi libero lectus, porttitor eu mi sed, 
-    luctus lacinia risus. Maecenas posuere leo sit amet spam@info.cz. elit tincidunt maximus. 
-    Aliquam erat volutpat. Donec eleifend felis at leo ullamcorper cursus. Pellentesque id dui viverra, 
-    auctor enim ut, fringilla est. Maecenas gravida turpis nec ultrices aliquet.
-'''
-
-print(specemail(my_str))
+print(is_prime(25))
