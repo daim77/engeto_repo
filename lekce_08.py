@@ -292,12 +292,14 @@ You have total {count} attempts to guess one word. Only lowercase. Good LUCK
         print(my_sep)
         print(word_to_list_blind)
         if word_to_list_blind == list(word):
-            return print(my_sep ,'\nWIN')
+            return print(my_sep, '\nBravo. You are WINNER')
         count -= 1
-    return print(my_sep ,'\nloose')
+    return print(my_sep, '\nSorry. Game is over...')
 
 
 sibenice([
     'Faith', 'confidence', 'concept', 'cumulative', 'context', 'belief', 'doctrines', 'Religious', 'degree', 'Stage',
-    'Synthetic', 'information', 'personification', 'knowledge', 'teacher', 'Jesus', 'God', 'Sabbath'
+    'Synthetic', 'information', 'personification', 'knowledge', 'teacher', 'Jesus', 'God', 'Sabbath', 'country',
+    'weekend', 'benefits', 'administration', 'damage', 'unemployment', 'example', 'public', 'election',
+    'pneumonoultramicroscopicsilicovolcanoconios'
 ])
