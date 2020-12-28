@@ -301,17 +301,17 @@
 #     'weekend', 'benefits', 'administration', 'damage', 'unemployment', 'example', 'public', 'election',
 #     'pneumonoultramicroscopicsilicovolcanoconiosis', 'hangman', 'aircraft', 'airbase', 'python', 'apple', 'car'
 # ])
-# ========== UKOL 48 ==========
-# prestupny rok, leap year
-def is_leap(year: int):
-    year = int(year)
-    part_ = year % 100
-    if part_ and not year % 4:
-        return True
-    elif not part_ and not year % 400:
-        return True
-    else:
-        return False
-
-
-print(is_leap(1504))
+# # ========== UKOL 48 ==========
+# # prestupny rok, leap year
+# def is_leap(year: int):
+#     year = int(year)
+#     part_ = year % 100
+#     if part_ and not year % 4:
+#         return True
+#     elif not part_ and not year % 400:
+#         return True
+#     else:
+#         return False
+#
+#
+# print(is_leap(1504))
