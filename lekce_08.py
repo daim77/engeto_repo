@@ -260,20 +260,46 @@
 import random
 
 
-def ask_letter():
-    letter = input('Guess one letter: ')
+def ask_letter(count):
+    my_sep = '.' * 70
+    letter = input(f'You have {count} attepmts. Guess one letter: ').lower()
+    print(my_sep)
     return letter
 
 
+def change_blind(word_to_list_blind, word_to_list, letter):
+    my_sep = '.' * 70
+    while letter in word_to_list:
+        letter_index = word_to_list.index(letter)
+        word_to_list_blind[letter_index] = letter
+        word_to_list[letter_index] = '#'
+        print(word_to_list_blind)
+        print(my_sep)
+    return word_to_list_blind
+
+
 def sibenice(words: list):
-    word = random.choice(words)
+    my_sep = '.' * 70
+    word = random.choice(words).lower()
+    word_to_list = list(word)
+    word_to_list_blind = ['_'] * len(word)
     count = len(word) + 5
-    print('Welcome and explanations')
+    print(f'''
+{my_sep}
+You have total {count} attempts to guess one word. Only lowercase. Good LUCK
+{my_sep}\n
+    ''')
     while count:
-        letter = ask_letter()
-        print(letter, count)
+        letter = ask_letter(count)
+        if letter in word_to_list:
+            word_to_list_blind = change_blind(word_to_list_blind, word_to_list, letter)
+        if word_to_list_blind == list(word):
+            return print('WIN')
         count -= 1
-    return print(word)
+    return print("loose")
 
 
-sibenice(['weights', 'are', 'converted', 'cumulative', 'weights', 'before', 'making', 'selections'])
+sibenice([
+    'Faith', 'confidence', 'concept', 'cumulative', 'context', 'belief', 'doctrines', 'Religious', 'degree', 'Stage'
+    'Synthetic', 'information', 'personification', 'knowledge', 'teacher', 'Jesus', 'God', 'Sabbath'
+])
