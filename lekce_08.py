@@ -292,7 +292,7 @@ def sibenice(words: list):
         if word_to_list_blind == list(word):
             return print(my_sep, '\nBravo. You are WINNER')
         count -= 1
-    return print(my_sep, '\nSorry. Game is over...\n It was ', word)
+    return print(my_sep, '\nSorry. Game is over...\n It was ', word.upper())
 
 
 sibenice([
