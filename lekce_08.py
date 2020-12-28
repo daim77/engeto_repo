@@ -261,20 +261,15 @@ import random
 
 
 def ask_letter(count):
-    my_sep = '.' * 70
     letter = input(f'You have {count} attepmts. Guess one letter: ').lower()
-    print(my_sep)
     return letter
 
 
 def change_blind(word_to_list_blind, word_to_list, letter):
-    my_sep = '.' * 70
     while letter in word_to_list:
         letter_index = word_to_list.index(letter)
         word_to_list_blind[letter_index] = letter
         word_to_list[letter_index] = '#'
-        print(word_to_list_blind)
-        print(my_sep)
     return word_to_list_blind
 
 
@@ -288,18 +283,21 @@ def sibenice(words: list):
 {my_sep}
 You have total {count} attempts to guess one word. Only lowercase. Good LUCK
 {my_sep}\n
+{word_to_list_blind}
     ''')
     while count:
         letter = ask_letter(count)
         if letter in word_to_list:
             word_to_list_blind = change_blind(word_to_list_blind, word_to_list, letter)
+        print(my_sep)
+        print(word_to_list_blind)
         if word_to_list_blind == list(word):
-            return print('WIN')
+            return print(my_sep ,'\nWIN')
         count -= 1
-    return print("loose")
+    return print(my_sep ,'\nloose')
 
 
 sibenice([
-    'Faith', 'confidence', 'concept', 'cumulative', 'context', 'belief', 'doctrines', 'Religious', 'degree', 'Stage'
+    'Faith', 'confidence', 'concept', 'cumulative', 'context', 'belief', 'doctrines', 'Religious', 'degree', 'Stage',
     'Synthetic', 'information', 'personification', 'knowledge', 'teacher', 'Jesus', 'God', 'Sabbath'
 ])
