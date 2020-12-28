@@ -208,27 +208,72 @@
 #
 # print(is_prime(25))
 
-# ========== UKOL 46 ==========
-# Caesarova šifra
+# reseni z wikipedie
+# https://cs.wikipedia.org/wiki/Eratosthenovo_s%C3%ADto
 
 
-def caesar_cypher(text: str, shift: int):
-    abc_key = 'abcdefghijklmnopqrstuvwxyz'
-    text_modified = str()
-    for char in text:
-        if char in abc_key:
-            index = abc_key.find(char)
-            index = (index + shift) % 26
-            text_modified += abc_key[index]
-            continue
-        if char in abc_key.upper():
-            index = (abc_key.upper()).find(char)
-            index = (index + shift) % 26
-            text_modified += abc_key.upper()[index]
-            continue
-        else:
-            text_modified += char
-    return text_modified
+# def eratosthenovo_sito(do):
+#     do += 1
+#     sito = [True] * do
+#
+#     for i in range(2, do):
+#         if sito[i]:
+#             for j in range(i ** 2, do, i):
+#                 sito[j] = False
+#
+#     prvocisla = []
+#     for i in range(2, do):
+#         if sito[i]:
+#             prvocisla.append(i)
+#     return prvocisla
+#
+#
+# print(eratosthenovo_sito(5))
+
+# # ========== UKOL 46 ==========
+# # Caesarova šifra
+#
+#
+# def caesar_cypher(text: str, shift: int):
+#     abc_key = 'abcdefghijklmnopqrstuvwxyz'
+#     text_modified = str()
+#     for char in text:
+#         if char in abc_key:
+#             index = abc_key.find(char)
+#             index = (index + shift) % 26
+#             text_modified += abc_key[index]
+#             continue
+#         if char in abc_key.upper():
+#             index = (abc_key.upper()).find(char)
+#             index = (index + shift) % 26
+#             text_modified += abc_key.upper()[index]
+#             continue
+#         else:
+#             text_modified += char
+#     return text_modified
+#
+#
+# print(caesar_cypher('abcTd', 1))
+
+# ========== UKOL 47 ==========
+# word game sibenice
+import random
 
 
-print(caesar_cypher('abcTd', 1))
+def ask_letter():
+    letter = input('Guess one letter: ')
+    return letter
+
+
+def sibenice(words: list):
+    word = random.choice(words)
+    count = len(word) + 5
+    print('Welcome and explanations')
+    while count:
+        letter = ask_letter()
+        print(letter, count)
+        count -= 1
+    return print(word)
+
+
+sibenice(['weights', 'are', 'converted', 'cumulative', 'weights', 'before', 'making', 'selections'])
