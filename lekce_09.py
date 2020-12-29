@@ -16,6 +16,18 @@
 # person_data = {'name': 'Bob', 'age': 37, 'job': 'freelancer'}
 # print('My name is {name} and I am {age} years old.'.format(**person_data))
 
+# format_spec     ::=  [[fill]align][sign][#][0][width][grouping_option][.precision][type]
+# fill            ::=  <any character>
+# align           ::=  "<" | ">" | "=" | "^"
+# sign            ::=  "+" | "-" | " "
+# width           ::=  digit+
+# grouping_option ::=  "_" | ","
+# precision       ::=  digit+
+# type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
 
-data = ('Bob', 37.123456789, 'freelancer')
-print('|name: {0:->10}|age: {1:#>+10.5}|'.format(*data))  # index:fill|align|sign|width|.precision|
+data = ('car', 1037.123456789, 'freelancer')
+print('|word: {0:*^11}|number: {1:#>+15,.7E}|'.format(*data))
+print('|{0:*<6c}|'.format(90))
+
+# %[(klic)][zarovnani_vypln][sirka][.presnost][typecode]
+print('|%#5x|' % (54,))
