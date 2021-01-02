@@ -72,71 +72,81 @@
 
 # filesystem path existence
 
-# Funkce main
-def main(my_path: str):
-    my_path_list = path_decompose(my_path)
-    filesystem_dict = read_filesystem()
-    status = file_exists(my_path_list, filesystem_dict)
-    print(f'{my_path}: ', status)
-
-
-def read_filesystem():
-    with open('/Users/martindanek/Documents/programovani/files/txt/filesystem.txt') as file:
-        filesystem = file.read()
-    filesystem = filesystem.replace(' ', '')
-    filesystem = filesystem.replace('\n', '')
-    filesystem_dict = eval(filesystem)
-    return filesystem_dict
-
-
-def path_decompose(my_path):
-    my_path_list = my_path.split('/')
-    if my_path[0] == '/':
-        my_path_list[0] = '/'
-    return my_path_list
-# Funkce file_exists
-
-
-def file_exists(my_path_list, filesystem_dict):
-
-    for count, char in enumerate(my_path_list):
-
-        while count == len(my_path_list) - 1:
-            if my_path_list[-1] in filesystem_dict:
-                status = True
-                return status
-            else:
-                status = False
-                return status
-
-        if type(filesystem_dict) == dict:
-            for item in filesystem_dict:
-                if item == char:
-                    filesystem_dict = filesystem_dict.get(char)
-                    break
-                else:
-                    status = False
-                    return status
-            continue
-
-        if type(filesystem_dict) == list:
-            counter = 0
-            for item in filesystem_dict:
-                counter += 1
-                if char == item:
-                    status = True
-                    return status
-                elif type(item) == dict and char in item:
-                    filesystem_dict = item.get(char)
-                    break
-                elif counter == len(filesystem_dict):
-                    status = False
-                    return status
-
-
-# {'/'
-main('/lib/systemd/system/sudo.service')
-main('/bin/mkdir')
-main('/lib/init/vars/vars.sh')
-main('/lib/systemd/system/sudo.service')
-main('/home/documents/reports/report1.xls')
+# # Funkce main
+# def main(paths: dict):
+#     paths_list = paths.keys()
+#     for my_path in paths_list:
+#         my_path_list = path_decompose(my_path)
+#         filesystem_dict = read_filesystem()
+#         paths[my_path] = file_exists(my_path_list, filesystem_dict)
+#     from pprint import pprint as pp
+#     pp(paths)
+#
+#
+# def read_filesystem():
+#     with open('/Users/martindanek/Documents/programovani/files/txt/filesystem.txt') as file:
+#         filesystem = file.read()
+#     filesystem = filesystem.replace(' ', '')
+#     filesystem = filesystem.replace('\n', '')
+#     filesystem_dict = eval(filesystem)
+#     from pprint import pprint as pp
+#     pp(filesystem_dict)
+#     return filesystem_dict
+#
+#
+# def path_decompose(my_path):
+#     my_path_list = my_path.split('/')
+#     if my_path[0] == '/':
+#         my_path_list[0] = '/'
+#     return my_path_list
+#
+#
+# # Funkce file_exists
+# def file_exists(my_path_list, filesystem_dict):
+#
+#     for count, char in enumerate(my_path_list):
+#
+#         while count == len(my_path_list) - 1:
+#             if my_path_list[-1] in filesystem_dict:
+#                 status = True
+#                 return status
+#             else:
+#                 status = False
+#                 return status
+#
+#         if type(filesystem_dict) == dict:
+#             for item in filesystem_dict:
+#                 if item == char:
+#                     filesystem_dict = filesystem_dict.get(char)
+#                     break
+#                 else:
+#                     status = False
+#                     return status
+#             continue
+#
+#         if type(filesystem_dict) == list:
+#             counter = 0
+#             for item in filesystem_dict:
+#                 counter += 1
+#                 if char == item:
+#                     status = True
+#                     return status
+#                 elif type(item) == dict and char in item:
+#                     filesystem_dict = item.get(char)
+#                     break
+#                 elif counter == len(filesystem_dict):
+#                     status = False
+#                     return status
+#
+#
+# # {'/'
+# paths = {'/bin/mkdir': None,
+#          '/lib/init/vars/vars.sh': None,
+#          '/lib/init/vars.sh': None,
+#          '/home/documents/reports/report1.xls': None,
+#          '/home/music/album3/song2.mp3': None,
+#          '/home/music/album1/song2.mp3': None,
+#          '/lib/systemd/system/sudo.service': None,
+#          '/lib/udev/ata_id': None
+#          }
+# main(paths)
