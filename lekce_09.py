@@ -73,23 +73,57 @@
 # filesystem path existence
 
 # Funkce main
-
-
 def main(my_path: str):
-    file_exists(my_path)
-    print('main')
+    status = False
+    my_path_list = path_decompose(my_path)
+    filesystem_dict = read_filesystem()
+    status = file_exists(my_path_list, filesystem_dict, status)
+    print('status main(): ', status)
 
+
+def read_filesystem():
+    with open('/Users/martindanek/Documents/programovani/files/txt/filesystem.txt') as file:
+        filesystem = file.read()
+    filesystem = filesystem.replace(' ', '')
+    filesystem = filesystem.replace('\n', '')
+    filesystem_dict = eval(filesystem)
+    return filesystem_dict
+
+
+def path_decompose(my_path):
+    my_path_list = my_path.split('/')
+    if my_path[0] == '/':
+        my_path_list[0] = '/'
+    return my_path_list
 # Funkce file_exists
 
 
-def file_exists(my_path):
-    with open('/Users/martindanek/Documents/programovani/files/txt/filesystem.txt') as file:
-        filesystem = file.read()
-    print(my_path)
-    print((filesystem))
-    return
+def file_exists(my_path_list, filesystem_dict, status):
+    print(filesystem_dict['/'][1]['lib'][2]['systemd'][0]['system'][0])
+    print('my_path_list: ', my_path_list)
+    count = 0
+    for char in my_path_list[::2]:
+        count += 1
+        print(filesystem_dict)
+        print(count)
+        print(char)
+        # keys = filesystem_dict.keys()
+        # if char in list(keys):
+        filesystem_dict = filesystem_dict.get(char, -1)
+        if filesystem_dict == -1:
+            status = False
+            return status
+        for index in range(len(filesystem_dict) - 1):
+            print(filesystem_dict[index])
+            print(my_path_list[count])
+            if my_path_list[count] in list(filesystem_dict[index].keys()):
+                filesystem_dict = filesystem_dict[index].get(my_path_list[count])
+                break
+        if type(filesystem_dict) == list:
+            filesystem_dict = next(k for k, v in filesystem_dict if k == my_path_list[count])
+        status = True
+    return status
 
 
 # {'/'
-main('/bin/mkdir')
-
+main('/lib/systemd/system/sudo.service')
