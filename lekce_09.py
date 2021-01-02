@@ -74,11 +74,10 @@
 
 # Funkce main
 def main(my_path: str):
-    status = False
     my_path_list = path_decompose(my_path)
     filesystem_dict = read_filesystem()
-    status = file_exists(my_path_list, filesystem_dict, status)
-    print('status main(): ', status)
+    status = file_exists(my_path_list, filesystem_dict)
+    print(f'{my_path}: ', status)
 
 
 def read_filesystem():
@@ -98,7 +97,7 @@ def path_decompose(my_path):
 # Funkce file_exists
 
 
-def file_exists(my_path_list, filesystem_dict, status):
+def file_exists(my_path_list, filesystem_dict):
 
     for count, char in enumerate(my_path_list):
 
@@ -127,15 +126,17 @@ def file_exists(my_path_list, filesystem_dict, status):
                 if char == item:
                     status = True
                     return status
-                if char in item.keys():
+                elif type(item) == dict and char in item:
                     filesystem_dict = item.get(char)
                     break
                 elif counter == len(filesystem_dict):
                     status = False
                     return status
 
-    return status
-
 
 # {'/'
 main('/lib/systemd/system/sudo.service')
+main('/bin/mkdir')
+main('/lib/init/vars/vars.sh')
+main('/lib/systemd/system/sudo.service')
+main('/home/documents/reports/report1.xls')
