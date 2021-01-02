@@ -74,7 +74,7 @@
 
 # Funkce main
 def main(my_path: str):
-    status = False
+    status = True
     my_path_list = path_decompose(my_path)
     filesystem_dict = read_filesystem()
     status = file_exists(my_path_list, filesystem_dict, status)
@@ -99,29 +99,48 @@ def path_decompose(my_path):
 
 
 def file_exists(my_path_list, filesystem_dict, status):
-    print(filesystem_dict['/'][1]['lib'][2]['systemd'][0]['system'][0])
     print('my_path_list: ', my_path_list)
-    count = 0
-    for char in my_path_list[::2]:
-        count += 1
-        print(filesystem_dict)
+    print('file_dict: ', filesystem_dict)
+    print('=' * 10)
+    for char, count in enumerate(my_path_list):
         print(count)
         print(char)
-        # keys = filesystem_dict.keys()
-        # if char in list(keys):
-        filesystem_dict = filesystem_dict.get(char, -1)
-        if filesystem_dict == -1:
-            status = False
-            return status
-        for index in range(len(filesystem_dict) - 1):
-            print(filesystem_dict[index])
-            print(my_path_list[count])
-            if my_path_list[count] in list(filesystem_dict[index].keys()):
-                filesystem_dict = filesystem_dict[index].get(my_path_list[count])
-                break
-        if type(filesystem_dict) == list:
-            filesystem_dict = next(k for k, v in filesystem_dict if k == my_path_list[count])
-        status = True
+        # # keys = filesystem_dict.keys()
+        # # if char in list(keys):
+        # filesystem_dict = filesystem_dict.get(char, -1)
+        # if filesystem_dict == -1:
+        #     status = False
+        #     return status
+        # for index in range(len(filesystem_dict) - 1):
+        #     print(filesystem_dict[index])
+        #     print(my_path_list[count])
+        #     if my_path_list[count] in list(filesystem_dict[index].keys()):
+        #         filesystem_dict = filesystem_dict[index].get(my_path_list[count])
+        #         break
+        if type(filesystem_dict) == dict:
+            for item in filesystem_dict:
+                if item == char:
+                    filesystem_dict = filesystem_dict.get(char)
+                    print('filesystem_dict_after_dict:', filesystem_dict)
+                    break
+                else:
+                    status = False
+            break
+
+        elif type(filesystem_dict) == list:
+            for item in filesystem_dict:
+                if item.keys() == char:
+                    filesystem_dict = item
+                    break
+                else:
+                    status = False
+                    return status
+
+        if count == 1:
+            print(filesystem_dict)
+            exit()
+        continue
+
     return status
 
 
