@@ -150,3 +150,28 @@
 #          '/lib/udev/ata_id': None
 #          }
 # main(paths)
+
+
+# LIST of DIVISORS
+def main_divisors(number_from, number_to, divisor_min, divisor_max):
+    divisors_dict = result_create(number_from, number_to, divisor_min, divisor_max)
+    divisors_print(divisors_dict, number_from, number_to, divisor_min, divisor_max)
+
+def result_create(number_from, number_to, divisor_min, divisor_max):
+    divisors_dict = {}
+    for divisor in range(divisor_min, divisor_max + 1):
+        div_list = [number for number in range(number_from, number_to + 1) if number % divisor == 0]
+        divisors_dict[divisor] = div_list
+    return divisors_dict
+
+
+def divisors_print(divisors_dict, number_from, number_to, divisor_min, divisor_max):
+    print('''START point: {2:>4}\nEND point: {3:>6}\ndivisors: {0:>7} nad {1}\n{4}
+    '''.format(divisor_min, divisor_max, number_from, number_to, '=' * (17 + len(str(divisors_dict[2])))))
+    print('|{0:^12}|{1:^{width}}|'.format('DIVISORS', 'NUMBERS DIVIDED', width=2 + len(str(divisors_dict[2]))))
+    for i in range(divisor_min, divisor_max + 1):
+        print('|{0:^11} | {1:^{width}} |'.format(i, str(divisors_dict[i]), width=len(str(divisors_dict[2]))))
+
+
+
+main_divisors(2, 34, 2, 12)
