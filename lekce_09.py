@@ -222,8 +222,9 @@ def contract_change():
         exit()
     option_id = id_dict_list[int(option)]
 
-    contract_template_txt = data_change(option_id, data_id_dict, contract_template_txt)
-    contract_print(contract_template_txt)
+    contract_changed_txt = data_change(option_id, data_id_dict, contract_template_txt)
+    print(contract_changed_txt)
+    contract_write(contract_changed_txt)
 
 
 def read_data(option: str):
@@ -239,9 +240,10 @@ def data_change(option_id, data_id_dict, contract_template_txt):
     return contract_template_txt
 
 
-def contract_print(data_print):
-    from pprint import pprint as pp
-    pp(data_print)
+def contract_write(contract_changed_txt):
+    with open('/Users/martindanek/Documents/programovani/files/txt/contract_changed.txt', mode='w') as file:
+        file.write(contract_changed_txt)
+    return print('CHECK YOUR FILE')
 
 
 contract_change()
