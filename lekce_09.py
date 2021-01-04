@@ -252,28 +252,33 @@
 
 # hypoteka
 # struktura dat [[month, monthly_instalment, monthly_interest, principal, left to pay], [...]]
-result = []
 
 total_amount = int(input('How much do you want to borrow?: '))
-years = int(input('How long time for?: '))
+years = int(input('How long time for? (years): '))
 rate_y = float(input('What is rate p.a.?: '))
+print('=' * 87)
 
+result = []
+width = 19
 rate_m = (rate_y / 12) / 100
 
 month = 1
-monthly_instalment = total_amount * (rate_m * (1 + rate_m)**(years * 12)) / ((1 + rate_m)**(years * 12)-1)
-monthly_interest = total_amount * rate_m
+monthly_instalment = int(total_amount * (rate_m * (1 + rate_m)**(years * 12)) / ((1 + rate_m)**(years * 12)-1))
+monthly_interest = int(total_amount * rate_m)
 principal = monthly_instalment - monthly_interest
 left_to_pay = total_amount - principal
 result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
 
 for month in range(2, years * 12 + 1):
-    monthly_instalment = result[month - 2][4] * (rate_m * (1 + rate_m)**(years * 12 - month + 1)) / ((1 + rate_m)**(years * 12 - month + 1)-1)
-    monthly_interest = result[month - 2][4] * rate_m
+    monthly_instalment = int(result[month - 2][4] * (rate_m * (1 + rate_m)**(years * 12 - month + 1)) / ((1 + rate_m)**(years * 12 - month + 1)-1))
+    monthly_interest = int(result[month - 2][4] * rate_m)
     principal = monthly_instalment - monthly_interest
     left_to_pay = result[month - 2][4] - principal
     result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
 
 # tisk sestavy
+header = ['MONTH', 'MONTHLY INSTALEMENT', 'MONTHLY INTEREST', 'PRINCIPAL', 'PAYMENT TO LEFT']
+print('{:^6}|{:^{width}}|{:^{width}}|{:^{width}}|{:^{width}}|'.format(*header, width=width))
+print('=' * 87)
 for month in range(years * 12):
-    print('{:^10}|{:<10.0}|{:<10,.0}|{:<10,.0}|{:<10,.0}|'.format(*result[month]))
+    print('{:^6}|{:^{width},}|{:^{width},}|{:^{width},}|{:^{width},}|'.format(*result[month], width=width))
