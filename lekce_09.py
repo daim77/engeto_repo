@@ -191,14 +191,14 @@
 
 def contract_change():
     contract_files_name = ['salary_change.txt', 'job_change.txt', 'contract_prolongation.txt']
-    print('CONTRACT CHANGE MODUL')
-    print('=' * 20)
+    print()
+    print('{:^60}'.format('CONTRACT CHANGE MODUL'))
+    print('=' * 60)
     print('''
     0 - salary change
     1 - position change
     2 - contract prolongation
     ''')
-    print('=' * 20)
 
     option = 'employees.txt'
     data_id_dict = eval(read_data(option))
@@ -210,12 +210,13 @@ def contract_change():
 
     contract_template_txt = read_data(contract_files_name[int(option)])
 
-    print('EMPLOYEE SELECTION')
-    print('=' * 20)
+    print()
+    print('{:^60}'.format('EMPLOYEE SELECTION'))
+    print('=' * 60)
     print('{:^20}{:^20}{:^20}'.format('order', 'NAME', 'BIRTHDATE'))
+    print('.' * 60)
     for number, item in enumerate(id_dict_list):
-        print('{:^20}{:<20}{:<20}'.format(number, data_id_dict[item]['full_name'], data_id_dict[item]['birthdate']))
-    print('=' * 20)
+        print('{:^20}{:^20}{:^20}'.format(number, data_id_dict[item]['full_name'], data_id_dict[item]['birthdate']))
 
     option = input('Select employee: ')
     if option not in [str(i) for i in range(len(id_dict_list))]:
@@ -223,7 +224,6 @@ def contract_change():
     option_id = id_dict_list[int(option)]
 
     contract_changed_txt = data_change(option_id, data_id_dict, contract_template_txt)
-    print(contract_changed_txt)
     contract_write(contract_changed_txt)
 
 
@@ -243,7 +243,7 @@ def data_change(option_id, data_id_dict, contract_template_txt):
 def contract_write(contract_changed_txt):
     with open('/Users/martindanek/Documents/programovani/files/txt/contract_changed.txt', mode='w') as file:
         file.write(contract_changed_txt)
-    return print('CHECK YOUR FILE')
+    return print('\n\nCHECK YOUR FILE contract_changed.txt')
 
 
 contract_change()
