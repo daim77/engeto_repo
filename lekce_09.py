@@ -234,10 +234,11 @@ def read_data(option: str):
 
 
 def data_change(option_id, data_id_dict, contract_template_txt):
-    for item in list(data_id_dict[option_id].keys()):
-        if item in contract_template_txt:
-            contract_template_txt = contract_template_txt.replace('{' + item + '}', str(data_id_dict[option_id][item]))
-    return contract_template_txt
+    # for item in list(data_id_dict[option_id].keys()):
+    #     if item in contract_template_txt:
+    #         contract_template_txt = contract_template_txt.replace('{' + item + '}', str(data_id_dict[option_id][item]))
+    # return contract_template_txt
+    return contract_template_txt.format(**data_id_dict[option_id])
 
 
 def contract_write(contract_changed_txt):
