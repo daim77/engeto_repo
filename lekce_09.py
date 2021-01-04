@@ -202,13 +202,13 @@ def contract_change():
 
     option = 'employees.txt'
     data_id_dict = eval(read_data(option))
+    id_dict_list = list(data_id_dict.keys())
 
     option = input('Select your option or press Q for quit: ')
-    if option not in [str(i) for i in range(3)]:
+    if option not in [str(i) for i in range(3)]:  # due to Three contract templates
         exit()
 
     contract_template_txt = read_data(contract_files_name[int(option)])
-    id_dict_list = list(data_id_dict.keys())
 
     print('EMPLOYEE SELECTION')
     print('=' * 20)
@@ -235,7 +235,7 @@ def read_data(option: str):
 def data_change(option_id, data_id_dict, contract_template_txt):
     for item in list(data_id_dict[option_id].keys()):
         if item in contract_template_txt:
-            contract_template_txt = contract_template_txt.replace('{' + item + '}', data_id_dict[option_id][item])
+            contract_template_txt = contract_template_txt.replace('{' + item + '}', str(data_id_dict[option_id][item]))
     return contract_template_txt
 
 
