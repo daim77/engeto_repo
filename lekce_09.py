@@ -186,65 +186,93 @@
 #
 # main_divisors(2, 30, 2, 9)
 
-# Generovani smluv
+# # Generovani smluv
+#
+#
+# def contract_change():
+#     contract_files_name = ['salary_change.txt', 'job_change.txt', 'contract_prolongation.txt']
+#     print()
+#     print('{:^60}'.format('CONTRACT CHANGE MODUL'))
+#     print('=' * 60)
+#     print('''
+#     0 - salary change
+#     1 - position change
+#     2 - contract prolongation
+#     ''')
+#
+#     option = 'employees.txt'
+#     data_id_dict = eval(read_data(option))
+#     id_dict_list = list(data_id_dict.keys())
+#
+#     option = input('Select your option or press Q for quit: ')
+#     if option not in [str(i) for i in range(3)]:  # due to Three contract templates
+#         exit()
+#
+#     contract_template_txt = read_data(contract_files_name[int(option)])
+#
+#     print()
+#     print('{:^60}'.format('EMPLOYEE SELECTION'))
+#     print('=' * 60)
+#     print('{:^20}{:^20}{:^20}'.format('order', 'NAME', 'BIRTHDATE'))
+#     print('.' * 60)
+#     for number, item in enumerate(id_dict_list):
+#         print('{:^20}{:^20}{:^20}'.format(number, data_id_dict[item]['full_name'], data_id_dict[item]['birthdate']))
+#
+#     option = input('Select employee: ')
+#     if option not in [str(i) for i in range(len(id_dict_list))]:
+#         exit()
+#     option_id = id_dict_list[int(option)]
+#
+#     contract_changed_txt = data_change(option_id, data_id_dict, contract_template_txt)
+#     contract_write(contract_changed_txt)
+#
+#
+# def read_data(option: str):
+#     with open(f'/Users/martindanek/Documents/programovani/files/txt/{option}') as file:
+#         data_id = file.read()
+#     return data_id
+#
+#
+# def data_change(option_id, data_id_dict, contract_template_txt):
+#     # for item in list(data_id_dict[option_id].keys()):
+#     #     if item in contract_template_txt:
+#     #        contract_template_txt =
+#     = contract_template_txt.replace('{' + item + '}', str(data_id_dict[option_id][item]))
+#     # return contract_template_txt
+#     return contract_template_txt.format(**data_id_dict[option_id])
+#
+#
+# def contract_write(contract_changed_txt):
+#     with open('/Users/martindanek/Documents/programovani/files/txt/contract_changed.txt', mode='w') as file:
+#         file.write(contract_changed_txt)
+#     return print('\n\nCHECK YOUR FILE contract_changed.txt')
+#
+#
+# contract_change()
 
+# hypoteka
+# struktura dat [[month, monthly_instalment, monthly_interest, principal, left to pay], [...]]
+result = []
 
-def contract_change():
-    contract_files_name = ['salary_change.txt', 'job_change.txt', 'contract_prolongation.txt']
-    print()
-    print('{:^60}'.format('CONTRACT CHANGE MODUL'))
-    print('=' * 60)
-    print('''
-    0 - salary change
-    1 - position change
-    2 - contract prolongation
-    ''')
+total_amount = int(input('How much do you want to borrow?: '))
+years = int(input('How long time for?: '))
+rate_y = float(input('What is rate p.a.?: '))
 
-    option = 'employees.txt'
-    data_id_dict = eval(read_data(option))
-    id_dict_list = list(data_id_dict.keys())
+rate_m = (rate_y / 12) / 100
 
-    option = input('Select your option or press Q for quit: ')
-    if option not in [str(i) for i in range(3)]:  # due to Three contract templates
-        exit()
+month = 1
+monthly_instalment = total_amount * (rate_m * (1 + rate_m)**(years * 12)) / ((1 + rate_m)**(years * 12)-1)
+monthly_interest = total_amount * rate_m
+principal = monthly_instalment - monthly_interest
+left_to_pay = total_amount - principal
+result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
 
-    contract_template_txt = read_data(contract_files_name[int(option)])
+for month in range(2, years * 12 + 1):
+    monthly_instalment = result[month - 2][4] * (rate_m * (1 + rate_m) ** (years * 12 - month)) / ((1 + rate_m) ** (years * 12 - month) - 1)
+    monthly_interest = result[month - 2][4] * rate_m
+    principal = monthly_instalment - monthly_interest
+    left_to_pay = result[month - 2][4] - principal
+    result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
 
-    print()
-    print('{:^60}'.format('EMPLOYEE SELECTION'))
-    print('=' * 60)
-    print('{:^20}{:^20}{:^20}'.format('order', 'NAME', 'BIRTHDATE'))
-    print('.' * 60)
-    for number, item in enumerate(id_dict_list):
-        print('{:^20}{:^20}{:^20}'.format(number, data_id_dict[item]['full_name'], data_id_dict[item]['birthdate']))
-
-    option = input('Select employee: ')
-    if option not in [str(i) for i in range(len(id_dict_list))]:
-        exit()
-    option_id = id_dict_list[int(option)]
-
-    contract_changed_txt = data_change(option_id, data_id_dict, contract_template_txt)
-    contract_write(contract_changed_txt)
-
-
-def read_data(option: str):
-    with open(f'/Users/martindanek/Documents/programovani/files/txt/{option}') as file:
-        data_id = file.read()
-    return data_id
-
-
-def data_change(option_id, data_id_dict, contract_template_txt):
-    # for item in list(data_id_dict[option_id].keys()):
-    #     if item in contract_template_txt:
-    #         contract_template_txt = contract_template_txt.replace('{' + item + '}', str(data_id_dict[option_id][item]))
-    # return contract_template_txt
-    return contract_template_txt.format(**data_id_dict[option_id])
-
-
-def contract_write(contract_changed_txt):
-    with open('/Users/martindanek/Documents/programovani/files/txt/contract_changed.txt', mode='w') as file:
-        file.write(contract_changed_txt)
-    return print('\n\nCHECK YOUR FILE contract_changed.txt')
-
-
-contract_change()
+from pprint import pprint as pp
+pp(result)
