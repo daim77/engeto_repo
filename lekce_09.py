@@ -268,11 +268,12 @@ left_to_pay = total_amount - principal
 result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
 
 for month in range(2, years * 12 + 1):
-    monthly_instalment = result[month - 2][4] * (rate_m * (1 + rate_m) ** (years * 12 - month)) / ((1 + rate_m) ** (years * 12 - month) - 1)
+    monthly_instalment = result[month - 2][4] * (rate_m * (1 + rate_m)**(years * 12 - month + 1)) / ((1 + rate_m)**(years * 12 - month + 1)-1)
     monthly_interest = result[month - 2][4] * rate_m
     principal = monthly_instalment - monthly_interest
     left_to_pay = result[month - 2][4] - principal
     result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
 
-from pprint import pprint as pp
-pp(result)
+# tisk sestavy
+for month in range(years * 12):
+    print('{:^10}|{:<10.0}|{:<10,.0}|{:<10,.0}|{:<10,.0}|'.format(*result[month]))
