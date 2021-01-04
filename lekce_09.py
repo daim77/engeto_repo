@@ -152,36 +152,96 @@
 # main(paths)
 
 
-# LIST of DIVISORS
-def main_divisors(number_from, number_to, divisor_min, divisor_max):
-    sorted_list = sorted([divisor_min, divisor_max])
-    if 0 in sorted_list:
-        print('Division by zero not possible')
-    divisor_min = int(sorted_list[0])
-    divisor_max = int(sorted_list[1])
+# # LIST of DIVISORS
+# def main_divisors(number_from, number_to, divisor_min, divisor_max):
+#     sorted_list = sorted([divisor_min, divisor_max])
+#     if 0 in sorted_list:
+#         print('Division by zero not possible')
+#     divisor_min = int(sorted_list[0])
+#     divisor_max = int(sorted_list[1])
+#
+#     divisors_dict = result_create(number_from, number_to, divisor_min, divisor_max)
+#     divisors_print(divisors_dict, number_from, number_to, divisor_min, divisor_max)
+#
+#
+# def result_create(number_from, number_to, divisor_min, divisor_max):
+#     divisors_dict = {}
+#     for divisor in range(divisor_min, divisor_max + 1):
+#         div_list = [str(number) for number in range(number_from, number_to + 1) if number % divisor == 0]
+#         divisors_dict[divisor] = div_list
+#     return divisors_dict
+#
+#
+# def divisors_print(divisors_dict, number_from, number_to, divisor_min, divisor_max):
+#     max_l = len(', '.join(divisors_dict[divisor_min]))  # max lenght
+#
+#     print('''\nSTART point: {2:>4}\nEND point: {3:>6}\ndivisors: {0:>7} till {1}\n{4}
+#     '''.format(divisor_min, divisor_max, number_from, number_to, '=' * (17 + max_l))
+#           )
+#     print('|{0:^12}|{1:^{width}}|'.format('DIVISORS', 'NUMBERS DIVIDED', width=2 + max_l))
+#
+#     for i in range(divisor_min, divisor_max + 1):
+#         print('|{0:^11} | {1:^{width}} |'.format(i, ', '.join(divisors_dict[i]), width=max_l))
+#
+#
+# main_divisors(2, 30, 2, 9)
 
-    divisors_dict = result_create(number_from, number_to, divisor_min, divisor_max)
-    divisors_print(divisors_dict, number_from, number_to, divisor_min, divisor_max)
+# Generovani smluv
 
 
-def result_create(number_from, number_to, divisor_min, divisor_max):
-    divisors_dict = {}
-    for divisor in range(divisor_min, divisor_max + 1):
-        div_list = [str(number) for number in range(number_from, number_to + 1) if number % divisor == 0]
-        divisors_dict[divisor] = div_list
-    return divisors_dict
+def contract_change():
+    contract_files_name = ['salary_change.txt', 'job_change.txt', 'contract_prolongation.txt']
+    print('CONTRACT CHANGE MODUL')
+    print('=' * 20)
+    print('''
+    0 - salary change
+    1 - position change
+    2 - contract prolongation
+    ''')
+    print('=' * 20)
+
+    option = 'employees.txt'
+    data_id_dict = eval(read_data(option))
+
+    option = input('Select your option or press Q for quit: ')
+    if option not in [str(i) for i in range(3)]:
+        exit()
+
+    contract_template_txt = read_data(contract_files_name[int(option)])
+    id_dict_list = list(data_id_dict.keys())
+
+    print('EMPLOYEE SELECTION')
+    print('=' * 20)
+    print('{:^20}{:^20}{:^20}'.format('order', 'NAME', 'BIRTHDATE'))
+    for number, item in enumerate(id_dict_list):
+        print('{:^20}{:<20}{:<20}'.format(number, data_id_dict[item]['full_name'], data_id_dict[item]['birthdate']))
+    print('=' * 20)
+
+    option = input('Select employee: ')
+    if option not in [str(i) for i in range(len(id_dict_list))]:
+        exit()
+    option_id = id_dict_list[int(option)]
+
+    contract_template_txt = data_change(option_id, data_id_dict, contract_template_txt)
+    contract_print(contract_template_txt)
 
 
-def divisors_print(divisors_dict, number_from, number_to, divisor_min, divisor_max):
-    max_l = len(', '.join(divisors_dict[divisor_min]))  # max lenght
-
-    print('''\nSTART point: {2:>4}\nEND point: {3:>6}\ndivisors: {0:>7} till {1}\n{4}
-    '''.format(divisor_min, divisor_max, number_from, number_to, '=' * (17 + max_l))
-          )
-    print('|{0:^12}|{1:^{width}}|'.format('DIVISORS', 'NUMBERS DIVIDED', width=2 + max_l))
-
-    for i in range(divisor_min, divisor_max + 1):
-        print('|{0:^11} | {1:^{width}} |'.format(i, ', '.join(divisors_dict[i]), width=max_l))
+def read_data(option: str):
+    with open(f'/Users/martindanek/Documents/programovani/files/txt/{option}') as file:
+        data_id = file.read()
+    return data_id
 
 
-main_divisors(2, 30, 2, 9)
+def data_change(option_id, data_id_dict, contract_template_txt):
+    for item in list(data_id_dict[option_id].keys()):
+        if item in contract_template_txt:
+            contract_template_txt = contract_template_txt.replace('{' + item + '}', data_id_dict[option_id][item])
+    return contract_template_txt
+
+
+def contract_print(data_print):
+    from pprint import pprint as pp
+    pp(data_print)
+
+
+contract_change()
