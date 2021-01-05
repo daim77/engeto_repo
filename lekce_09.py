@@ -253,51 +253,73 @@
 # MORTGAGE
 # data structure [[month, monthly_instalment, monthly_interest, principal, left to pay], [...]]
 
-total_amount = int(input('How much do you want to borrow?: '))
-years = int(input('For how many years you will pay?: '))
-rate_y = float(input('What is given rate p.a.?: '))
-
-result = []
-width = 21
-rate_m = (rate_y / 12) / 100
-
-month = 1
-monthly_instalment = int(total_amount * (rate_m * (1 + rate_m)**(years * 12))
-                         / ((1 + rate_m)**(years * 12)-1))
-monthly_interest = int(total_amount * rate_m)
-sum_interests = monthly_interest
-principal = monthly_instalment - monthly_interest
-left_to_pay = total_amount - principal
-result.append([
-    month,
-    monthly_instalment,
-    monthly_interest,
-    principal,
-    left_to_pay
-])
-
-for month in range(2, years * 12 + 1):
-    monthly_instalment = int(result[month - 2][4] * (rate_m * (1 + rate_m)**(years * 12 - month + 1))
-                             / ((1 + rate_m)**(years * 12 - month + 1)-1))
-    monthly_interest = int(result[month - 2][4] * rate_m)
-    sum_interests += monthly_interest
-    principal = monthly_instalment - monthly_interest
-    left_to_pay = result[month - 2][4] - principal
-    result.append([
-        month,
-        monthly_instalment,
-        monthly_interest,
-        principal,
-        left_to_pay
-    ])
-
-# tisk sestavy
-print('\n\nTotal payed interests:', sum_interests)
-print('=' * 95)
-print('{:^95}'.format('MORTGAGE CALCULATOR'))
-print('=' * 95)
-header = ['MONTH', 'MONTHLY INSTALEMENT', 'MONTHLY INTEREST', 'PRINCIPAL', 'PAYMENT TO LEFT']
-print('{:^6}|{:^{width}}|{:^{width}}|{:^{width}}|{:^{width}}|'.format(*header, width=width))
-print('=' * 95)
-for month in range(years * 12):
-    print('{:^6}|{:^{width},}|{:^{width},}|{:^{width},}|{:^{width},}|'.format(*result[month], width=width))
+# total_amount = int(input('How much do you want to borrow?: '))
+# years = int(input('For how many years you will pay?: '))
+# rate_y = float(input('What is given rate p.a.?: '))
+#
+# result = []
+# width = 21
+# rate_m = (rate_y / 12) / 100
+#
+# month = 1
+# monthly_instalment = int(total_amount * (rate_m * (1 + rate_m)**(years * 12))
+#                          / ((1 + rate_m)**(years * 12)-1))
+# monthly_interest = int(total_amount * rate_m)
+# sum_interests = monthly_interest
+# principal = monthly_instalment - monthly_interest
+# left_to_pay = total_amount - principal
+# result.append([
+#     month,
+#     monthly_instalment,
+#     monthly_interest,
+#     principal,
+#     left_to_pay
+# ])
+#
+# for month in range(2, years * 12 + 1):
+#     monthly_instalment = int(result[month - 2][4] * (rate_m * (1 + rate_m)**(years * 12 - month + 1))
+#                              / ((1 + rate_m)**(years * 12 - month + 1)-1))
+#     monthly_interest = int(result[month - 2][4] * rate_m)
+#     sum_interests += monthly_interest
+#     principal = monthly_instalment - monthly_interest
+#     left_to_pay = result[month - 2][4] - principal
+#     result.append([
+#         month,
+#         monthly_instalment,
+#         monthly_interest,
+#         principal,
+#         left_to_pay
+#     ])
+#
+# # print
+# print('\n\nTotal payed interests:', sum_interests)
+# print('=' * 95)
+# print('{:^95}'.format('MORTGAGE CALCULATOR'))
+# print('=' * 95)
+# header = ['MONTH', 'MONTHLY INSTALEMENT', 'MONTHLY INTEREST', 'PRINCIPAL', 'PAYMENT TO LEFT']
+# print('{:^6}|{:^{width}}|{:^{width}}|{:^{width}}|{:^{width}}|'.format(*header, width=width))
+# print('=' * 95)
+# for month in range(years * 12):
+#     print('{:^6}|{:^{width},}|{:^{width},}|{:^{width},}|{:^{width},}|'.format(*result[month], width=width))
+#
+# # save results
+# with open('/Users/martindanek/Documents/programovani/files/txt/mortgage.txt', 'a+') as file:
+#     file.read()
+# with open('/Users/martindanek/Documents/programovani/files/txt/mortgage.txt', 'w') as file:
+#     txt = 'TOTAL MORTGAGE: ' + str(total_amount) \
+#         + '\nYou will pay for ' + str(years) + ' years' \
+#         + '\nGiven rate p.a. ' + str(rate_y) + ' %' \
+#         + '\n\nTotal payed interests: ' + '{:<,}'.format(sum_interests) \
+#         + '\n' + str('=' * 95) \
+#         + '\n' + str('{:^95}'.format('MORTGAGE CALCULATOR')) \
+#         + '\n' + str('=' * 95) \
+#         + '\n{:^6}|{:^{width}}|{:^{width}}|{:^{width}}|{:^{width}}|'.format(*header, width=width) \
+#         + '\n' + str('=' * 95)
+#     file.write(txt)
+#
+#     for month in range(years * 12):
+#         line = '\n{:^6}|{:^{width},}|{:^{width},}|{:^{width},}|{:^{width},}|'.format(*result[month], width=width)
+#         file.writelines(line)
+#
+#     line = '\n' + str('=' * 95)
+#     file.write(line)
