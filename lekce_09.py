@@ -250,35 +250,54 @@
 #
 # contract_change()
 
-# hypoteka
-# struktura dat [[month, monthly_instalment, monthly_interest, principal, left to pay], [...]]
+# MORTGAGE
+# data structure [[month, monthly_instalment, monthly_interest, principal, left to pay], [...]]
 
 total_amount = int(input('How much do you want to borrow?: '))
-years = int(input('How long time for? (years): '))
-rate_y = float(input('What is rate p.a.?: '))
-print('=' * 87)
+years = int(input('For how many years you will pay?: '))
+rate_y = float(input('What is given rate p.a.?: '))
 
 result = []
-width = 19
+width = 21
 rate_m = (rate_y / 12) / 100
 
 month = 1
-monthly_instalment = int(total_amount * (rate_m * (1 + rate_m)**(years * 12)) / ((1 + rate_m)**(years * 12)-1))
+monthly_instalment = int(total_amount * (rate_m * (1 + rate_m)**(years * 12))
+                         / ((1 + rate_m)**(years * 12)-1))
 monthly_interest = int(total_amount * rate_m)
+sum_interests = monthly_interest
 principal = monthly_instalment - monthly_interest
 left_to_pay = total_amount - principal
-result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
+result.append([
+    month,
+    monthly_instalment,
+    monthly_interest,
+    principal,
+    left_to_pay
+])
 
 for month in range(2, years * 12 + 1):
-    monthly_instalment = int(result[month - 2][4] * (rate_m * (1 + rate_m)**(years * 12 - month + 1)) / ((1 + rate_m)**(years * 12 - month + 1)-1))
+    monthly_instalment = int(result[month - 2][4] * (rate_m * (1 + rate_m)**(years * 12 - month + 1))
+                             / ((1 + rate_m)**(years * 12 - month + 1)-1))
     monthly_interest = int(result[month - 2][4] * rate_m)
+    sum_interests += monthly_interest
     principal = monthly_instalment - monthly_interest
     left_to_pay = result[month - 2][4] - principal
-    result.append([month, monthly_instalment, monthly_interest, principal, left_to_pay])
+    result.append([
+        month,
+        monthly_instalment,
+        monthly_interest,
+        principal,
+        left_to_pay
+    ])
 
 # tisk sestavy
+print('\n\nTotal payed interests:', sum_interests)
+print('=' * 95)
+print('{:^95}'.format('MORTGAGE CALCULATOR'))
+print('=' * 95)
 header = ['MONTH', 'MONTHLY INSTALEMENT', 'MONTHLY INTEREST', 'PRINCIPAL', 'PAYMENT TO LEFT']
 print('{:^6}|{:^{width}}|{:^{width}}|{:^{width}}|{:^{width}}|'.format(*header, width=width))
-print('=' * 87)
+print('=' * 95)
 for month in range(years * 12):
     print('{:^6}|{:^{width},}|{:^{width},}|{:^{width},}|{:^{width},}|'.format(*result[month], width=width))
