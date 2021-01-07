@@ -23,7 +23,7 @@
 import random
 import string
 import time
-# import re
+import re
 
 
 def vytvor_sileny_string(r, z, max_cislo):
@@ -80,12 +80,23 @@ def count_my_list(my_string):
     return total_sum, total_time
 
 
+# def count_regular(my_string):
+#     start_time = time.time()
+#     total_sum = sum(int(num)
+#                     for num in re.split(f'{string.ascii_lowercase} + {string.punctuation}+', my_string, flags=re.IGNORECASE))
+#     total_time = time.time() - start_time
+#     return total_sum, total_time
+
+
 def main():
     r = int(input('Pocet radku: '))
     z = int(input('Pocet znaku v radku: '))
     max_cislo = int(input('Rozsah pro generovani cisla int: '))
     my_string = vytvor_sileny_string(r, z, max_cislo)
-    print(count_num(my_string), '|', count_list(my_string), '|', count_my_list(my_string))
+    print(
+        count_num(my_string), '|', count_list(my_string), '|', count_my_list(my_string), '|')
+    #     , count_regular(my_string)
+    # )
 
 
 main()
