@@ -42,4 +42,27 @@
 #     # Vypisujeme zprávu.
 #     print('empty list')
 
+# CSV conversion to dict
+import pandas as pd
 
+data_frame = pd.read_csv("/Users/martindanek/Documents/programovani/files/csv/citytemp.csv", header=None)
+arr = data_frame.to_numpy()
+
+result = {}
+for item in arr:
+    city = item[0]
+    unit = item[2]
+    temp = int(item[1])
+    temp_list = []
+
+    if city not in result:
+        result.update({city: {unit: [temp]}})
+    elif unit not in result[city]:
+        result[city].update({unit: [temp]})
+    else:
+        temp_list = result[city][unit]
+        temp_list.append(temp)
+        result[city][unit] = temp_list
+
+
+print(result)
