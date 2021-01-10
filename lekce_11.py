@@ -66,15 +66,58 @@
 #
 # print(result)
 
-try:
-    #Místo kde vznikne chyba.
-    produkt = 123 / (23 * 0)
+# ========
+# try:
+#     #Místo kde vznikne chyba.
+#     produkt = 123 / (23 * 0)
+#
+# #Urči typ chyby a vytvoř alias.
+# except ZeroDivisionError as my_error:
+#     #Ulož vyjímku.
+#     my_error_var = my_error
+#     #Nech vypsat proměnou.
+#     print('========================')
+#     print(my_error.__class__.__name__)
+#     print(my_error.__class__)
+#     print(my_error)
+#     print(my_error.args)
+#     print(my_error_var)
+#     print('========================')
+#     # Získej typ / jméno chyby.
+#     typ = type(my_error_var).__name__
+#     # Získej zprávu.
+#     zprava = my_error_var.args[0]
+#     # Poskládej jméno a zprávu tak, aby vytvořily požadovaný text.
+#     radek = typ + ': ' + zprava
+#     # Nech složený text vypsat.
+#     print(radek)
 
-#Urči typ chyby a vytvoř alias.
-except ZeroDivisionError as my_error:
-    #Ulož vyjímku.
-    my_error_var = my_error.__class__.__name__
-    #Nech vypsat proměnou.
-    print(my_error)
-    print(my_error.args)
-    print(my_error_var)
+# ==========
+# try:
+#     num = [1,2,3,4][4]
+#     print(num*4)
+# except LookupError:
+#     print('Zachytávám lookup error')
+# except IndexError:
+#     print('Zachytávám index error')
+# finally:
+#     print('Konec')
+
+# =====TASK 49=====
+# line reader
+
+def line_reader(path: str):
+    try:
+        with open(path, 'r') as txtfile:
+            my_text = txtfile.read()
+            my_text = my_text.split('\n')
+            for part in my_text:
+                if part == '':
+                    continue
+                print(part)
+    except FileNotFoundError:
+        file_name = path.split('/')[-1].upper()
+        print('File {} not found!'.format(file_name))
+
+
+line_reader('/Users/martindanek/Documents/programovani/files/txt/lesson_11_line_readerr.txt')
