@@ -42,27 +42,39 @@
 #     # Vypisujeme zprávu.
 #     print('empty list')
 
-# CSV conversion to dict
-import pandas as pd
+# # CSV conversion to dict
+# import pandas as pd
+#
+# data_frame = pd.read_csv("/Users/martindanek/Documents/programovani/files/csv/citytemp.csv", header=None)
+# arr = data_frame.to_numpy()
+#
+# result = {}
+# for item in arr:
+#     city = item[0]
+#     unit = item[2]
+#     temp = int(item[1])
+#     temp_list = []
+#
+#     if city not in result:
+#         result.update({city: {unit: [temp]}})
+#     elif unit not in result[city]:
+#         result[city].update({unit: [temp]})
+#     else:
+#         temp_list = result[city][unit]
+#         temp_list.append(temp)
+#         result[city][unit] = temp_list
+#
+# print(result)
 
-data_frame = pd.read_csv("/Users/martindanek/Documents/programovani/files/csv/citytemp.csv", header=None)
-arr = data_frame.to_numpy()
+try:
+    #Místo kde vznikne chyba.
+    produkt = 123 / (23 * 0)
 
-result = {}
-for item in arr:
-    city = item[0]
-    unit = item[2]
-    temp = int(item[1])
-    temp_list = []
-
-    if city not in result:
-        result.update({city: {unit: [temp]}})
-    elif unit not in result[city]:
-        result[city].update({unit: [temp]})
-    else:
-        temp_list = result[city][unit]
-        temp_list.append(temp)
-        result[city][unit] = temp_list
-
-
-print(result)
+#Urči typ chyby a vytvoř alias.
+except ZeroDivisionError as my_error:
+    #Ulož vyjímku.
+    my_error_var = my_error.__class__.__name__
+    #Nech vypsat proměnou.
+    print(my_error)
+    print(my_error.args)
+    print(my_error_var)
