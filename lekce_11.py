@@ -122,22 +122,42 @@
 #
 # line_reader('/Users/martindanek/Documents/programovani/files/txt/lesson_11_line_readerr.txt')
 
-# =====TASK 50=====
-# sum up dirty list
-def sum_list(list_seq: list):
-    result = 0.0
-    try:
-        for num in list_seq:
-            result += float(num)
-        return print(result)
-    except (TypeError, ValueError):
-        print('Only numbers could be sumed up')
-    finally:
-        print('Thank you ENGETO :-)')
-
-
+# # =====TASK 50=====
+# # sum up dirty list
+# def sum_list(list_seq: list):
+#     result = 0.0
+#     for item in list_seq:
+#         try:
+#             result += float(item)
+#         except (TypeError, ValueError):
+#             continue
+#     return print(result)
+#
+#
 # test = [1, 'asda', {'zvire': 'kocka'}, '3.0', 2.0, [], '\n', '4']
-# test = [1.0, 2, 4.6]
-test = ['3.0', '4']
+# sum_list(test)
 
-sum_list(test)
+
+# =====TASK 51=====
+# in Dict search func
+
+# def hledej(key_test, value_test, user_dict):
+#     try:
+#         if user_dict[key_test] == value_test:
+#             return True
+#         else:
+#             return False
+#     except KeyError:
+#         print('Key is not present')
+#         return False
+#
+#
+# muj_slovnik = {
+#     'jmeno': 'Pepa',
+#     'prijmeni': 'Novak',
+#     'rok_narozeni': 1990,
+#     'mesto': 'Praha',
+#     'domaci_mazlicek': 'Chameleon'
+# }
+#
+# print(hledej('jmeno', 'Pepa', muj_slovnik))
