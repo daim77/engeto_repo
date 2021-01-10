@@ -103,21 +103,38 @@
 # finally:
 #     print('Konec')
 
-# =====TASK 49=====
-# line reader
+# # =====TASK 49=====
+# # line reader
+#
+# def line_reader(path: str):
+#     try:
+#         with open(path, 'r') as txtfile:
+#             my_text = txtfile.read()
+#             my_text = my_text.split('\n')
+#             for part in my_text:
+#                 if part == '':
+#                     continue
+#                 print(part)
+#     except FileNotFoundError:
+#         file_name = path.split('/')[-1].upper()
+#         print('File {} not found!'.format(file_name))
+#
+#
+# line_reader('/Users/martindanek/Documents/programovani/files/txt/lesson_11_line_readerr.txt')
 
-def line_reader(path: str):
+# =====TASK 50=====
+# sum up dirty list
+def sum_list(list_seq: list):
+    result = 0
     try:
-        with open(path, 'r') as txtfile:
-            my_text = txtfile.read()
-            my_text = my_text.split('\n')
-            for part in my_text:
-                if part == '':
-                    continue
-                print(part)
-    except FileNotFoundError:
-        file_name = path.split('/')[-1].upper()
-        print('File {} not found!'.format(file_name))
+        for num in list_seq:
+            result += num
+        return print(result)
+    except (TypeError, ValueError):
+        print('Only numbers could be sumed up')
+    finally:
+        print('Thank you ENGETO :-)')
 
 
-line_reader('/Users/martindanek/Documents/programovani/files/txt/lesson_11_line_readerr.txt')
+test = [1, 'asda', {'zvire': 'kocka'}, '3.0', 2.0, [], '\n', '4']
+sum_list(test)
