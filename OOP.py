@@ -80,27 +80,56 @@
 #
 # print(my_dist(1,1,2,2))
 
-# OOP verze
+# # OOP verze
+#
+# class MyPoints:
+#
+#     count_points = 0
+#
+#     def __init__(self, x1, y1):
+#         self.axe_x = x1
+#         self.axe_y = y1
+#         MyPoints.count_points += 1
+#
+#     def dist(self, nd_point):
+#         x1 = self.axe_x
+#         y1 = self.axe_y
+#         x2 = nd_point.axe_x
+#         y2 = nd_point.axe_y
+#         two_points_dist = ((x1 - x2)**2 + (y1 - y2) ** 2) ** (1/2)
+#         print('{:<.6}'.format(two_points_dist))
+#
+#
+# bod1 = MyPoints(1, 1)
+# bod2 = MyPoints(11, 11)
+#
+# bod1.dist(bod2)
 
-class MyPoints:
+# ===========UKOL 2.2==========
+# Phone class
 
-    count_points = 0
-
-    def __init__(self, x1, y1):
-        self.axe_x = x1
-        self.axe_y = y1
-        MyPoints.count_points += 1
-
-    def dist(self, nd_point):
-        x1 = self.axe_x
-        y1 = self.axe_y
-        x2 = nd_point.axe_x
-        y2 = nd_point.axe_y
-        two_points_dist = ((x1 - x2)**2 + (y1 - y2) ** 2) ** (1/2)
-        print('{:<.6}'.format(two_points_dist))
+from pprint import pprint as pp
 
 
-bod1 = MyPoints(1, 1)
-bod2 = MyPoints(11, 11)
+class Phone:
 
-bod1.dist(bod2)
+    total_phone = 0
+    phone_dict = {}
+
+    def __init__(self, brand, emei):
+        self.brand = brand
+        self.emei = emei
+        Phone.total_phone += 1
+        Phone.phone_dict = {self.brand: {self.emei: {'contacts': []}}}
+
+    def add_contact(self, name, surname, phone_number):
+        Phone.phone_dict[self.brand][self.emei]['contacts'].append([name, surname, phone_number])
+
+    def show_contact(self):
+        pp(Phone.phone_dict[self.brand][self.emei])
+
+
+mobile = Phone('iPhone 11', '123456789')
+mobile.add_contact('name1', 'surname1', '123456789')
+mobile.add_contact('name2', 'surname2', '987654321')
+mobile.show_contact()
