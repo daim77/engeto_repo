@@ -80,6 +80,7 @@
 #
 # print(my_dist(1,1,2,2))
 
+# # ===========UKOL 2.2==========
 # # OOP verze
 #
 # class MyPoints:
@@ -105,7 +106,7 @@
 #
 # bod1.dist(bod2)
 
-# ===========UKOL 2.2==========
+# ===========UKOL 3==========
 # Phone class
 
 from pprint import pprint as pp
