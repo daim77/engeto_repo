@@ -106,81 +106,110 @@
 #
 # bod1.dist(bod2)
 
-# ===========UKOL 3==========
-# Phone class
+# # ===========UKOL 3==========
+# # Phone class
+#
+# from pprint import pprint as pp
+#
+#
+# class Phone:
+#
+#     phone_dict = {}
+#
+#     def __init__(self, brand, emei):
+#         self.brand = brand
+#         self.emei = emei
+#         self.phone_dict = {brand: {emei: {'contacts': []}}}
+#
+#     def add_contact(self, name, surname, phone_number):
+#         for c_list in self.phone_dict[self.brand][self.emei]['contacts']:
+#             if c_list == [name, surname, phone_number]:
+#                 decision = input('This contact already exists. Would you like to save it? Y / N: ')
+#                 if decision.lower() == 'n':
+#                     return
+#         self.phone_dict[self.brand][self.emei]['contacts'].append([name, surname, phone_number])
+#
+#     def show_contact(self):
+#         print('contact list for: ', self.brand, 'with EMEI', self.emei)
+#         pp(self.phone_dict[self.brand][self.emei])
+#         print()
+#
+#     def del_contact(self, name, surname):
+#         occurrence = 0
+#         for contact in self.phone_dict[self.brand][self.emei]['contacts']:
+#             if contact[0] == name and contact[1] == surname and occurrence == 0:
+#                 occurrence += 1
+#                 print('deleting contact {}, {}, {} '.format(name, surname, contact[2]))
+#                 c_list = self.phone_dict[self.brand][self.emei]['contacts']
+#                 c_list.remove([name, surname, contact[2]])
+#             if contact[0] == name and contact[1] == surname and occurrence > 0:
+#                 decision = \
+#                     input('would you like to remove also duplicate contact with number {}? Y/N:'.format(contact[2]))
+#                 if decision.lower() == 'y':
+#                     occurrence += 1
+#                     c_list = self.phone_dict[self.brand][self.emei]['contacts']
+#                     c_list.remove([name, surname, contact[2]])
+#         if occurrence == 0:
+#             print('No any contact for removal..')
+#         return
+#
+#     def find_contact(self, name, surname):
+#         occurrence = 0
+#         for contact in self.phone_dict[self.brand][self.emei]['contacts']:
+#             if contact[0] == name and contact[1] == surname:
+#                 occurrence += 1
+#                 if occurrence == 1:
+#                     print('Contacts found:')
+#                 print('{}, {}, {} '.format(name, surname, contact[2]))
+#         if occurrence == 0:
+#             print('No contact found...')
+#         return
+#
+#
+# mobile = Phone('iPhone 11', '123456789')
+# mobile.show_contact()
+#
+# mobile.add_contact('name1', 'surname1', '123456789')
+# mobile.show_contact()
+#
+# mobile.add_contact('name2', 'surname2', '987654321')
+# mobile.show_contact()
+#
+# mobile.add_contact('name1', 'surname1', '1234567890')
+# mobile.show_contact()
+#
+# office = Phone('Nokia', '0987654321ddhg547')
+# office.add_contact('office_name', 'office_surname', '1357913579')
+# office.show_contact()
+#
+#
+# mobile.find_contact('name1', 'surname1')
 
-from pprint import pprint as pp
 
+# getter, setter a deleter
 
-class Phone:
+class Person:
 
-    phone_dict = {}
+    def __init__(self, name, address, nationality, age):
+        self.name = name
+        self.address = address
+        self.nationality = nationality
+        self.age = age
+        self.is_adult = self.age >= 18
 
-    def __init__(self, brand, emei):
-        self.brand = brand
-        self.emei = emei
-        self.phone_dict = {brand: {emei: {'contacts': []}}}
+    def get_age(self):                      # Nový getter
+        return self.age
 
-    def add_contact(self, name, surname, phone_number):
-        for c_list in self.phone_dict[self.brand][self.emei]['contacts']:
-            if c_list == [name, surname, phone_number]:
-                decision = input('This contact already exists. Would you like to save it? Y / N: ')
-                if decision.lower() == 'n':
-                    return
-        self.phone_dict[self.brand][self.emei]['contacts'].append([name, surname, phone_number])
-
-    def show_contact(self):
-        print('contact list for: ', self.brand, 'with EMEI', self.emei)
-        pp(self.phone_dict[self.brand][self.emei])
-        print()
-
-    def del_contact(self, name, surname):
-        occurrence = 0
-        for contact in self.phone_dict[self.brand][self.emei]['contacts']:
-            if contact[0] == name and contact[1] == surname and occurrence == 0:
-                occurrence += 1
-                print('deleting contact {}, {}, {} '.format(name, surname, contact[2]))
-                c_list = self.phone_dict[self.brand][self.emei]['contacts']
-                c_list.remove([name, surname, contact[2]])
-            if contact[0] == name and contact[1] == surname and occurrence > 0:
-                decision = \
-                    input('would you like to remove also duplicate contact with number {}? Y/N:'.format(contact[2]))
-                if decision.lower() == 'y':
-                    occurrence += 1
-                    c_list = self.phone_dict[self.brand][self.emei]['contacts']
-                    c_list.remove([name, surname, contact[2]])
-        if occurrence == 0:
-            print('No any contact for removal..')
+    def set_is_adult(self):
+        self.is_adult = self.age >= 18
         return
 
-    def find_contact(self, name, surname):
-        occurrence = 0
-        for contact in self.phone_dict[self.brand][self.emei]['contacts']:
-            if contact[0] == name and contact[1] == surname:
-                occurrence += 1
-                if occurrence == 1:
-                    print('Contacts found:')
-                print('{}, {}, {} '.format(name, surname, contact[2]))
-        if occurrence == 0:
-            print('No contact found...')
-        return
 
+ana = Person("Ana", "Svobodova 3", "Czech", 17)
+print(ana.get_age())
+print(ana.is_adult)
 
-mobile = Phone('iPhone 11', '123456789')
-mobile.show_contact()
-
-mobile.add_contact('name1', 'surname1', '123456789')
-mobile.show_contact()
-
-mobile.add_contact('name2', 'surname2', '987654321')
-mobile.show_contact()
-
-mobile.add_contact('name1', 'surname1', '1234567890')
-mobile.show_contact()
-
-office = Phone('Nokia', '0987654321ddhg547')
-office.add_contact('office_name', 'office_surname', '1357913579')
-office.show_contact()
-
-
-mobile.find_contact('name1', 'surname1')
+ana.age = 20
+print(ana.get_age())
+ana.set_is_adult()
+print(ana.is_adult)
