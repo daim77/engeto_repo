@@ -97,10 +97,10 @@ class MyPoints:
         x2 = nd_point.axe_x
         y2 = nd_point.axe_y
         two_points_dist = ((x1 - x2)**2 + (y1 - y2) ** 2) ** (1/2)
-        print(two_points_dist)
+        print('{:<.6}'.format(two_points_dist))
 
 
 bod1 = MyPoints(1, 1)
-bod2 = MyPoints(2, 2)
+bod2 = MyPoints(11, 11)
 
 bod1.dist(bod2)
