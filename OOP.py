@@ -139,23 +139,32 @@ class Phone:
         occurrence = 0
         for contact in Phone.phone_dict[self.brand][self.emei]['contacts']:
             if contact[0] == name and contact[1] == surname and occurrence == 0:
-                number = contact[2]
                 occurrence += 1
-                print('deleting contact {}, {} '.format(name, surname))
+                print('deleting contact {}, {}, {} '.format(name, surname, contact[2]))
                 c_list = Phone.phone_dict[self.brand][self.emei]['contacts']
-                c_list.remove([name, surname, number])
+                c_list.remove([name, surname, contact[2]])
             if contact[0] == name and contact[1] == surname and occurrence > 0:
-                decision = input('would you like to remove also duplicate contact? Y/N:')
+                decision = \
+                    input('would you like to remove also duplicate contact with number {}? Y/N:'.format(contact[2]))
                 if decision.lower() == 'y':
-                    number = contact[2]
                     occurrence += 1
                     c_list = Phone.phone_dict[self.brand][self.emei]['contacts']
-                    c_list.remove([name, surname, number])
+                    c_list.remove([name, surname, contact[2]])
         if occurrence == 0:
             print('No any contact for removal..')
         return
 
-# def find_contact(self):
+    def find_contact(self, name, surname):
+        occurrence = 0
+        for contact in Phone.phone_dict[self.brand][self.emei]['contacts']:
+            if contact[0] == name and contact[1] == surname:
+                occurrence += 1
+                if occurrence == 1:
+                    print('Contacts found:')
+                print('{}, {}, {} '.format(name, surname, contact[2]))
+        if occurrence == 0:
+            print('No contact found...')
+        return
 
 
 mobile = Phone('iPhone 11', '123456789')
@@ -167,7 +176,7 @@ mobile.show_contact()
 mobile.add_contact('name2', 'surname2', '987654321')
 mobile.show_contact()
 
-mobile.add_contact('name1', 'surname1', '123456789')
+mobile.add_contact('name1', 'surname1', '1234567890')
 mobile.show_contact()
 
 office = Phone('Nokia', '0987654321ddhg547')
@@ -175,5 +184,5 @@ office.add_contact('office_name', 'office_surname', '1357913579')
 office.show_contact()
 
 
-mobile.del_contact('name3', 'surname1')
-mobile.show_contact()
+mobile.find_contact('name1', 'surname1')
+
