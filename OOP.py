@@ -123,13 +123,31 @@ class Phone:
         Phone.phone_dict = {self.brand: {self.emei: {'contacts': []}}}
 
     def add_contact(self, name, surname, phone_number):
+        for c_list in Phone.phone_dict[self.brand][self.emei]['contacts']:
+            if c_list == [name, surname, phone_number]:
+                decision = input('This contact already exists. Would you like to save it? Y / N: ')
+                if decision.lower() == 'n':
+                    return
         Phone.phone_dict[self.brand][self.emei]['contacts'].append([name, surname, phone_number])
 
     def show_contact(self):
+        print('contact list for: ', self.brand, 'with EMEI', self.emei)
         pp(Phone.phone_dict[self.brand][self.emei])
+        print()
 
 
 mobile = Phone('iPhone 11', '123456789')
+mobile.show_contact()
+
 mobile.add_contact('name1', 'surname1', '123456789')
+mobile.show_contact()
+
 mobile.add_contact('name2', 'surname2', '987654321')
 mobile.show_contact()
+
+mobile.add_contact('name1', 'surname1', '123456789')
+mobile.show_contact()
+
+office = Phone('Nokia', '0987654321ddhg547')
+office.add_contact('office_name', 'office_surname', '1357913579')
+office.show_contact()
