@@ -120,7 +120,7 @@ class Phone:
         self.brand = brand
         self.emei = emei
         Phone.total_phone += 1
-        Phone.phone_dict = {self.brand: {self.emei: {'contacts': []}}}
+        Phone.phone_dict.update({self.brand: {self.emei: {'contacts': []}}})
 
     def add_contact(self, name, surname, phone_number):
         for c_list in Phone.phone_dict[self.brand][self.emei]['contacts']:
@@ -134,6 +134,28 @@ class Phone:
         print('contact list for: ', self.brand, 'with EMEI', self.emei)
         pp(Phone.phone_dict[self.brand][self.emei])
         print()
+
+    def del_contact(self, name, surname):
+        occurrence = 0
+        for contact in Phone.phone_dict[self.brand][self.emei]['contacts']:
+            if contact[0] == name and contact[1] == surname and occurrence == 0:
+                number = contact[2]
+                occurrence += 1
+                print('deleting contact {}, {} '.format(name, surname))
+                c_list = Phone.phone_dict[self.brand][self.emei]['contacts']
+                c_list.remove([name, surname, number])
+            if contact[0] == name and contact[1] == surname and occurrence > 0:
+                decision = input('would you like to remove also duplicate contact? Y/N:')
+                if decision.lower() == 'y':
+                    number = contact[2]
+                    occurrence += 1
+                    c_list = Phone.phone_dict[self.brand][self.emei]['contacts']
+                    c_list.remove([name, surname, number])
+        if occurrence == 0:
+            print('No any contact for removal..')
+        return
+
+# def find_contact(self):
 
 
 mobile = Phone('iPhone 11', '123456789')
@@ -151,3 +173,7 @@ mobile.show_contact()
 office = Phone('Nokia', '0987654321ddhg547')
 office.add_contact('office_name', 'office_surname', '1357913579')
 office.show_contact()
+
+
+mobile.del_contact('name3', 'surname1')
+mobile.show_contact()
