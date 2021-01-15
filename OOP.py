@@ -113,42 +113,40 @@ from pprint import pprint as pp
 
 class Phone:
 
-    total_phone = 0
     phone_dict = {}
 
     def __init__(self, brand, emei):
         self.brand = brand
         self.emei = emei
-        Phone.total_phone += 1
-        Phone.phone_dict.update({self.brand: {self.emei: {'contacts': []}}})
+        self.phone_dict = {brand: {emei: {'contacts': []}}}
 
     def add_contact(self, name, surname, phone_number):
-        for c_list in Phone.phone_dict[self.brand][self.emei]['contacts']:
+        for c_list in self.phone_dict[self.brand][self.emei]['contacts']:
             if c_list == [name, surname, phone_number]:
                 decision = input('This contact already exists. Would you like to save it? Y / N: ')
                 if decision.lower() == 'n':
                     return
-        Phone.phone_dict[self.brand][self.emei]['contacts'].append([name, surname, phone_number])
+        self.phone_dict[self.brand][self.emei]['contacts'].append([name, surname, phone_number])
 
     def show_contact(self):
         print('contact list for: ', self.brand, 'with EMEI', self.emei)
-        pp(Phone.phone_dict[self.brand][self.emei])
+        pp(self.phone_dict[self.brand][self.emei])
         print()
 
     def del_contact(self, name, surname):
         occurrence = 0
-        for contact in Phone.phone_dict[self.brand][self.emei]['contacts']:
+        for contact in self.phone_dict[self.brand][self.emei]['contacts']:
             if contact[0] == name and contact[1] == surname and occurrence == 0:
                 occurrence += 1
                 print('deleting contact {}, {}, {} '.format(name, surname, contact[2]))
-                c_list = Phone.phone_dict[self.brand][self.emei]['contacts']
+                c_list = self.phone_dict[self.brand][self.emei]['contacts']
                 c_list.remove([name, surname, contact[2]])
             if contact[0] == name and contact[1] == surname and occurrence > 0:
                 decision = \
                     input('would you like to remove also duplicate contact with number {}? Y/N:'.format(contact[2]))
                 if decision.lower() == 'y':
                     occurrence += 1
-                    c_list = Phone.phone_dict[self.brand][self.emei]['contacts']
+                    c_list = self.phone_dict[self.brand][self.emei]['contacts']
                     c_list.remove([name, surname, contact[2]])
         if occurrence == 0:
             print('No any contact for removal..')
@@ -156,7 +154,7 @@ class Phone:
 
     def find_contact(self, name, surname):
         occurrence = 0
-        for contact in Phone.phone_dict[self.brand][self.emei]['contacts']:
+        for contact in self.phone_dict[self.brand][self.emei]['contacts']:
             if contact[0] == name and contact[1] == surname:
                 occurrence += 1
                 if occurrence == 1:
@@ -185,4 +183,3 @@ office.show_contact()
 
 
 mobile.find_contact('name1', 'surname1')
-
