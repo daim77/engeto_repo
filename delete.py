@@ -1,75 +1,54 @@
-class Phone:
+from datetime import date
 
-    def __init__(self, brand, model):
-        self.brand = brand
-        self.model = model
-        self.contacts = []
 
-    def add_contact(self, name, number):
-        if self.contacts and self.is_duplicate(number):
-            if self.duplicate():
-                self.contacts.append({"Name": name, "Number": str(number)})
-            else:
-                print("The contact has *not* been added.")
-        else:
-            self.contacts.append({"Name": name, "Number": str(number)})
+class Person:
 
-    def is_duplicate(self, number):
-        for contact in self.contacts:
-            if contact["Number"] == str(number):
-                return True
-        return False
+    def __init__(self, name, address, nationality, birth_date):
+        self.name = name
+        self.address = address
+        self.nationality = nationality
+        self.birth_date = birth_date
+        self.__age = self.calculate_age()
+        self.__is_adult = self.__age >= 18
 
-    def duplicate(self):
-        print("This *number* is already in your contacts.")
-        answer = input("Do you want to add contact?: y/N \n")
-        return answer.lower() == "y"
+    def set_is_adult(self):
+        self.__is_adult = self.__age >= 18
 
-    def remove_contact(self, credential):
-        indexed_contacts = self.get_indexed_contacts(credential)
-        if len(indexed_contacts) > 1:
-            index = self.get_index_choice(indexed_contacts)
-            del self.contacts[index]
-        elif len(indexed_contacts) == 1:
-            index = list(indexed_contacts.keys())[0]
-            del self.contacts[index]
-            print(f"The contact '{credential}' has been deleted.")
-        else:
-            print(f"The contact '{credential}' has *not* been found.")
+    def set_birth_date(self, new_birth_date):
+        self.birth_date = new_birth_date
+        self.__age = self.calculate_age()
+        self.__is_adult = self.__age >= 18
 
-    def lookup_contact(self, credential):
-        indexed_contacts = self.get_indexed_contacts(credential)
-        if not indexed_contacts:
-            print(f"The contact '{credential}' has *not* been found.")
-            return False
-        elif len(indexed_contacts) > 1:
-            index = self.get_index_choice(indexed_contacts)
-            return self.contacts[index]
-        else:
-            index = list(indexed_contacts.keys())[0]
-            return self.contacts[index]
+    def del_birth_date(self):
+        del self.birth_date
+        del self.__is_adult
+        del self.__age
 
-    def get_index_choice(self, indexed_contacts):
-        print("There's more than 1 contact:")
-        for index, contact in indexed_contacts.items():
-            print(f"{index}: {contact}")
-        index = input("Choose the contact you want to *pick* by its index: ")
-        return int(index)
+    def get_birt_date(self):
+        return self.birth_date
 
-    def get_indexed_contacts(self, str_credentials):
-        """
-        :param str_credentials: String, number, or combination of these.
-        :return: Dictionary with:
-                - the location in the contacts list (index) for keys
-                - the contacts for values
-        """
-        str_credentials = str(str_credentials)
+    def calculate_age(self):
+        delta = date.today() - self.birth_date
+        return round(delta.days / 365, 1)
 
-        indexed_contacts = {}
-        for index, contact in enumerate(self.contacts):
-            is_name = str_credentials.isalnum() and str_credentials in contact["Name"]
-            is_number = str_credentials.isnumeric() and str_credentials in contact["Number"]
-            if is_name or is_number:
-                indexed_contacts[index] = contact
 
-        return indexed_contacts
+def choose_beverage(person):
+    return "Take a beer!" if person.calculate_age() >= 18 else 'Sorry, water for you'
+
+
+ana = Person("Ana", "Svobodova 3", "Czech", date(2010, 1, 4))
+print(ana.birth_date)
+print(ana.__age)
+print(choose_beverage(ana))
+
+print()
+
+ana.set_birth_date(date(2000, 1, 4))
+print(ana.__age)
+print(choose_beverage(ana))
+print(ana.__is_adult)
+
+print()
+
+ana.set_birth_date(date(2019, 1, 4))
+print(ana.__is_adult)
