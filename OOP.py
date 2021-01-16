@@ -188,28 +188,80 @@
 
 # getter, setter a deleter
 
+# class Person:
+#
+#     def __init__(self, name, address, nationality, age):
+#         self.name = name
+#         self.address = address
+#         self.nationality = nationality
+#         self.age = age
+#         self.is_adult = self.age >= 18
+#
+#     def get_age(self):                      # Nový getter
+#         return self.age
+#
+#     def set_is_adult(self):
+#         self.is_adult = self.age >= 18
+#         return
+#
+#     def del_age(self):
+#         del self.age
+#         del self.is_adult
+#         return
+#
+#
+# ana = Person("Ana", "Svobodova 3", "Czech", 17)
+# print(ana.get_age())
+# print(ana.is_adult)
+#
+# ana.age = 20
+# print(ana.get_age())
+# ana.set_is_adult()
+# print(ana.is_adult)
+#
+# ana.del_age()
+# print(ana.get_age())
+# print(ana.is_adult)
+
+from datetime import date
+
+
 class Person:
 
-    def __init__(self, name, address, nationality, age):
+    def __init__(self, name, address, nationality, birth_date):
         self.name = name
         self.address = address
         self.nationality = nationality
-        self.age = age
+        self.birth_date = birth_date
+        self.age = date.today() - self.birth_date
         self.is_adult = self.age >= 18
 
-    def get_age(self):                      # Nový getter
+    def get_age(self):
         return self.age
+
+    def set_age(self, new_age):
+        self.age = new_age
+        self.is_adult = self.age >= 18
+
+    def del_age(self):
+        del self.age
 
     def set_is_adult(self):
         self.is_adult = self.age >= 18
-        return
+
+    def set_birth_date(self, new_birth_date):
+        self.birth_date = new_birth_date
+        self.age = date.today() - self.birth_date
+        self.is_adult = self.age >= 18
+
+    def del_birth_date(self):
+        del self.birth_date
+        del self.is_adult
+        del self.age
+
+    def get_birt_date(self):
+        return self.birth_date
 
 
-ana = Person("Ana", "Svobodova 3", "Czech", 17)
-print(ana.get_age())
-print(ana.is_adult)
-
-ana.age = 20
-print(ana.get_age())
-ana.set_is_adult()
-print(ana.is_adult)
+ana = Person("Ana", "Svobodova 3", "Czech", date(2000, 1, 4))
+print(ana.birth_date)
