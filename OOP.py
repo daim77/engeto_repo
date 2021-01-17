@@ -383,7 +383,7 @@
 #         del self.__is_adult
 #         del self.__age
 #
-#     def get_birt_date(self):
+#     def get_birth_date(self):
 #         return self.birth_date
 #
 #     def calculate_age(self):
@@ -414,6 +414,61 @@
 
 # dekorator PROPERTY
 
+# from datetime import date
+#
+#
+# class Person:
+#
+#     def __init__(self, name, address, nationality, birthdate):
+#         self.name = name
+#         self.address = address
+#         self.nationality = nationality
+#         self.birthdate = birthdate
+#         self.__age = self.calculate_age()
+#         self.__is_adult = self.__age >= 18
+#
+#     @property
+#     def birthdate(self):
+#         return self.birthdate
+#
+#     @birthdate.setter
+#     def birthdate(self, new_birthday):
+#         """
+#         Tato metoda nám pomohá zachovat soulad mezi birthday, age a is_adult.
+#         """
+#         self._birthdate = new_birthday  # protected variable
+#         self.__age = self.calculate_age()
+#         self.__is_adult = self.__age > 18
+#
+#     @birthdate.deleter
+#     def birthdate(self):
+#         """
+#         Tato metoda nám pomohá zachovat soulad mezi birthdate, age a is_adult.
+#         """
+#         del self._birthdate
+#         del self.__age
+#         del self.__is_adult
+#
+#     def calculate_age(self):
+#         """
+#         Tato metoda vypočítá věk osoby na základě data narození.
+#         """
+#         diff = date.today() - self._birthdate  # Přistupujeme přímo k `_birthdate`
+#         return round(diff.days / 365, 1)
+#
+#
+# def choose_beverage(person):
+#     return "Take a beer!" if person.calculate_age() >= 18 else 'Sorry, water for you'
+#
+#
+# anna = Person("Ana", "Svobodova 3", "Czech", date(2003, 1, 20))
+# print(choose_beverage(anna))
+#
+# anna.birthdate = date(2019, 12, 31)
+# print(choose_beverage(anna))
+
+# ============== UKOL 4 ===============
+# integrace func do class
 from datetime import date
 
 
@@ -426,6 +481,7 @@ class Person:
         self.birthdate = birthdate
         self.__age = self.calculate_age()
         self.__is_adult = self.__age >= 18
+        self.choose_beverage = 'beer' if self.__is_adult else 'water'
 
     @property
     def birthdate(self):
@@ -433,36 +489,26 @@ class Person:
 
     @birthdate.setter
     def birthdate(self, new_birthday):
-        """
-        Tato metoda nám pomohá zachovat soulad mezi birthday, age a is_adult.
-        """
         self._birthdate = new_birthday  # protected variable
         self.__age = self.calculate_age()
         self.__is_adult = self.__age > 18
+        self.choose_beverage = 'beer' if self.__is_adult else 'water'
 
     @birthdate.deleter
     def birthdate(self):
-        """
-        Tato metoda nám pomohá zachovat soulad mezi birthdate, age a is_adult.
-        """
         del self._birthdate
+        del self.choose_beverage
         del self.__age
         del self.__is_adult
 
     def calculate_age(self):
-        """
-        Tato metoda vypočítá věk osoby na základě data narození.
-        """
         diff = date.today() - self._birthdate  # Přistupujeme přímo k `_birthdate`
         return round(diff.days / 365, 1)
 
 
-def choose_beverage(person):
-    return "Take a beer!" if person.calculate_age() >= 18 else 'Sorry, water for you'
+anna = Person("Ana", "Svobodova 3", "Czech", date(2000, 1, 20))
+print(anna.choose_beverage)
 
+anna.birthdate = date(2018, 12, 31)
+print(anna.choose_beverage)
 
-anna = Person("Ana", "Svobodova 3", "Czech", date(2003, 1, 20))
-print(choose_beverage(anna))
-
-anna.birthdate = date(2019, 12, 31)
-print(choose_beverage(anna))
