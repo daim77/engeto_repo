@@ -467,48 +467,86 @@
 # anna.birthdate = date(2019, 12, 31)
 # print(choose_beverage(anna))
 
-# ============== UKOL 4 ===============
-# integrace func do class
+# # ============== UKOL 4 ===============
+# # integrace func do class
+# from datetime import date
+#
+#
+# class Person:
+#
+#     def __init__(self, name, address, nationality, birthdate):
+#         self.name = name
+#         self.address = address
+#         self.nationality = nationality
+#         self.birthdate = birthdate
+#         self.__age = self.calculate_age()
+#         self.__is_adult = self.__age >= 18
+#         self.choose_beverage = 'beer' if self.__is_adult else 'water'
+#
+#     @property
+#     def birthdate(self):
+#         return self.birthdate
+#
+#     @birthdate.setter
+#     def birthdate(self, new_birthday):
+#         self._birthdate = new_birthday  # protected variable
+#         self.__age = self.calculate_age()
+#         self.__is_adult = self.__age > 18
+#         self.choose_beverage = 'beer' if self.__is_adult else 'water'
+#
+#     @birthdate.deleter
+#     def birthdate(self):
+#         del self._birthdate
+#         del self.choose_beverage
+#         del self.__age
+#         del self.__is_adult
+#
+#     def calculate_age(self):
+#         diff = date.today() - self._birthdate  # Přistupujeme přímo k `_birthdate`
+#         return round(diff.days / 365, 1)
+#
+#
+# anna = Person("Ana", "Svobodova 3", "Czech", date(2000, 1, 20))
+# print(anna.choose_beverage)
+#
+# anna.birthdate = date(2018, 12, 31)
+# print(anna.choose_beverage)
+
+# ============= UKOL 5 =================
+# Zamestnanec
+
 from datetime import date
 
 
-class Person:
+class Employee:
 
-    def __init__(self, name, address, nationality, birthdate):
-        self.name = name
-        self.address = address
-        self.nationality = nationality
-        self.birthdate = birthdate
-        self.__age = self.calculate_age()
-        self.__is_adult = self.__age >= 18
-        self.choose_beverage = 'beer' if self.__is_adult else 'water'
+    def __init__(self, ident, department, contract_from, contract_to, password):
+        self.ident = ident
+        self.department = department
+        self.contract_from = contract_from
+        self.contract_to = contract_to
+        self.password_test = self.password_test(password)
+        # if not self.password_test:
+        #     raise ValueError
+        self.__password = password
 
     @property
-    def birthdate(self):
-        return self.birthdate
+    def password(self):
+        return 'No readable'
 
-    @birthdate.setter
-    def birthdate(self, new_birthday):
-        self._birthdate = new_birthday  # protected variable
-        self.__age = self.calculate_age()
-        self.__is_adult = self.__age > 18
-        self.choose_beverage = 'beer' if self.__is_adult else 'water'
+    @password.setter
+    def password(self, new_password):
+        self._password_test = self.password_test(new_password)
+        # if not self.password_test:
+        #     raise ValueError
+        self.__password = new_password
 
-    @birthdate.deleter
-    def birthdate(self):
-        del self._birthdate
-        del self.choose_beverage
-        del self.__age
-        del self.__is_adult
-
-    def calculate_age(self):
-        diff = date.today() - self._birthdate  # Přistupujeme přímo k `_birthdate`
-        return round(diff.days / 365, 1)
+    def password_test(self, password):
+        if len(password) > 0:
+            return True
+        else:
+            return False
 
 
-anna = Person("Ana", "Svobodova 3", "Czech", date(2000, 1, 20))
-print(anna.choose_beverage)
-
-anna.birthdate = date(2018, 12, 31)
-print(anna.choose_beverage)
-
+honza = Employee('QX123', 'logistics', date(2000, 1, 1), date(2020, 12, 31), 'hello')
+print(honza.password)
