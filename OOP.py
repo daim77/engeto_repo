@@ -512,57 +512,115 @@
 # anna.birthdate = date(2018, 12, 31)
 # print(anna.choose_beverage)
 
-# ============= UKOL 5 =================
-# Zamestnanec
+# # ============= UKOL 5 =================
+# # Zamestnanec
+#
+# from datetime import date
+# import string
+#
+#
+# class Employee:
+#
+#     def __init__(self, ident, department, contract_from, contract_to, password):
+#         self.ident = ident
+#         self.department = department
+#         self.contract_from = contract_from
+#         self.contract_to = contract_to
+#         self.__password = password
+#         self.password_test = self.password_test()
+#
+#     @property
+#     def password(self):
+#         raise ValueError('Password is not readable')
+#
+#     @password.setter
+#     def password(self, new_password):
+#         # self._password_test = self.password_test(new_password)
+#         # if not self.password_test:
+#         #     raise ValueError
+#         self.__password = new_password
+#
+#     @password.deleter
+#     def password(self):
+#         raise AttributeError('Password can not be deleted')
+#
+#     def password_test(self):
+#         if len(self.__password) >= 8:
+#
+#             for char in self.__password:
+#                 if char in string.ascii_lowercase:
+#
+#                     for sub_char in self.__password:
+#                         if sub_char in string.ascii_uppercase:
+#
+#                             for sub_sub_char in self.__password:
+#                                 if sub_sub_char in '''!"#$%&'()*+,-./''':
+#
+#                                     for num in self.__password:
+#                                         if num in str(range(0, 10)):
+#
+#                                             return True
+#         raise ValueError('wrong password format')
+#
+#
+# honza = Employee('QX123', 'logistics', date(2000, 1, 1), date(2020, 12, 31), 'Hellotdk8/di')
+# # honza.password = 'ahoj'
+# print(honza._Employee__password)
 
-from datetime import date
-import string
+# ========= UKOL 6 =========
+# class Account
+
+from datetime import datetime
 
 
-class Employee:
+class Account:
 
-    def __init__(self, ident, department, contract_from, contract_to, password):
-        self.ident = ident
-        self.department = department
-        self.contract_from = contract_from
-        self.contract_to = contract_to
-        self.__password = password
-        self.password_test = self.password_test()
+    def __init__(self, initial_deposit=0):
+        self.deposits = initial_deposit
+        self.withdrawals = 0
+        self._balance = initial_deposit
+        self._history = {datetime.now(): self._balance}
 
     @property
-    def password(self):
-        raise ValueError('Password is not readable')
+    def balance(self):
+        return self._balance
 
-    @password.setter
-    def password(self, new_password):
-        # self._password_test = self.password_test(new_password)
-        # if not self.password_test:
-        #     raise ValueError
-        self.__password = new_password
+    @property
+    def history(self):
+        return self._history
 
-    @password.deleter
-    def password(self):
-        raise AttributeError('Password can not be deleted')
+    def formated_history(self):
+        print('.' * 35)
+        for item in self._history:
+            print('|{:^22}|{:^10}|'.format(item.strftime('%Y-%b-%d %H:%M:%S'), self._history[item]))
+        print('.' * 35)
 
-    def password_test(self):
-        if len(self.__password) >= 8:
+    def deposit(self, deposit):
+        self._history.update({datetime.now(): deposit})
+        self._balance += deposit
+        self.deposits += deposit
 
-            for char in self.__password:
-                if char in string.ascii_lowercase:
-
-                    for sub_char in self.__password:
-                        if sub_char in string.ascii_uppercase:
-
-                            for sub_sub_char in self.__password:
-                                if sub_sub_char in '''!"#$%&'()*+,-./''':
-
-                                    for num in self.__password:
-                                        if num in str(range(0, 10)):
-
-                                            return True
-        raise ValueError('wrong password format')
+    def withdrawal(self, withdrawal):
+        self._history.update({datetime.now(): -1 * withdrawal})
+        self._balance -= withdrawal
+        self.withdrawals += withdrawal
 
 
-honza = Employee('QX123', 'logistics', date(2000, 1, 1), date(2020, 12, 31), 'Hellotdk8/di')
-# honza.password = 'ahoj'
-print(honza._Employee__password)
+rb_bank = Account(100)
+print(rb_bank.deposits)
+print(rb_bank.balance)
+print(rb_bank.history)
+
+rb_bank.deposit(50)
+print(rb_bank.deposits)
+print(rb_bank.balance)
+print(rb_bank.history)
+
+rb_bank.withdrawal(25)
+print(-1 * rb_bank.withdrawals)
+print(rb_bank.balance)
+print(rb_bank.history)
+
+rb_bank.formated_history()
+
+rb_bank.balance = 100
