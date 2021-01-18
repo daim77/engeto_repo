@@ -594,6 +594,7 @@ class Account:
         for item in self._history:
             print('|{:^22}|{:^10}|'.format(item.strftime('%Y-%b-%d %H:%M:%S'), self._history[item]))
         print('.' * 35)
+        print('|{:^22}|{:^10}|'.format('Balance', self._balance))
 
     def deposit(self, deposit):
         self._history.update({datetime.now(): deposit})
@@ -601,6 +602,8 @@ class Account:
         self.deposits += deposit
 
     def withdrawal(self, withdrawal):
+        if withdrawal > self._balance:
+            raise ValueError(f'Balance is lower than {withdrawal}')
         self._history.update({datetime.now(): -1 * withdrawal})
         self._balance -= withdrawal
         self.withdrawals += withdrawal
@@ -621,6 +624,10 @@ print(-1 * rb_bank.withdrawals)
 print(rb_bank.balance)
 print(rb_bank.history)
 
+rb_bank.deposit(76)
 rb_bank.formated_history()
 
-rb_bank.balance = 100
+rb_bank.deposits = 20
+print(rb_bank.balance)
+rb_bank.withdrawal(200)
+rb_bank.formated_history()
