@@ -516,6 +516,7 @@
 # Zamestnanec
 
 from datetime import date
+import string
 
 
 class Employee:
@@ -525,28 +526,43 @@ class Employee:
         self.department = department
         self.contract_from = contract_from
         self.contract_to = contract_to
-        self.password_test = self.password_test(password)
-        # if not self.password_test:
-        #     raise ValueError
         self.__password = password
+        self.password_test = self.password_test()
 
     @property
     def password(self):
-        return 'No readable'
+        raise ValueError('Password is not readable')
 
     @password.setter
     def password(self, new_password):
-        self._password_test = self.password_test(new_password)
+        # self._password_test = self.password_test(new_password)
         # if not self.password_test:
         #     raise ValueError
         self.__password = new_password
 
-    def password_test(self, password):
-        if len(password) > 0:
-            return True
-        else:
-            return False
+    @password.deleter
+    def password(self):
+        raise AttributeError('Password can not be deleted')
+
+    def password_test(self):
+        if len(self.__password) >= 8:
+
+            for char in self.__password:
+                if char in string.ascii_lowercase:
+
+                    for sub_char in self.__password:
+                        if sub_char in string.ascii_uppercase:
+
+                            for sub_sub_char in self.__password:
+                                if sub_sub_char in '''!"#$%&'()*+,-./''':
+
+                                    for num in self.__password:
+                                        if num in str(range(0, 10)):
+
+                                            return True
+        raise ValueError('wrong password format')
 
 
-honza = Employee('QX123', 'logistics', date(2000, 1, 1), date(2020, 12, 31), 'hello')
-print(honza.password)
+honza = Employee('QX123', 'logistics', date(2000, 1, 1), date(2020, 12, 31), 'Hellotdk8/di')
+# honza.password = 'ahoj'
+print(honza._Employee__password)

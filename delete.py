@@ -1,42 +1,22 @@
-from datetime import date
+a, b = 0x21, 0x2f
+my_punct = ''
+for char in range(a, b + 1):
+    my_punct += chr(char)
+print(my_punct)
 
 
-class Person:
+def verify_password(password):
 
-    def __init__(self, name, address, nationality, birthdate):
-        self.name = name
-        self.address = address
-        self.nationality = nationality
-        self.birthdate = birthdate
-        self.__age = self.calculate_age()
-        self.__is_adult = self.__age >= 18
-        self.choose_beverage = 'beer' if self.__is_adult else 'water'
+    if len(password) < 8:
+        raise ValueError('insufficient password length')
 
-    @property
-    def birthdate(self):
-        return self.birthdate
+    count_char_categories = {(chr(num) for num in range(ord('A'), ord('Z') + 1)): 0,
+                             (chr(num) for num in range(ord('a'), ord('z') + 1)): 0,
+                             (chr(num) for num in range(ord('!'), ord('/') + 1)): 0,
+                             (chr(num) for num in range(ord('0'), ord('9') + 1)): 0
+                             }
 
-    @birthdate.setter
-    def birthdate(self, new_birthday):
-        self._birthdate = new_birthday  # protected variable
-        self.__age = self.calculate_age()
-        self.__is_adult = self.__age > 18
-        self.choose_beverage = 'beer' if self.__is_adult else 'water'
+    for category in count_char_categories:
+        count_char_categories[category] = sum((char in password for char in category))
 
-    @birthdate.deleter
-    def birthdate(self):
-        del self._birthdate
-        del self.choose_beverage
-        del self.__age
-        del self.__is_adult
-
-    def calculate_age(self):
-        diff = date.today() - self._birthdate  # Přistupujeme přímo k `_birthdate`
-        return round(diff.days / 365, 1)
-
-
-anna = Person("Ana", "Svobodova 3", "Czech", date(2000, 1, 20))
-print(anna.choose_beverage)
-
-anna.birthdate = date(2018, 12, 31)
-print(anna.choose_beverage)
+    return all(count_char_categories.values())
