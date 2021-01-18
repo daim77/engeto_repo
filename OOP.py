@@ -576,8 +576,8 @@ from datetime import datetime
 class Account:
 
     def __init__(self, initial_deposit=0):
-        self.deposits = initial_deposit
-        self.withdrawals = 0
+        self._deposits = initial_deposit
+        self._withdrawals = 0
         self._balance = initial_deposit
         self._history = {datetime.now(): self._balance}
 
@@ -589,6 +589,14 @@ class Account:
     def history(self):
         return self._history
 
+    @property
+    def withdrawals(self):
+        return -1 * self._withdrawals
+
+    @property
+    def deposits(self):
+        return self._deposits
+
     def formated_history(self):
         print('.' * 35)
         for item in self._history:
@@ -599,35 +607,34 @@ class Account:
     def deposit(self, deposit):
         self._history.update({datetime.now(): deposit})
         self._balance += deposit
-        self.deposits += deposit
+        self._deposits += deposit
 
     def withdrawal(self, withdrawal):
         if withdrawal > self._balance:
             raise ValueError(f'Balance is lower than {withdrawal}')
         self._history.update({datetime.now(): -1 * withdrawal})
         self._balance -= withdrawal
-        self.withdrawals += withdrawal
+        self._withdrawals += withdrawal
 
 
 rb_bank = Account(100)
-print(rb_bank.deposits)
-print(rb_bank.balance)
+print(rb_bank.balance, rb_bank.deposits, -1 * rb_bank.withdrawals)
 print(rb_bank.history)
 
 rb_bank.deposit(50)
-print(rb_bank.deposits)
-print(rb_bank.balance)
+print(rb_bank.balance, rb_bank.deposits, -1 * rb_bank.withdrawals)
 print(rb_bank.history)
 
 rb_bank.withdrawal(25)
-print(-1 * rb_bank.withdrawals)
-print(rb_bank.balance)
+print(rb_bank.balance, rb_bank.deposits, -1 * rb_bank.withdrawals)
 print(rb_bank.history)
 
 rb_bank.deposit(76)
+print(rb_bank.balance, rb_bank.deposits, -1 * rb_bank.withdrawals)
 rb_bank.formated_history()
 
-rb_bank.deposits = 20
-print(rb_bank.balance)
+rb_bank.withdrawals = 20
+
 rb_bank.withdrawal(200)
+print(rb_bank.balance, rb_bank.deposits, -1 * rb_bank.withdrawals)
 rb_bank.formated_history()
