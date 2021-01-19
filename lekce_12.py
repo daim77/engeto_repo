@@ -60,21 +60,47 @@
 # ========= UKOL 52 =========
 # prevadec rimskych cisel
 
+NUMBERS = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
+           'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900,
+           }
+
+
 def to_arab(roman_num: str):
-    numbers = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
-               'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900,
-               }
-    result = numbers[roman_num[-1]]
-    value_before = numbers[roman_num[-1]]
+    valid_char(roman_num)
+
+    result = NUMBERS[roman_num[-1]]
+    value_before = NUMBERS[roman_num[-1]]
 
     for char in roman_num[-2::-1]:
-        if value_before > numbers[char]:
-            result -= numbers[char]
+        if value_before > NUMBERS[char]:
+            result -= NUMBERS[char]
         else:
-            result += numbers[char]
-        value_before = numbers[char]
+            result += NUMBERS[char]
+        value_before = NUMBERS[char]
 
     return result
+
+
+def valid_char(roman_num):
+    not_valid = ('XXXX', 'VV', 'LL', 'DD', 'CCCC', 'IIII')
+
+    for char in roman_num:
+        if char not in NUMBERS:
+            raise ValueError('Not valid number')
+
+    for item in not_valid:
+        if item in roman_num:
+            raise ValueError('Not valid number')
+    if len(roman_num) >= 3:
+        one_before_one = NUMBERS[roman_num[-1]]
+        one_before = NUMBERS[roman_num[-2]]
+        for char in roman_num[-3::-1]:
+            if NUMBERS[char] <= one_before_one and one_before != one_before_one:
+                raise ValueError('Not valid number')
+            else:
+                one_before_one = one_before
+                one_before = NUMBERS[char]
+    return
 
 
 print(to_arab('MDCCCLVI'))
