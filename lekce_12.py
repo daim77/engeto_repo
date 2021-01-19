@@ -60,7 +60,21 @@
 # ========= UKOL 52 =========
 # prevadec rimskych cisel
 
-def to_roman(arab_integer: int):
+def to_arab(roman_num: str):
+    numbers = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
+               'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900,
+               }
+    result = numbers[roman_num[-1]]
+    value_before = numbers[roman_num[-1]]
+
+    for char in roman_num[-2::-1]:
+        if value_before > numbers[char]:
+            result -= numbers[char]
+        else:
+            result += numbers[char]
+        value_before = numbers[char]
+
+    return result
 
 
-to_roman('MMCM')
+print(to_arab('MDCCCLVI'))
