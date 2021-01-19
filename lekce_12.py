@@ -66,7 +66,7 @@ NUMBERS = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
 
 
 def to_arab(roman_num: str):
-    valid_char(roman_num)
+    valid_test(roman_num)
 
     result = NUMBERS[roman_num[-1]]
     value_before = NUMBERS[roman_num[-1]]
@@ -81,7 +81,7 @@ def to_arab(roman_num: str):
     return result
 
 
-def valid_char(roman_num):
+def valid_test(roman_num):
     not_valid = ('XXXX', 'VV', 'LL', 'DD', 'CCCC', 'IIII')
 
     for char in roman_num:
