@@ -161,14 +161,25 @@
 # print(to_arab('MMCMXCIV'))
 # print(to_roman(2994))
 
-# ========= UKOL 53 =========
-# horizontalni histogram
+# # ========= UKOL 53 =========
+# # horizontalni histogram
+#
+# def h_horizont(arg: list):
+#     arg = arg[::-1]
+#     while arg:
+#         num = arg.pop()
+#         print('|' + '*' * int(num))
+#
+#
+# h_horizont([4,5,7,10,6,3,2])
 
-def h_horizont(arg: list):
-    arg = arg[::-1]
-    while arg:
-        num = arg.pop()
-        print('|' + '*' * int(num))
+# ========= UKOL 54 =========
+# vertikalni histogram
+def v_histogram(arg: list):
+
+    for row in range(max(arg), 0, -1):
+        row_for_print = ''.join(' ** ' if item >= row else '    ' for item in arg)
+        print('|{:>3}|{}|'.format(row, row_for_print))
 
 
-h_horizont([4,5,7,10,6,3,2])
+v_histogram([2, 5, 3, 12, 1, 0, 10])
