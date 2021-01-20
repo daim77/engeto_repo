@@ -60,103 +60,115 @@
 # ========= UKOL 52 =========
 # prevadec rimskych cisel
 
-NUMBERS = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
-           'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900,
-           }
+# NUMBERS = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
+#            'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900,
+#            }
+#
+#
+# def to_arab(roman_num: str):
+#     roman_num = roman_num.upper()
+#     valid_test(roman_num)
+#
+#     result = NUMBERS[roman_num[-1]]
+#     value_before = NUMBERS[roman_num[-1]]
+#
+#     for char in roman_num[-2::-1]:
+#         if value_before > NUMBERS[char]:
+#             result -= NUMBERS[char]
+#         else:
+#             result += NUMBERS[char]
+#         value_before = NUMBERS[char]
+#
+#     return result
+#
+#
+# def valid_test(roman_num):
+#     not_valid = ('XXXX', 'VV', 'LL', 'DD', 'CCCC', 'IIII')
+#
+#     if not roman_num.isalpha():
+#         raise ValueError('Roman number is string only with these symbols: I, V, X, L, C, D, M')
+#
+#     for char in roman_num:
+#         if char not in NUMBERS:
+#             raise ValueError('Not valid number')
+#
+#     for item in not_valid:
+#         if item in roman_num:
+#             raise ValueError('Not valid number')
+#     if len(roman_num) >= 3:
+#         one_before_one = NUMBERS[roman_num[-1]]
+#         one_before = NUMBERS[roman_num[-2]]
+#         for char in roman_num[-3::-1]:
+#             if NUMBERS[char] <= one_before_one and one_before != one_before_one:
+#                 if char != 'C':
+#                     raise ValueError('Not valid number')
+#                 else:
+#                     one_before_one = one_before
+#                     one_before = NUMBERS[char]
+#     return
+#
+#
+# def to_roman(arab_num: int):
+#     result = ''
+#     remaining = arab_num
+#
+#     if remaining > 1000:
+#         result += 'M' * int(arab_num / 1000)
+#         remaining = int(str(arab_num)[1:])
+#
+#     if remaining >= 900:
+#         result += 'CM'
+#         remaining -= 900
+#
+#     if remaining >= 500:
+#         result += 'D' + 'C' * ((remaining - 500) // 100)
+#         remaining = int(str(remaining)[1:])
+#     elif remaining > 400:
+#         result += 'CD'
+#         remaining = int(str(remaining)[1:])
+#     elif 400 > remaining >= 100:
+#         result += 'C' * int(remaining / 100)
+#         remaining = int(str(remaining)[1:])
+#
+#     if remaining > 90:
+#         result += 'XC'
+#         remaining -= 90
+#
+#     if remaining >= 50:
+#         result += 'L' + 'X' * ((remaining - 50) // 10)
+#         remaining = int(str(remaining)[1:])
+#     elif remaining > 40:
+#         result += 'XL'
+#         remaining = int(str(remaining)[1:])
+#     elif 40 > remaining >= 10:
+#         result += 'X' * int(remaining / 10)
+#         remaining = int(str(remaining)[1:])
+#
+#     if remaining == 9:
+#         result += 'IX'
+#         remaining = 0
+#
+#     if remaining >= 5:
+#         result += 'V' + 'I' * (remaining - 5)
+#     elif remaining == 4:
+#         result += 'IV'
+#     elif 4 > remaining >= 1:
+#         result += 'I' * int(remaining / 1)
+#
+#     return result
+#
+#
+# print(to_arab('MMCMXCIV'))
+# print(to_roman(2994))
+
+# ========= UKOL 53 =========
+# horizontalni histogram
+
+def h_horizont(arg: list):
+    arg = arg[::-1]
+    while arg:
+        num = arg.pop()
+        print('|' + '*' * int(num))
 
 
-def to_arab(roman_num: str):
-    roman_num = roman_num.upper()
-    valid_test(roman_num)
-
-    result = NUMBERS[roman_num[-1]]
-    value_before = NUMBERS[roman_num[-1]]
-
-    for char in roman_num[-2::-1]:
-        if value_before > NUMBERS[char]:
-            result -= NUMBERS[char]
-        else:
-            result += NUMBERS[char]
-        value_before = NUMBERS[char]
-
-    return result
-
-
-def valid_test(roman_num):
-    not_valid = ('XXXX', 'VV', 'LL', 'DD', 'CCCC', 'IIII')
-
-    if not roman_num.isalpha():
-        raise ValueError('Roman number is string only with these symbols: I, V, X, L, C, D, M')
-
-    for char in roman_num:
-        if char not in NUMBERS:
-            raise ValueError('Not valid number')
-
-    for item in not_valid:
-        if item in roman_num:
-            raise ValueError('Not valid number')
-    if len(roman_num) >= 3:
-        one_before_one = NUMBERS[roman_num[-1]]
-        one_before = NUMBERS[roman_num[-2]]
-        for char in roman_num[-3::-1]:
-            if NUMBERS[char] <= one_before_one and one_before != one_before_one:
-                if char != 'C':
-                    raise ValueError('Not valid number')
-                else:
-                    one_before_one = one_before
-                    one_before = NUMBERS[char]
-    return
-
-
-def to_roman(arab_num: int):
-    result = ''
-    remaining = arab_num
-
-    if remaining > 1000:
-        result += 'M' * int(arab_num / 1000)
-        remaining = int(str(arab_num)[1:])
-
-    if remaining >= 900:
-        result += 'CM'
-        remaining -= 900
-
-    if remaining >= 500:
-        result += 'D' + 'C' * ((remaining - 500) // 100)
-        remaining = int(str(remaining)[1:])
-    elif remaining > 400:
-        result += 'CD'
-        remaining = int(str(remaining)[1:])
-    elif 400 > remaining >= 100:
-        result += 'C' * int(remaining / 100)
-        remaining = int(str(remaining)[1:])
-
-    if remaining > 90:
-        result += 'XC'
-        remaining -= 90
-
-    if remaining >= 50:
-        result += 'L' + 'X' * ((remaining - 50) // 10)
-        remaining = int(str(remaining)[1:])
-    elif remaining > 40:
-        result += 'XL'
-        remaining = int(str(remaining)[1:])
-    elif 40 > remaining >= 10:
-        result += 'X' * int(remaining / 10)
-        remaining = int(str(remaining)[1:])
-
-    if remaining == 9:
-        result += 'IX'
-        remaining = 0
-
-    if remaining >= 5:
-        result += 'V' + 'I' * (remaining - 5)
-    elif remaining == 4:
-        result += 'IV'
-    elif 4 > remaining >= 1:
-        result += 'I' * int(remaining / 1)
-
-    return result
-
-
-print(to_arab('MMCMXCIV'))
-print(to_roman(2994))
+h_horizont([4,5,7,10,6,3,2])
