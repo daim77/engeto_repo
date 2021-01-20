@@ -116,15 +116,39 @@ def to_roman(arab_num: int):
         remaining -= 900
 
     if remaining >= 500:
-        result = 'D' + 'C' * ((remaining - 500) % 100)
+        result += 'D' + 'C' * ((remaining - 500) // 100)
         remaining = int(str(remaining)[1:])
     elif remaining > 400:
         result += 'CD'
         remaining = int(str(remaining)[1:])
-    elif remaining < 400 and remaining > 100:
+    elif 400 > remaining >= 100:
         result += 'C' * int(remaining / 100)
         remaining = remaining = int(str(remaining)[1:])
 
+    if remaining > 90:
+        result += 'XC'
+        remaining -= 90
+
+    if remaining >= 50:
+        result += 'L' + 'X' * ((remaining - 50) // 10)
+        remaining = int(str(remaining)[1:])
+    elif remaining > 40:
+        result += 'XL'
+        remaining = int(str(remaining)[1:])
+    elif 40 > remaining >= 10:
+        result += 'X' * int(remaining / 10)
+        remaining = remaining = int(str(remaining)[1:])
+
+    if remaining == 9:
+        result += 'IX'
+        remaining = 0
+
+    if remaining >= 5:
+        result += 'V' + 'I' * (remaining - 5)
+    elif remaining == 4:
+        result += 'IV'
+    elif 4 > remaining >= 1:
+        result += 'I' * int(remaining / 1)
 
     print(remaining)
 
@@ -132,4 +156,4 @@ def to_roman(arab_num: int):
 
 
 print(to_arab('MDCCCLVI'))
-print(to_roman(1351))
+print(to_roman(1856))
