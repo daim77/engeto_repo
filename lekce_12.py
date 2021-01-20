@@ -66,6 +66,7 @@ NUMBERS = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
 
 
 def to_arab(roman_num: str):
+    roman_num = roman_num.upper()
     valid_test(roman_num)
 
     result = NUMBERS[roman_num[-1]]
@@ -84,6 +85,9 @@ def to_arab(roman_num: str):
 def valid_test(roman_num):
     not_valid = ('XXXX', 'VV', 'LL', 'DD', 'CCCC', 'IIII')
 
+    if not roman_num.isalpha():
+        raise ValueError('Roman number is string only with these symbols: I, V, X, L, C, D, M')
+
     for char in roman_num:
         if char not in NUMBERS:
             raise ValueError('Not valid number')
@@ -96,10 +100,11 @@ def valid_test(roman_num):
         one_before = NUMBERS[roman_num[-2]]
         for char in roman_num[-3::-1]:
             if NUMBERS[char] <= one_before_one and one_before != one_before_one:
-                raise ValueError('Not valid number')
-            else:
-                one_before_one = one_before
-                one_before = NUMBERS[char]
+                if char != 'C':
+                    raise ValueError('Not valid number')
+                else:
+                    one_before_one = one_before
+                    one_before = NUMBERS[char]
     return
 
 
@@ -123,7 +128,7 @@ def to_roman(arab_num: int):
         remaining = int(str(remaining)[1:])
     elif 400 > remaining >= 100:
         result += 'C' * int(remaining / 100)
-        remaining = remaining = int(str(remaining)[1:])
+        remaining = int(str(remaining)[1:])
 
     if remaining > 90:
         result += 'XC'
@@ -137,7 +142,7 @@ def to_roman(arab_num: int):
         remaining = int(str(remaining)[1:])
     elif 40 > remaining >= 10:
         result += 'X' * int(remaining / 10)
-        remaining = remaining = int(str(remaining)[1:])
+        remaining = int(str(remaining)[1:])
 
     if remaining == 9:
         result += 'IX'
@@ -150,10 +155,8 @@ def to_roman(arab_num: int):
     elif 4 > remaining >= 1:
         result += 'I' * int(remaining / 1)
 
-    print(remaining)
-
     return result
 
 
-print(to_arab('MDCCCLVI'))
-print(to_roman(1856))
+print(to_arab('MMCMXCIV'))
+print(to_roman(2994))
