@@ -103,4 +103,33 @@ def valid_test(roman_num):
     return
 
 
+def to_roman(arab_num: int):
+    result = ''
+    remaining = arab_num
+
+    if remaining > 1000:
+        result += 'M' * int(arab_num / 1000)
+        remaining = int(str(arab_num)[1:])
+
+    if remaining >= 900:
+        result += 'CM'
+        remaining -= 900
+
+    if remaining >= 500:
+        result = 'D' + 'C' * ((remaining - 500) % 100)
+        remaining = int(str(remaining)[1:])
+    elif remaining > 400:
+        result += 'CD'
+        remaining = int(str(remaining)[1:])
+    elif remaining < 400 and remaining > 100:
+        result += 'C' * int(remaining / 100)
+        remaining = remaining = int(str(remaining)[1:])
+
+
+    print(remaining)
+
+    return result
+
+
 print(to_arab('MDCCCLVI'))
+print(to_roman(1351))
