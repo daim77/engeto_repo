@@ -96,7 +96,7 @@ def main():
             exit()
         counter -= 1
         print_ui(state, your_name, counter)
-    print(word)
+    print('looser', word)
 
 
 if __name__ == '__main__':
