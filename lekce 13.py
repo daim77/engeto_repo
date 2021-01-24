@@ -95,10 +95,33 @@
 #
 #     # delete_folder('test/TestDir1')
 
-# funkce na vypis slozky
+# import sys
+# import os
+#
+#
+# def last_line_file():
+#     name_list = sys.argv[1:]
+#     for name in name_list:
+#         if os.path.isfile(os.getcwd() + '/' + name):
+#             with open(os.getcwd() + '/' + name, 'a+') as file:
+#                 file.write('=' * 40)
+#
+#
+# if __name__ == '__main__':
+#     last_line_file()
+
+
 import os
 
 
-def list_folder(path: str):
-    if os.path.isdir(path):
-        
+def dir_or_file(arg: str):
+    if os.path.isdir(arg):
+        print('DIR')
+    elif os.path.isfile(arg):
+        print('FILE')
+    else:
+        print('PathNotFound')
+
+
+if __name__ == "__main__":
+    dir_or_file('/Users/martindanek/Deskto')
