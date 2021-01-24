@@ -87,7 +87,9 @@ def main():
     counter = int(len(word) * 1.5)
 
     your_name = input('ZADEJ TVE JMENO: ')
+    
     print_ui(state, your_name, counter)
+
     while counter:
         letter = input('Zadej pismeno: ')
         state = game(word, state, letter)
@@ -96,6 +98,7 @@ def main():
             exit()
         counter -= 1
         print_ui(state, your_name, counter)
+
     print('looser', word)
 
 

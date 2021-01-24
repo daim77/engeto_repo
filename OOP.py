@@ -640,3 +640,54 @@
 # rb_bank.formated_history()
 
 
+# ===== dedicnost =====
+from datetime import date
+
+
+class Person:
+
+    def __init__(self, name, sex, address, nationality, birthdate):
+        self.name = name
+        self.sex = sex
+        self.address = address
+        self.nationality = nationality
+        self.birthdate = birthdate
+
+    def calculate_age(self):
+        diff = date.today() - self.birthdate
+        return round(diff.days / 365, 1)
+
+
+class Employee(Person):
+
+    def __init__(self, name, sex, address, nationality, birthdate, id, department, salary):
+        # Person.__init__(self, name, address, nationality, birthdate)  #  nebo lepe se super()
+        super().__init__(name, sex, address, nationality, birthdate)
+        self.id = id
+        self.department = department
+        self.performance = None
+        self.salary = salary
+
+
+class Programmer(Employee):
+
+    def __init__(self, name, sex, address, nationality, birthdate, id, department, salary, skills):
+        super().__init__(name, sex, address, nationality, birthdate, id, department, salary)
+        self.skills = skills
+
+    def change_address(self, address):
+        self.address = address
+        return self.address
+
+
+jane = Person('Jana', 'female', 'Street 1', 'UK', date(2000, 1, 1))
+print('Jane', jane.calculate_age())
+
+lily = Employee('Lilly', 'female', 'Her street 2', 'CZ', date(1990, 1, 1), '123456it', 'IT', '50000')
+print('Lily', lily.calculate_age())
+
+john = Programmer('John', 'male', 'johnsStreet', 'US', date(1977, 1, 1), 'hgcstuyrtug77', 'IT', '100000', 'Java')
+print('John', john.calculate_age())
+print(john.address)
+john.change_address('new street')
+print(john.address)

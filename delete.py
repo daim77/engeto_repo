@@ -1,12 +1,14 @@
-# from datetime import datetime as dt
-#
-#
-# def day_today():
-#     ts1 = dt.now()
-#     return ts1.strftime('%Y-%b-%d %H:%M:%S')
-#
-#
-# if __name__ == '__main__':
-#     print(day_today())
-#     print(__name__)
+import sys
+import os
 
+
+def last_line_file():
+    name_list = sys.argv[1:]
+    for name in name_list:
+        if os.path.isfile(os.getcwd() + '/' + name):
+            with open(os.getcwd() + '/' + name, 'a+') as file:
+                file.write('=' * 40)
+
+
+if __name__ == '__main__':
+    last_line_file()
