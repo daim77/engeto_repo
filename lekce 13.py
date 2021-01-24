@@ -109,19 +109,50 @@
 #
 # if __name__ == '__main__':
 #     last_line_file()
-
-
-import os
-
-
-def dir_or_file(arg: str):
-    if os.path.isdir(arg):
-        print('DIR')
-    elif os.path.isfile(arg):
-        print('FILE')
-    else:
-        print('PathNotFound')
-
-
-if __name__ == "__main__":
-    dir_or_file('/Users/martindanek/Deskto')
+#
+#
+# import os
+#
+#
+# def dir_or_file(arg: str):
+#     if os.path.isdir(arg):
+#         return 'dir'
+#     elif os.path.isfile(arg):
+#         return 'file'
+#     else:
+#         return 'PathNotFound'
+#
+#
+# def file_creator(names: list):
+#     result = []
+#     for name in names:
+#         if type(name) != str:
+#             result.append(False)
+#             continue
+#         file = open(name + '.txt', 'w')
+#         file.close()
+#         result.append(True)
+#     return result
+#
+#
+# if __name__ == "__main__":
+#     dir_or_file('/Users/martindanek/Desktop')
+#     print(file_creator(['a', 'aa', 'aaa', 1]))
+#
+#
+# import sys
+# import os
+# from pprint import pprint as pp
+#
+#
+# print(sys.getdefaultencoding())
+# print(sys.getrecursionlimit())
+# print(sys.maxsize)
+# print(2**63)
+# pp(sys.modules)
+# print(sys.platform)
+#
+# print(os.getcwd())
+# os.chdir('/Users/martindanek/Documents/programovani')
+# pp(os.listdir())
+# pp(os.times())
