@@ -156,3 +156,48 @@
 # os.chdir('/Users/martindanek/Documents/programovani')
 # pp(os.listdir())
 # pp(os.times())
+
+# # ========= UKOL Vyhledavac souboru =========
+# import os
+# from datetime import datetime
+#
+#
+# def search_file(file_name: str, path: str):
+#     start = datetime.now()
+#     for subdir, dirs, files in os.walk(path):
+#         if file_name in files:
+#             print(datetime.now() - start)
+#             return subdir + os.sep + file_name
+#     return False
+#
+#
+# if __name__ == '__main__':
+#     print(search_file('text1.txt', '/Users/martindanek/Documents'))
+
+# # nebo engeto upravene reseni
+#
+import os
+from time import time
+
+
+def search(start_dir: str, searched_name: str):
+    start_time = time()
+    paths = []
+    dirs_to_search = [start_dir]
+
+    while dirs_to_search:
+        current_dir = dirs_to_search.pop()
+
+        for item in os.listdir(current_dir):
+            item_path = os.path.join(current_dir, item)
+            if os.path.isdir(item_path):
+                dirs_to_search.append(item_path)
+            elif item == searched_name:
+                paths.append(item_path)
+    end = time()
+    print(end - start_time)
+    return paths
+
+
+if __name__ == '__main__':
+    print(search('/Users/martindanek/Documents', 'text1.txt'))
