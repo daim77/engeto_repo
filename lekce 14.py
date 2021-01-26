@@ -58,27 +58,47 @@
 #     pp(from_json)
 # # file.close()
 
-# ===== Precteni prvnich sloupcu a tisk listu =====
+# ===== Precteni sloupcu a tisk listu =====
 
-import csv
+# import csv
+#
+#
+# def read_json_column(path: str, column=0):
+#     try:
+#         with open(path) as file:
+#             read_json = csv.reader(file)
+#
+#             for row in read_json:
+#                 if column == 0:
+#                     print(' '.join(row))
+#                 else:
+#                     print(row[column - 1])
+#
+#     except FileNotFoundError:
+#         print('File not found')
+#     except IndexError:
+#         print('Wrong column')
+#
+#
+# if __name__ == '__main__':
+#     read_json_column('/Users/martindanek/Documents/programovani/files/csv/pokus.csv', 0)
 
+# # ===== Prevedeni sloupcu do listu =====
+# import csv
+#
+#
+# def csv_column_to_row(path):
+#     result = {}
+#     with open(path) as file:
+#         csv_file = csv.reader(file)
+#         for row in csv_file:
+#             for i, item in enumerate(row):
+#                 result[i] = result.get(i, []) + [item]
+#     return list(result.values())
+#
+#
+# if __name__ == '__main__':
+#     print(csv_column_to_row('/Users/martindanek/Documents/programovani/files/csv/pokus.csv'))
 
-def read_json_column(path: str, column=0):
-    try:
-        with open(path) as file:
-            read_json = csv.reader(file)
+# ===== JSON WEATHER ========
 
-            for row in read_json:
-                if column == 0:
-                    print(' '.join(row))
-                else:
-                    print(row[column - 1])
-
-    except FileNotFoundError:
-        print('File not found')
-    except IndexError:
-        print('Wrong column')
-
-
-if __name__ == '__main__':
-    read_json_column('/Users/martindanek/Documents/programovani/files/csv/pokus.csv', 0)
