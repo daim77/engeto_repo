@@ -101,4 +101,31 @@
 #     print(csv_column_to_row('/Users/martindanek/Documents/programovani/files/csv/pokus.csv'))
 
 # ===== JSON WEATHER ========
+import json
 
+
+with open('/Users/martindanek/Documents/programovani/files/json/pocasi.json') as file:
+    file = json.load(file)
+    data_dict = file[0]
+
+    location = data_dict['address_components']['short_name']
+    temp_min = data_dict['weather']['temperature']['min']
+    temp_now = data_dict['weather']['temperature']['current']
+    temp_max = data_dict['weather']['temperature']['max']
+    rain_intensity = data_dict['weather']['rain']['intensity-value']
+    wind_direction = data_dict['weather']['wind']['direction']
+    wind_speed = data_dict['weather']['wind']['speed']
+
+    print('=' * 30)
+    print('{:^30}'.format('STAV POCASI'))
+    print('=' * 30)
+    print('{:<30}'.format(location))
+    print('=' * 30)
+    print('{:^6}°C | {:^6}°C | {:^6}°C'.format(temp_min, temp_now, temp_max))
+    print('=' * 30)
+    if data_dict.get('weather').get('rain').get('raining'):
+        print('rain intensity    ' + '/' * int(rain_intensity))
+    else:
+        print('no rain')
+    print('=' * 30)
+    print('wind: {} / {} kt'.format(wind_direction, wind_speed))
