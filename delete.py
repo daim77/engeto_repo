@@ -1,32 +1,35 @@
+import requests
 import os
+import csv
+from datetime import datetime as dt
+from bs4 import BeautifulSoup as BS
+
+DATE_FORMAT = '%d.%m.%Y %H:%M'
+URL = "https://markets.businessinsider.com/commodities/gold-price"
 
 
-def search(start_dir, searched_name):
-    # Vytvoříme proměnou, které se bude vracet.
-    paths = []
-    # Vytvoříme proměnou, do které se ukládají složky, které je nutné prohledat.
-    dirs_to_search = [start_dir]
+def request_gold_price():
+    r = requests.get(URL)
 
-    # Dokud máme složky, které je potřeba prohledat, tak prohledáváme.
-    while dirs_to_search:
-        current_dir = dirs_to_search.pop(0)
+    soup = BS(r.text, "html.parser")
+    price = soup.find('div', {'class': 'price'}).string
 
-        # Procházíme všechny položky ve složce.
-        for item in os.listdir(current_dir):
+    print('The current price is {}'.format(price))
 
-            # Vytváříme cestu ke každému souboru ve složce.
-            item_path = os.path.join(current_dir, item)
+    chars = []
+    for char in price:
+        if char != ',':
+            chars.append(char)
 
-            # Pokud během prohledávání narazíme na složku, přidáme jí do listu složek k prohledání
-            if os.path.isdir(item_path):
-                dirs_to_search.append(item_path)
+    price = ''.join(chars)
 
-            # Pokud narazíme na hledané jmeno, přidáváme do výsledného listu
-            elif item.split('.')[0] == searched_name:
-                paths.append(item_path)
-
-    return paths
+    return price
 
 
-if __name__ == '__main__':
-    print(search('/Users/martindanek/Documents', 'text1'))
+def write_data(price):
+   with open('/Users/martindanek/Documents/programovani/files/csv/gold_price.csv', 'a') as f:
+       writer = csv.writer(f)
+       writer.writerow([float(price), dt.now().strftime(DATE_FORMAT)])
+
+
+write_data(request_gold_price())
