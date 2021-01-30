@@ -14,7 +14,7 @@
 # import bs4
 #
 #
-# URL = 'https://markets.businessinsider.com/commodities/gold-price'
+# url = 'https://markets.businessinsider.com/commodities/gold-price'
 #
 #
 # def write_price_to_csv(price):
@@ -25,7 +25,7 @@
 #
 # def get_gold_price():
 #     price = 'price not found'
-#     request_data = requests.get(URL)
+#     request_data = requests.get(url)
 #     soup = bs4.BeautifulSoup(request_data.text, "html.parser")
 #
 #     data = soup.find('div', class_="snapshot").script.string
@@ -41,12 +41,18 @@
 #     get_gold_price()
 
 # ===== FIO bank scrapper =====
+
 import requests
 import bs4
 import csv
 
 
-URL = 'https://ib.fio.cz/ib/transparent?a=2400101213'
+def compose_url(account, date_from, date_to):
+    return 'https://ib.fio.cz/ib/transparent?a='\
+           + str(account) + '&f='\
+           + str(date_from)\
+           + '&t='\
+           + str(date_to)
 
 
 def write_data(arg):
@@ -55,8 +61,10 @@ def write_data(arg):
         writer.writerows(arg)
 
 
-def fio_account():
-    data = requests.get(URL)
+def fio_account(account, date_from, date_to):
+    url = compose_url(account, date_from, date_to)
+    data = requests.get(url)
+
     soup = bs4.BeautifulSoup(data.text, 'html.parser')
 
     header = [item.text for item in soup.find('table').find_next('table').find('thead').find_all('th')]
@@ -76,4 +84,4 @@ def fio_account():
 
 
 if __name__ == '__main__':
-    fio_account()
+    fio_account(2400101213, '01.01.2021', '29.01.2021')
