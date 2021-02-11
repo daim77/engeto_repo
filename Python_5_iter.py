@@ -20,11 +20,21 @@ friendships = [
     ('N', 'O')
 ]
 
+
 def get_friends(person):
-    my_set = set()
-    for item in friendships:
-        if person in item:
-            my_set.update(set(item).difference(person))
+    my_set = set(
+        map(
+            lambda friend: ''.join(friend).replace(person, ''
+                                                   ),
+            filter(
+                lambda pairs: person in pairs, friendships
+            )
+        )
+    )
+    # my_set = set()
+    # for pairs in friendships:
+    #     if person in pairs:
+    #         my_set.update(set(pairs).difference(person))
     return my_set
 
 
@@ -44,4 +54,4 @@ def is_friendship(person1, person2):
 
 if __name__ == '__main__':
     print(common_friends('G', 'H'))
-    print(is_friendship('A', 'D'))
+    print(is_friendship('A', 'B'))
