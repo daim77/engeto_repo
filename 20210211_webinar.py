@@ -67,13 +67,6 @@
 # response = requests.post('https://httpbin.org/post', json={'key': 'toto je muj text'})
 # print(response.json())
 
-
-# import requests
-#
-#
-# r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Brno,cz&appid=391b38bde0be516301f4a98c4bbd3b1b')
-# print(r)
-
 # import requests
 # from pprint import pprint as pp
 # import json
