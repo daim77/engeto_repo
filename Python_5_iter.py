@@ -130,27 +130,29 @@
 # print(today)
 # print(datetime.datetime.today().weekday())
 
-# rekurze faktodial
-import time
+# # rekurze faktodial
+# import time
+#
+#
+# def factorial(n):
+#     if n == 1:
+#         return 1
+#     return n * factorial(n-1)
+#
+#
+# def factorial_for(n):
+#     result = 1
+#     for number in range(1, n + 1):
+#         result *= number
+#     return result
+#
+#
+# start = time.time()
+# factorial(900)
+# print(time.time() - start)
+#
+# start = time.time()
+# factorial_for(900)
+# print(time.time() - start)
 
 
-def factorial(n):
-    if n == 1:
-        return 1
-    return n * factorial(n-1)
-
-
-def factorial_for(n):
-    result = 1
-    for number in range(1, n + 1):
-        result *= number
-    return result
-
-
-start = time.time()
-factorial(900)
-print(time.time() - start)
-
-start = time.time()
-factorial_for(900)
-print(time.time() - start)
