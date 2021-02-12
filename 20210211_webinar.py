@@ -71,7 +71,6 @@
 # from pprint import pprint as pp
 # import json
 #
-#
 # url = 'https://api.openaq.org/v1/locations'
 # r = requests.get(url)
 # pp(type(eval(r.text)))

@@ -156,3 +156,28 @@
 # print(time.time() - start)
 
 
+# # ==== Fibonacci =====
+# # INPUT = 'n' member of fibonacci row
+# # OUTPU = value of 'n' member
+#
+# def fibonacci(n):
+#     if n == 0 or n == 1:
+#         return n
+#     return fibonacci(n - 1) + fibonacci(n - 2)
+#
+#
+# if __name__ == '__main__':
+#     print(fibonacci(20))
+
+# # ==== nejvetsi spolecny delitel s rekurzi =====
+#
+# def gcd(a, b):
+#     r = a % b
+#     if r == 0:
+#         return b
+#     return gcd(b, r)
+#
+#
+# print(gcd(30, 22))
+
+
