@@ -181,3 +181,17 @@
 # print(gcd(30, 22))
 
 
+# # ===== reversed() recursive =====
+#
+# def reverse(seq):
+#     if len(seq) == 1:
+#         return seq
+#
+#     return [seq[-1]] + reverse(seq[:-1])
+#
+#
+# print(revrec([0, 1, 2, 3, 4, 5, 6, 7]))
+
+# ==== permutace BEZ OPAKOVANI=====
+
+
