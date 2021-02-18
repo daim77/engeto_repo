@@ -40,7 +40,7 @@ def get_customer(username):
     for customer in customers:
         if customer['username'] == username:
             return jsonify(customer)
-    return jsonify({'message': 'customer not found'})
+    return jsonify({'message': 'customer not found'}), 404
 
 
 @app.route('/customer', methods=['POST'])
@@ -55,17 +55,17 @@ def create_customer():
     }
     for customer in customers:
         if customer['username'] == new_customer['username']:
-            return jsonify({'error': 'username already exist'})
+            return jsonify({'error': 'username already exist'}), 409
     customers.append(new_customer)
-    return jsonify(new_customer)
+    return jsonify(new_customer), 201
 
 
 @app.route('/customer/<string:username>/trips', methods=['GET'])
 def get_trips(username):
     for customer in customers:
         if customer['username'] == username:
-            return jsonify({'trips': customer['trips']})
-    return jsonify({'error': 'username does not exist'})
+            return jsonify({'trips': customer['trips']}), 201
+    return jsonify({'error': 'username not found'}), 404
 
 
 @app.route('/customer/<string:username>/trips', methods=['POST'])
@@ -78,8 +78,8 @@ def create_trip_for_user(username):
                 "price": request_data['price']
             }
             customer['trips'].append(new_trip)
-            return new_trip
-    return jsonify({'error': 'username does not exist'})
+            return new_trip, 201
+    return jsonify({'error': 'username not found'}), 404
 
 
 app.run(port=3333, debug=True)
