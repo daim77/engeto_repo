@@ -21,6 +21,6 @@ def count_only_num(data: list) -> float:
 
 
 if __name__ == '__main__':
-    data = [4, 6, 8, 14, 900, "5", "ahoj", 34, True, "ddjj5", ["5", 7, True, "ddh5"]]
-
+    # data = [4, 6, 8, 14, 900, "5", "ahoj", 34, True, "ddjj5", ["5", 7, True, "ddh5"]]
+    data = [4, 6, 8, 14, 900, "5", "ahoj", 34, True, "ddjj5", ["5", 7, True, "ddh5", ["5", 7, True, "ddh5"]]]
     print(count_only_num(data))
